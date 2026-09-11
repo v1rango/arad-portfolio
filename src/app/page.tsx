@@ -1,65 +1,94 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import { PERSONAL_DATA, TESTIMONIALS_DATA } from "@/lib/constants";
 
 export default function Home() {
+  const [lang, setLang] = useState<"fa" | "en">("fa");
+
+  // ساخت Schema.org بر اساس استاندارد Person و ProfessionalService
+  const schemaPerson = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": PERSONAL_DATA.nameEn,
+    "alternateName": PERSONAL_DATA.nameFa,
+    "jobTitle": "Full-Stack Web Developer & SEO Specialist",
+    "url": "https://v1arad.ir", // آدرس دامین اصلی شما
+    "sameAs": [
+      PERSONAL_DATA.socials.github,
+      PERSONAL_DATA.socials.telegram,
+      PERSONAL_DATA.socials.instagram,
+    ],
+    "knowsAbout": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "MongoDB",
+      "Prisma ORM",
+      "Search Engine Optimization (SEO)",
+      "Answer Engine Optimization (AEO)",
+      "Generative Engine Optimization (GEO)"
+    ],
+    "description": PERSONAL_DATA.bioFa
+  };
+
+  const schemaFAQ = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "آراد وفایی چه خدمات تخصصی ارائه‌می دهد؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "آراد وفایی متخصص توسعه فول‌استک وب‌اپلیکیشن‌ها با Next.js، TypeScript و MongoDB است و خدمات تخصصی سئوی نوین شامل SEO، AEO و GEO ارائه می‌دهد."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "تفاوت AEO و GEO با سئوی سنتی چیست؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "سئوی سنتی روی کسب رتبه در لینک‌های گوگل تمرکز دارد؛ اما AEO و GEO محتوا را طوری ساختاردهی می‌کنند که هوش مصنوعی‌هایی مانند ChatGPT، Gemini و Perplexity پاسخ کاربر را مستقیماً از وب‌سایت شما استخراج کنند."
+        }
+      }
+    ]
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className={`min-h-screen bg-[var(--bg-primary)] text-white font-sans ${lang === "fa" ? "rtl" : "ltr"}`} dir={lang === "fa" ? "rtl" : "ltr"}>
+      {/* Structural Schema for AI/AEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaPerson) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
+      />
+
+      <Header lang={lang} setLang={setLang} />
+      
+      <main>
+        <Hero lang={lang} />
+        <Skills lang={lang} />
+        <Projects lang={lang} />
+        <Testimonials lang={lang} />
+        <FAQ lang={lang} />
+        <Contact lang={lang} />
       </main>
+
+      <Footer lang={lang} />
     </div>
   );
 }
