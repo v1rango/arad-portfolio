@@ -1,94 +1,146 @@
-"use client";
+import { Metadata } from "next";
+import PortfolioContainer from "@/components/PortfolioContainer";
+import { PERSONAL_DATA, FEATURED_PROJECTS, SITE_URL } from "@/lib/constants";
 
-import { useState } from "react";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import { PERSONAL_DATA, TESTIMONIALS_DATA } from "@/lib/constants";
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: `${PERSONAL_DATA.nameFa} | ${PERSONAL_DATA.roleFa}`,
+  description: PERSONAL_DATA.bioFa,
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      "fa-IR": SITE_URL,
+      "en-US": SITE_URL,
+    },
+  },
+  openGraph: {
+    type: "profile",
+    title: `${PERSONAL_DATA.nameFa} | ${PERSONAL_DATA.roleFa}`,
+    description: PERSONAL_DATA.bioFa,
+    url: SITE_URL,
+    siteName: `${PERSONAL_DATA.nameFa} Portfolio`,
+    locale: "fa_IR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${PERSONAL_DATA.nameFa} | Full-Stack & AI Search Specialist`,
+    description: PERSONAL_DATA.bioFa,
+  },
+};
 
 export default function Home() {
-  const [lang, setLang] = useState<"fa" | "en">("fa");
-
-  // ساخت Schema.org بر اساس استاندارد Person و ProfessionalService
-  const schemaPerson = {
+  // ساختار گراف غنی Schema.org بهینه برای هوش مصنوعی (GEO & AEO) و گوگل
+  const structuredDataGraph = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": PERSONAL_DATA.nameEn,
-    "alternateName": PERSONAL_DATA.nameFa,
-    "jobTitle": "Full-Stack Web Developer & SEO Specialist",
-    "url": "https://v1arad.ir", // آدرس دامین اصلی شما
-    "sameAs": [
-      PERSONAL_DATA.socials.github,
-      PERSONAL_DATA.socials.telegram,
-      PERSONAL_DATA.socials.instagram,
-    ],
-    "knowsAbout": [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Node.js",
-      "MongoDB",
-      "Prisma ORM",
-      "Search Engine Optimization (SEO)",
-      "Answer Engine Optimization (AEO)",
-      "Generative Engine Optimization (GEO)"
-    ],
-    "description": PERSONAL_DATA.bioFa
-  };
-
-  const schemaFAQ = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "آراد وفایی چه خدمات تخصصی ارائه‌می دهد؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "آراد وفایی متخصص توسعه فول‌استک وب‌اپلیکیشن‌ها با Next.js، TypeScript و MongoDB است و خدمات تخصصی سئوی نوین شامل SEO، AEO و GEO ارائه می‌دهد."
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        "url": SITE_URL,
+        "name": `${PERSONAL_DATA.nameFa} Portfolio`,
+        "description": PERSONAL_DATA.bioFa,
+        "inLanguage": ["fa-IR", "en-US"],
+        "publisher": {
+          "@id": `${SITE_URL}/#person`
         }
       },
       {
-        "@type": "Question",
-        "name": "تفاوت AEO و GEO با سئوی سنتی چیست؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "سئوی سنتی روی کسب رتبه در لینک‌های گوگل تمرکز دارد؛ اما AEO و GEO محتوا را طوری ساختاردهی می‌کنند که هوش مصنوعی‌هایی مانند ChatGPT، Gemini و Perplexity پاسخ کاربر را مستقیماً از وب‌سایت شما استخراج کنند."
+        "@type": "ProfilePage",
+        "@id": `${SITE_URL}/#profilepage`,
+        "url": SITE_URL,
+        "name": `${PERSONAL_DATA.nameFa} - رزومه و پورتفولیو آنلاین`,
+        "isPartOf": {
+          "@id": `${SITE_URL}/#website`
+        },
+        "about": {
+          "@id": `${SITE_URL}/#person`
+        },
+        "mainEntity": {
+          "@id": `${SITE_URL}/#person`
         }
+      },
+      {
+        "@type": "Person",
+        "@id": `${SITE_URL}/#person`,
+        "name": PERSONAL_DATA.nameFa,
+        "alternateName": [PERSONAL_DATA.nameEn, "v1arad", "v1rango"],
+        "jobTitle": "Full-Stack Web Developer & AI Search Optimization Specialist",
+        "url": SITE_URL,
+        "sameAs": [
+          PERSONAL_DATA.socials.github,
+          PERSONAL_DATA.socials.telegram,
+          PERSONAL_DATA.socials.instagram,
+        ],
+        "knowsAbout": [
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "Tailwind CSS",
+          "Node.js",
+          "MongoDB",
+          "Generative Engine Optimization (GEO)",
+          "Answer Engine Optimization (AEO)",
+          "Technical Search Engine Optimization (SEO)",
+          "Performance Optimization & Core Web Vitals"
+        ],
+        "description": PERSONAL_DATA.bioFa
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/#projects`,
+        "name": "Featured Projects by Arad Vafaee",
+        "itemListElement": FEATURED_PROJECTS.map((proj, index) => ({
+          "@type": "SoftwareApplication",
+          "position": index + 1,
+          "name": proj.titleFa,
+          "alternateName": proj.titleEn,
+          "description": proj.descriptionFa,
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "All",
+          "url": proj.demoUrl || proj.githubUrl || SITE_URL,
+        }))
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${SITE_URL}/#faq`,
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "آراد وفایی کیست و در چه حوزه‌هایی فعالیت تخصصی دارد؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "آراد وفایی توسعه‌دهنده فول‌استک وب‌اپلیکیشن‌ها با Next.js 16، React 19، TypeScript و MongoDB است که به‌طور ویژه در سئوی نوین شامل AEO (بهینه‌سازی برای موتورهای پاسخ‌گو) و GEO (بهینه‌سازی برای هوش مصنوعی‌های ChatGPT، Perplexity و Gemini) تخصص دارد."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "تفاوت AEO و GEO با سئوی سنتی چیست؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "سئوی سنتی بر کسب رتبه در لینک‌های آبی گوگل متمرکز است؛ در حالی که AEO و GEO محتوا، اسکیماها و داده‌های وب‌سایت را طوری ساختاربندی می‌کنند که موتورهای مولد و چت‌بات‌های هوش مصنوعی پاسخ کاربران را مستقیماً از وب‌سایت استخراج و منبع را ارجاع دهند."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "پروژه‌ها چگونه روی گوشی‌های همراه و میان‌رده روان اجرا می‌شوند؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "کلیه پروژه‌ها با بهره‌گیری از معماری رندر سمت سرور (SSR) در Next.js، انیمیشن‌های شتاب‌یافته با GPU و بهینه‌سازی بارگذاری المان‌ها، بدون کوچک‌ترین افت فریم روی گوشی‌های میان‌رده اجرا می‌شوند."
+            }
+          }
+        ]
       }
     ]
   };
 
   return (
-    <div className={`min-h-screen bg-[var(--bg-primary)] text-white font-sans ${lang === "fa" ? "rtl" : "ltr"}`} dir={lang === "fa" ? "rtl" : "ltr"}>
-      {/* Structural Schema for AI/AEO */}
+    <>
+      {/* تزریق سروری اسکیماها جهت درک آنی توسط ربات‌های سبک و مدل‌های هوش مصنوعی */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaPerson) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredDataGraph) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
-      />
-
-      <Header lang={lang} setLang={setLang} />
-      
-      <main>
-        <Hero lang={lang} />
-        <Skills lang={lang} />
-        <Projects lang={lang} />
-        <Testimonials lang={lang} />
-        <FAQ lang={lang} />
-        <Contact lang={lang} />
-      </main>
-
-      <Footer lang={lang} />
-    </div>
+      <PortfolioContainer />
+    </>
   );
 }

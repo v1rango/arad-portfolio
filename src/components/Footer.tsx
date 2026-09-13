@@ -2,7 +2,6 @@
 
 import { PERSONAL_DATA } from "@/lib/constants";
 import { FaGithub, FaTelegram, FaInstagram, FaWhatsapp, FaPhone, FaArrowUp } from "react-icons/fa";
-import { HiMail } from "react-icons/hi";
 
 interface FooterProps {
   lang: "fa" | "en";
@@ -17,34 +16,43 @@ export default function Footer({ lang }: FooterProps) {
   };
 
   return (
-    <footer className="relative bg-[#010a18] border-t border-[var(--border)]/40 pt-16 pb-8 px-4 sm:px-6 lg:px-8 text-gray-400 overflow-hidden">
+    <footer
+      className="relative border-t pt-16 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300"
+      style={{
+        backgroundColor: "var(--bg-primary)",
+        borderColor: "var(--border)",
+        color: "var(--text-secondary)",
+      }}
+    >
       {/* هاله نور پس‌زمینه */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-[var(--accent)]/5 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 blur-3xl pointer-events-none rounded-full"
+        style={{ backgroundColor: "var(--accent-subtle)" }}
+      />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-[var(--border)]/20">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b" style={{ borderColor: "var(--border)" }}>
         {/* ستون اول: معرفی و برند */}
         <div className="md:col-span-2 space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent)] to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[var(--accent)]/20">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/20">
               AV
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                 {isFa ? PERSONAL_DATA.nameFa : PERSONAL_DATA.nameEn}
               </h3>
-              <p className="text-xs text-[var(--accent)]">
+              <p className="text-xs font-medium text-[var(--accent)]">
                 {isFa ? PERSONAL_DATA.roleFa : PERSONAL_DATA.roleEn}
               </p>
             </div>
           </div>
-          <p className="text-xs leading-relaxed text-gray-400 max-w-md">
+          <p className="text-xs leading-relaxed max-w-md" style={{ color: "var(--text-secondary)" }}>
             {isFa ? PERSONAL_DATA.bioFa : PERSONAL_DATA.bioEn}
           </p>
         </div>
 
         {/* ستون دوم: دسترسی سریع */}
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold text-white uppercase tracking-wider">
+          <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "دسترسی سریع" : "Quick Links"}
           </h4>
           <ul className="space-y-2 text-xs">
@@ -78,7 +86,7 @@ export default function Footer({ lang }: FooterProps) {
 
         {/* ستون سوم: شبکه‌های اجتماعی و ارتباط */}
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold text-white uppercase tracking-wider">
+          <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "شبکه‌های اجتماعی" : "Social Links"}
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -86,7 +94,11 @@ export default function Footer({ lang }: FooterProps) {
               href={PERSONAL_DATA.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-[#031738] border border-[var(--border)]/40 text-gray-300 hover:text-white hover:border-[var(--accent)] hover:bg-[var(--accent)]/10 transition-all"
+              className="p-2.5 rounded-lg border transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              style={{
+                backgroundColor: "var(--bg-elevated)",
+                borderColor: "var(--border)",
+              }}
               aria-label="GitHub"
             >
               <FaGithub className="w-4 h-4" />
@@ -95,7 +107,11 @@ export default function Footer({ lang }: FooterProps) {
               href={PERSONAL_DATA.socials.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-[#031738] border border-[var(--border)]/40 text-gray-300 hover:text-[#229ED9] hover:border-[#229ED9] hover:bg-[#229ED9]/10 transition-all"
+              className="p-2.5 rounded-lg border transition-all hover:border-[#229ED9] hover:text-[#229ED9]"
+              style={{
+                backgroundColor: "var(--bg-elevated)",
+                borderColor: "var(--border)",
+              }}
               aria-label="Telegram"
             >
               <FaTelegram className="w-4 h-4" />
@@ -104,7 +120,11 @@ export default function Footer({ lang }: FooterProps) {
               href={PERSONAL_DATA.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-[#031738] border border-[var(--border)]/40 text-gray-300 hover:text-[#E4405F] hover:border-[#E4405F] hover:bg-[#E4405F]/10 transition-all"
+              className="p-2.5 rounded-lg border transition-all hover:border-[#E4405F] hover:text-[#E4405F]"
+              style={{
+                backgroundColor: "var(--bg-elevated)",
+                borderColor: "var(--border)",
+              }}
               aria-label="Instagram"
             >
               <FaInstagram className="w-4 h-4" />
@@ -113,13 +133,17 @@ export default function Footer({ lang }: FooterProps) {
               href={PERSONAL_DATA.socials.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-[#031738] border border-[var(--border)]/40 text-gray-300 hover:text-[#25D366] hover:border-[#25D366] hover:bg-[#25D366]/10 transition-all"
+              className="p-2.5 rounded-lg border transition-all hover:border-[#25D366] hover:text-[#25D366]"
+              style={{
+                backgroundColor: "var(--bg-elevated)",
+                borderColor: "var(--border)",
+              }}
               aria-label="WhatsApp"
             >
               <FaWhatsapp className="w-4 h-4" />
             </a>
           </div>
-          <div className="pt-2 text-xs text-gray-400 space-y-1">
+          <div className="pt-2 text-xs space-y-1">
             <p className="flex items-center gap-2">
               <FaPhone className="text-[var(--accent)] w-3 h-3" />
               <span dir="ltr">{PERSONAL_DATA.socials.phone}</span>
@@ -129,17 +153,23 @@ export default function Footer({ lang }: FooterProps) {
       </div>
 
       {/* بخش پایانی حق کپی‌رایت + دکمه بازگشت به بالا */}
-      <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+      <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs" style={{ color: "var(--text-muted)" }}>
         <p>
-          © {currentYear} {PERSONAL_DATA.nameEn}. All rights reserved. Designed & Built with Next.js.
+          © {currentYear} {PERSONAL_DATA.nameEn}. All rights reserved. Designed & Built with Next.js 16.
         </p>
 
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-2 text-xs text-gray-400 hover:text-[var(--accent)] transition-colors group"
+          className="flex items-center gap-2 text-xs hover:text-[var(--accent)] transition-colors group"
+          style={{ color: "var(--text-secondary)" }}
         >
           <span>{isFa ? "بازگشت به بالا" : "Back to top"}</span>
-          <div className="p-1.5 rounded-md bg-[#031738] border border-[var(--border)]/40 group-hover:border-[var(--accent)] transition-all">
+          <div className="p-1.5 rounded-md border group-hover:border-[var(--accent)] transition-all"
+            style={{
+              backgroundColor: "var(--bg-elevated)",
+              borderColor: "var(--border)",
+            }}
+          >
             <FaArrowUp className="w-3 h-3" />
           </div>
         </button>

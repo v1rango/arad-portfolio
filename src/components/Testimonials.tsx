@@ -11,17 +11,17 @@ export default function Testimonials({ lang }: TestimonialsProps) {
   const isFa = lang === "fa";
 
   return (
-    <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--bg-primary)] border-t border-[var(--border)]/20">
+    <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
         
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-4">
-            {isFa ? "نظرات و رضایت همکاران" : "Testimonials & Reviews"}
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
+            {isFa ? "نظرات کارفرمایان و همکاران فنی" : "Testimonials & Partner Reviews"}
           </h2>
-          <p className="text-base text-[var(--text-secondary)] max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
             {isFa
-              ? "تجربه همکاری کارفرمایان و مدیران فنی با پروژه‌های توسعه داده شده."
-              : "Feedback from tech leads and partners on project delivery and performance."}
+              ? "بازخورد مدیران محصول، مدیران مارکتینگ و توسعه‌دهندگانی که افتخار همکاری با آن‌ها را داشته‌ام."
+              : "Feedback from tech leads, founders, and marketing directors on delivered projects."}
           </p>
         </div>
 
@@ -32,28 +32,39 @@ export default function Testimonials({ lang }: TestimonialsProps) {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="p-6 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] flex flex-col justify-between hover:border-[var(--accent)] transition-all duration-300"
+              transition={{ duration: 0.35, delay: index * 0.05 }}
+              className="bento-card p-6 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center gap-1 mb-4 text-amber-400">
-                  {Array.from({ length: item.rating }).map((_, i) => (
-                    <span key={i} className="text-sm">★</span>
-                  ))}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-1 text-amber-400">
+                    {Array.from({ length: item.rating }).map((_, i) => (
+                      <span key={i} className="text-sm">★</span>
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded border"
+                    style={{
+                      backgroundColor: "var(--accent-subtle)",
+                      color: "var(--accent)",
+                      borderColor: "var(--border-hover)",
+                    }}
+                  >
+                    {isFa ? "تأیید شده" : "Verified"}
+                  </span>
                 </div>
 
-                <p className="text-xs text-gray-200 leading-relaxed italic mb-6">
-                  "{isFa ? item.commentFa : item.commentEn}"
+                <p className="text-xs leading-relaxed italic mb-6" style={{ color: "var(--text-primary)" }}>
+                  &quot;{isFa ? item.commentFa : item.commentEn}&quot;
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-[var(--border)]/30">
-                <div className="w-9 h-9 rounded-full bg-[var(--accent)] text-[#021024] font-bold flex items-center justify-center text-xs">
+              <div className="flex items-center gap-3 pt-4 border-t" style={{ borderColor: "var(--border)" }}>
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
                   {item.name.charAt(0)}
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">{item.name}</h3>
-                  <p className="text-[11px] text-gray-400">
+                  <h4 className="text-sm font-bold" style={{ color: "var(--text-primary)" }}>{item.name}</h4>
+                  <p className="text-[11px]" style={{ color: "var(--text-secondary)" }}>
                     {item.role} • {item.company}
                   </p>
                 </div>

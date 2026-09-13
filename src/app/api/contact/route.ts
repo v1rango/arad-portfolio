@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       { success: true, message: "پیام شما با موفقیت ارسال شد." },
       { status: 200 }
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "خطا در ارسال پیام. لطفاً دوباره تلاش کنید." },
       { status: 500 }

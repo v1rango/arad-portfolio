@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { PERSONAL_DATA } from "@/lib/constants";
 import {
   SiNextdotjs,
@@ -20,97 +21,249 @@ interface SkillsProps {
 }
 
 const skillIcons: Record<string, { icon: IconType; color: string }> = {
-  "Next.js": { icon: SiNextdotjs, color: "hover:text-white" },
-  TypeScript: { icon: SiTypescript, color: "hover:text-[#3178C6]" },
-  MongoDB: { icon: SiMongodb, color: "hover:text-[#47A248]" },
-  "Tailwind CSS": { icon: SiTailwindcss, color: "hover:text-[#06B6D4]" },
-  "Framer Motion": { icon: SiFramer, color: "hover:text-[#0055FF]" },
-  Django: { icon: SiDjango, color: "hover:text-[#092E20]" },
-  "Node.js": { icon: SiNodedotjs, color: "hover:text-[#5FA04E]" },
-  JavaScript: { icon: SiJavascript, color: "hover:text-[#F7DF1E]" },
-  Bootstrap: { icon: SiBootstrap, color: "hover:text-[#7952B3]" },
-  Python: { icon: SiPython, color: "hover:text-[#3776AB]" },
+  "Next.js": { icon: SiNextdotjs, color: "group-hover:text-white" },
+  TypeScript: { icon: SiTypescript, color: "group-hover:text-[#3178C6]" },
+  MongoDB: { icon: SiMongodb, color: "group-hover:text-[#47A248]" },
+  "Tailwind CSS": { icon: SiTailwindcss, color: "group-hover:text-[#06B6D4]" },
+  "Framer Motion": { icon: SiFramer, color: "group-hover:text-[#0055FF]" },
+  Django: { icon: SiDjango, color: "group-hover:text-[#092E20]" },
+  "Node.js": { icon: SiNodedotjs, color: "group-hover:text-[#5FA04E]" },
+  JavaScript: { icon: SiJavascript, color: "group-hover:text-[#F7DF1E]" },
+  Bootstrap: { icon: SiBootstrap, color: "group-hover:text-[#7952B3]" },
+  Python: { icon: SiPython, color: "group-hover:text-[#3776AB]" },
 };
 
 export default function Skills({ lang }: SkillsProps) {
   const isFa = lang === "fa";
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[var(--accent)] to-blue-400 bg-clip-text text-transparent">
-          {isFa ? "مهارت‌ها و تکنولوژی‌ها" : "Skills & Technologies"}
+    <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <div className="text-center mb-14">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-3">
+          {isFa ? "ماتریس مهارت‌ها و معماری فنی (Bento)" : "Skill Matrix & Technical Architecture"}
         </h2>
-        <p className="mt-3 text-gray-400 text-sm sm:text-base">
+        <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl mx-auto">
           {isFa
-            ? "ابزارها و فریم‌ورک‌هایی که روزانه در پروژه‌ها استفاده می‌کنم"
-            : "Tools and frameworks I work with daily"}
+            ? "ترکیبی مهندسی‌شده از توسعه فول‌استک پرسرعت و بهینه‌سازی پیشرفته برای موتورهای جستجو و هوش مصنوعی."
+            : "An engineered combination of high-speed full-stack development and search/AI generative optimization."}
         </p>
       </div>
 
-      {/* مهارت‌های اصلی */}
-      <div className="mb-12">
-        <h3 className="text-lg font-semibold text-gray-300 mb-6 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
-          {isFa ? "مهارت‌های اصلی (Main Stack)" : "Core Stack"}
-        </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {PERSONAL_DATA.mainSkills.map((skill) => {
-            const skillConfig = skillIcons[skill.name];
-            const Icon = skillConfig?.icon;
-
-            return (
-              <div
-                key={skill.name}
-                className="group relative p-4 rounded-xl bg-[#031738]/60 border border-[var(--border)]/40 hover:border-[var(--accent)]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--accent)]/10 flex flex-col items-center gap-3 text-center"
-              >
-                {Icon && (
-                  <Icon
-                    className={`w-8 h-8 text-gray-400 transition-colors duration-300 ${skillConfig.color}`}
-                  />
-                )}
-                <span className="font-semibold text-sm text-gray-200 group-hover:text-white">
-                  {skill.name}
-                </span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] font-mono border border-[var(--accent)]/20">
-                  {skill.level}
-                </span>
+      {/* شبکه Bento Grid مدرن */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* جعبه اول (بزرگ): استک اصلی توسعه وب */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
+                <h3 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
+                  {isFa ? "هسته اصلی توسعه (Core Stack)" : "Core Development Stack"}
+                </h3>
               </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* مهارت‌های فرعی و ابزارها */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-300 mb-6 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-          {isFa ? "مهارت‌های فرعی و ابزارها" : "Secondary Skills & Tools"}
-        </h3>
-        <div className="flex flex-wrap gap-3">
-          {PERSONAL_DATA.secondarySkills.map((skillName) => {
-            const skillConfig = skillIcons[skillName];
-            const Icon = skillConfig?.icon;
-
-            return (
-              <div
-                key={skillName}
-                className="group flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-[#031738]/40 border border-[var(--border)]/30 hover:border-[var(--accent)]/40 hover:bg-[#031738] transition-all duration-300"
+              <span className="text-xs px-2.5 py-1 rounded-full font-mono border"
+                style={{
+                  backgroundColor: "var(--accent-subtle)",
+                  color: "var(--accent)",
+                  borderColor: "var(--border-hover)",
+                }}
               >
-                {Icon && (
-                  <Icon
-                    className={`w-5 h-5 text-gray-400 transition-colors duration-300 ${
-                      skillConfig?.color || ""
-                    }`}
-                  />
-                )}
-                <span className="text-sm text-gray-300 group-hover:text-white font-medium">
-                  {skillName}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+                Next.js 16 + React 19
+              </span>
+            </div>
+
+            <p className="text-xs sm:text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
+              {isFa
+                ? "توسعه وب‌اپلیکیشن‌های ماژولار و سئو-محور با تمرکز بر رندر ترکیبی سرور (RSC)، کشینگ بهینه در حافظه لبه و بدون باگ‌های رایج حافظه."
+                : "Building modular, SEO-first web applications using React Server Components, efficient edge caching, and zero memory leaks."}
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {PERSONAL_DATA.mainSkills.map((skill) => {
+                const config = skillIcons[skill.name];
+                const Icon = config?.icon;
+                return (
+                  <div
+                    key={skill.name}
+                    className="group p-3 rounded-xl border flex items-center gap-3 transition-all hover:border-[var(--accent)]"
+                    style={{
+                      backgroundColor: "var(--bg-elevated)",
+                      borderColor: "var(--border)",
+                    }}
+                  >
+                    {Icon && <Icon className={`w-6 h-6 text-gray-400 transition-colors ${config.color}`} />}
+                    <div className="text-left rtl:text-right">
+                      <div className="text-xs font-semibold" style={{ color: "var(--text-primary)" }}>
+                        {skill.name}
+                      </div>
+                      <div className="text-[10px] font-mono" style={{ color: "var(--accent)" }}>
+                        {skill.level}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* جعبه دوم: تخصص ویژه هوش مصنوعی (AEO & GEO) */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-surface) 60%)",
+          }}
+        >
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
+              <h3 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
+                {isFa ? "تخصص ویژه AEO & GEO" : "AI Search Engine Readiness"}
+              </h3>
+            </div>
+            <p className="text-xs leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
+              {isFa
+                ? "آماده‌سازی ساختار اطلاعات برای خزنده‌های ChatGPT، Perplexity و Claude با اسکیماهای تفکیک‌شده و استاندارد llms.txt."
+                : "Tailoring semantic structures for ChatGPT, Perplexity, and Claude using entity graphs and llms.txt standard."}
+            </p>
+
+            <ul className="space-y-2 text-xs" style={{ color: "var(--text-secondary)" }}>
+              <li className="flex items-center gap-2">
+                <span className="text-[var(--accent)] font-bold">✓</span>
+                {isFa ? "اسکیماهای چندگانه Schema.org" : "Schema.org Multi-Entity Graph"}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-[var(--accent)] font-bold">✓</span>
+                {isFa ? "استاندارد رسمی llms.txt" : "Official llms.txt Compliance"}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-[var(--accent)] font-bold">✓</span>
+                {isFa ? "پاسخ‌گویی مستقیم (Featured Snippets)" : "Direct Citation Architecture"}
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-6 pt-4 border-t flex items-center justify-between text-[11px] font-mono"
+            style={{
+              borderColor: "var(--border)",
+              color: "var(--accent)",
+            }}
+          >
+            <span>LLM Crawlers Allowed</span>
+            <span>100% Verified</span>
+          </div>
+        </motion.div>
+
+        {/* جعبه سوم: بهینه‌سازی سرعت و فریم‌ریت موبایل */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="bento-card p-6 sm:p-8 flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              <h3 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
+                {isFa ? "عملکرد ۶۰FPS در موبایل" : "60 FPS Mobile UX"}
+              </h3>
+            </div>
+            <p className="text-xs leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
+              {isFa
+                ? "حذف انیمیشن‌های سنگین CPU و استفاده از شتاب‌دهنده گرافیکی کارت‌های پردازش تصویر گوشی‌های میان‌رده."
+                : "Zero layout thrashing and pure GPU composited transforms, ensuring smooth 60fps on mid-tier devices."}
+            </p>
+          </div>
+
+          <div className="p-3 rounded-lg border text-xs font-mono space-y-1"
+            style={{
+              backgroundColor: "var(--bg-elevated)",
+              borderColor: "var(--border)",
+              color: "var(--text-secondary)",
+            }}
+          >
+            <div className="flex justify-between">
+              <span>LCP (Largest Contentful Paint):</span>
+              <span className="text-[var(--accent)] font-bold">&lt; 0.9s</span>
+            </div>
+            <div className="flex justify-between">
+              <span>CLS (Cumulative Layout Shift):</span>
+              <span className="text-[var(--accent)] font-bold">0.00</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* جعبه چهارم (بزرگ): سایر تکنولوژی‌ها و ابزارهای بک‌اند */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2.5 h-2.5 rounded-full bg-teal-400"></span>
+              <h3 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
+                {isFa ? "اکوسیستم زبان‌ها و تکنولوژی‌های مکمل" : "Ecosystem & Backend Tools"}
+              </h3>
+            </div>
+
+            <p className="text-xs mb-6" style={{ color: "var(--text-secondary)" }}>
+              {isFa
+                ? "تسلط بر ابزارها و پشته‌های مکمل برای ساخت APIهای مقیاس‌پذیر و اسکریپت‌های اتوماسیون داده."
+                : "Proficiency in complementary frameworks and tools for scalable APIs and automation."}
+            </p>
+
+            <div className="flex flex-wrap gap-2.5">
+              {PERSONAL_DATA.secondarySkills.map((skillName) => {
+                const config = skillIcons[skillName];
+                const Icon = config?.icon;
+                return (
+                  <div
+                    key={skillName}
+                    className="group flex items-center gap-2 px-3.5 py-2 rounded-lg border transition-all hover:border-[var(--accent)]"
+                    style={{
+                      backgroundColor: "var(--bg-elevated)",
+                      borderColor: "var(--border)",
+                    }}
+                  >
+                    {Icon && (
+                      <Icon className={`w-4 h-4 text-gray-400 transition-colors ${config?.color || ""}`} />
+                    )}
+                    <span className="text-xs font-medium" style={{ color: "var(--text-primary)" }}>
+                      {skillName}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 border-t text-xs"
+            style={{
+              borderColor: "var(--border)",
+              color: "var(--text-muted)",
+            }}
+          >
+            {isFa
+              ? "پشتیبانی کامل از RESTful APIs، اتصال ایمن به دیتابیس و مدیریت احراز هویت بدون سشن."
+              : "Complete RESTful APIs architecture, secure DB pooling, and stateless authentication."}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

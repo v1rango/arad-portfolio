@@ -1,0 +1,22 @@
+﻿# Arad Vafaee - Full-Stack Developer & AI Optimization Specialist
+
+> Arad Vafaee is an 18-year-old Full-Stack Web Developer and Search Optimization (SEO / AEO / GEO) Specialist based in Iran. He specializes in Next.js 16, React 19, TypeScript, and modern AI engine readiness.
+
+## Core Capabilities
+- **Full-Stack Development**: Next.js (App Router), React 19, TypeScript, Node.js, MongoDB, Tailwind CSS, Framer Motion.
+- **Search & AI Optimization**:
+  - SEO (Search Engine Optimization): Core Web Vitals, Structured JSON-LD schema graphs, SSR/SSG.
+  - AEO (Answer Engine Optimization): Direct snippet answering, structured entity definitions.
+  - GEO (Generative Engine Optimization): Formatting and authority structuring for generative models like ChatGPT, Perplexity, Gemini, and Claude.
+
+## Key Projects
+- **Smart GEO Portfolio**: Next.js 16 hybrid architecture with 99+ Lighthouse performance and direct citation capabilities.
+- **Modern Full-Stack Web App**: High-concurrency web platform utilizing MongoDB indexing, stateless auth, and sub-second page loads.
+
+## Contact & Profiles
+- Website: https://v1arad.ir
+- GitHub: https://github.com/v1rango
+- Telegram: https://t.me/v1arad
+- Instagram: https://instagram.com/v1arad
+- WhatsApp: https://wa.me/989394606013
+- Phone: +98 939 460 6013

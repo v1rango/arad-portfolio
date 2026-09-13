@@ -17,8 +17,15 @@ export default function Contact({ lang }: ContactProps) {
     message: "",
   });
 
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const copyToClipboard = (text: string, key: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedKey(key);
+    setTimeout(() => setCopiedKey(null), 2000);
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -41,98 +48,157 @@ export default function Contact({ lang }: ContactProps) {
         setStatus("error");
         setErrorMessage(data.error || (isFa ? "خطایی رخ داد." : "An error occurred."));
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMessage(isFa ? "خطا در برقراری ارتباط با سرور." : "Server connection error.");
     }
   };
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--bg-primary)] border-t border-[var(--border)]/20">
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
         
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-4">
-            {isFa ? "ارتباط و شروع پروژه" : "Get In Touch"}
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
+            {isFa ? "ارتباط و شروع سفارش پروژه" : "Get In Touch & Start Project"}
           </h2>
-          <p className="text-base text-[var(--text-secondary)] max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
             {isFa
-              ? "جهت ثبت سفارش، دریافت مشاوره تخصصی سئو و هوش مصنوعی، یا گفتگو پیام بفرستید."
-              : "Send a message for project inquiries, SEO & AI consultation, or collaboration."}
+              ? "جهت ثبت سفارش، دریافت مشاوره تخصصی سئو و هوش مصنوعی، یا شروع گفتگو پیام بفرستید."
+              : "Send a message for project inquiries, AI/AEO consultation, or direct collaboration."}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
+          {/* ستون کانال‌های ارتباط مستقیم */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
+            transition={{ duration: 0.4 }}
+            className="space-y-4"
           >
-            <h3 className="text-xl font-bold text-white mb-4">
-              {isFa ? "اطلاعات تماس مستمر" : "Direct Channels"}
+            <h3 className="text-lg font-bold mb-4" style={{ color: "var(--text-primary)" }}>
+              {isFa ? "راه‌های دسترسی مستقیم و فوری" : "Direct & Fast Communication"}
             </h3>
 
-            <div className="space-y-4 text-sm text-gray-300">
+            {/* کارت تلگرام */}
+            <div className="bento-card p-5 flex items-center justify-between gap-4">
               <a
                 href={PERSONAL_DATA.socials.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all"
+                className="flex items-center gap-4 flex-1"
               >
-                <div className="w-10 h-10 rounded-lg bg-[var(--bg-primary)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] font-bold">
+                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-[var(--accent)] font-bold"
+                  style={{
+                    backgroundColor: "var(--bg-elevated)",
+                    borderColor: "var(--border)",
+                  }}
+                >
                   TG
                 </div>
                 <div>
-                  <div className="text-xs text-gray-400">{isFa ? "تلگرام" : "Telegram"}</div>
-                  <div className="font-semibold text-white">@v1arad</div>
+                  <div className="text-xs" style={{ color: "var(--text-muted)" }}>{isFa ? "تلگرام (پاسخ سریع)" : "Telegram (Fast Reply)"}</div>
+                  <div className="font-semibold" style={{ color: "var(--text-primary)" }}>@v1arad</div>
                 </div>
               </a>
-
-              <a
-                href={PERSONAL_DATA.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all"
+              <button
+                onClick={() => copyToClipboard("@v1arad", "tg")}
+                className="px-3 py-1.5 rounded-lg border text-xs transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                style={{
+                  backgroundColor: "var(--bg-elevated)",
+                  borderColor: "var(--border)",
+                  color: "var(--text-secondary)",
+                }}
               >
-                <div className="w-10 h-10 rounded-lg bg-[var(--bg-primary)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] font-bold">
-                  IG
-                </div>
-                <div>
-                  <div className="text-xs text-gray-400">{isFa ? "اینستاگرام" : "Instagram"}</div>
-                  <div className="font-semibold text-white">@v1arad</div>
-                </div>
-              </a>
+                {copiedKey === "tg" ? (isFa ? "کپی شد!" : "Copied!") : (isFa ? "کپی آیدی" : "Copy")}
+              </button>
+            </div>
 
+            {/* کارت واتس‌اپ و تماس */}
+            <div className="bento-card p-5 flex items-center justify-between gap-4">
               <a
                 href={PERSONAL_DATA.socials.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] transition-all"
+                className="flex items-center gap-4 flex-1"
               >
-                <div className="w-10 h-10 rounded-lg bg-[var(--bg-primary)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] font-bold">
+                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-emerald-500 font-bold"
+                  style={{
+                    backgroundColor: "var(--bg-elevated)",
+                    borderColor: "var(--border)",
+                  }}
+                >
                   WA
                 </div>
                 <div>
-                  <div className="text-xs text-gray-400">{isFa ? "واتس‌اپ" : "WhatsApp"}</div>
-                  <div className="font-semibold text-white">+98 939 460 6013</div>
+                  <div className="text-xs" style={{ color: "var(--text-muted)" }}>{isFa ? "واتس‌اپ / تماس" : "WhatsApp / Phone"}</div>
+                  <div className="font-semibold dir-ltr" style={{ color: "var(--text-primary)" }}>{PERSONAL_DATA.socials.phone}</div>
                 </div>
+              </a>
+              <button
+                onClick={() => copyToClipboard(PERSONAL_DATA.socials.phone, "phone")}
+                className="px-3 py-1.5 rounded-lg border text-xs transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                style={{
+                  backgroundColor: "var(--bg-elevated)",
+                  borderColor: "var(--border)",
+                  color: "var(--text-secondary)",
+                }}
+              >
+                {copiedKey === "phone" ? (isFa ? "کپی شد!" : "Copied!") : (isFa ? "کپی شماره" : "Copy")}
+              </button>
+            </div>
+
+            {/* کارت اینستاگرام */}
+            <div className="bento-card p-5 flex items-center justify-between gap-4">
+              <a
+                href={PERSONAL_DATA.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 flex-1"
+              >
+                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-pink-500 font-bold"
+                  style={{
+                    backgroundColor: "var(--bg-elevated)",
+                    borderColor: "var(--border)",
+                  }}
+                >
+                  IG
+                </div>
+                <div>
+                  <div className="text-xs" style={{ color: "var(--text-muted)" }}>{isFa ? "اینستاگرام" : "Instagram"}</div>
+                  <div className="font-semibold" style={{ color: "var(--text-primary)" }}>@v1arad</div>
+                </div>
+              </a>
+              <a
+                href={PERSONAL_DATA.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border text-xs transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                style={{
+                  backgroundColor: "var(--bg-elevated)",
+                  borderColor: "var(--border)",
+                  color: "var(--text-secondary)",
+                }}
+              >
+                {isFa ? "مشاهده" : "Open"}
               </a>
             </div>
           </motion.div>
 
+          {/* فرم ارسال پیام */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="p-8 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)]"
+            transition={{ duration: 0.4 }}
+            className="bento-card p-6 sm:p-8"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-gray-300 mb-1">
+                <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
                   {isFa ? "نام و نام خانوادگی *" : "Full Name *"}
                 </label>
                 <input
@@ -140,14 +206,19 @@ export default function Contact({ lang }: ContactProps) {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
-                  placeholder={isFa ? "مثلاً: علی حسینی" : "John Doe"}
+                  className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                  style={{
+                    backgroundColor: "var(--bg-elevated)",
+                    borderColor: "var(--border)",
+                    color: "var(--text-primary)",
+                  }}
+                  placeholder={isFa ? "مثلاً: علی رضایی" : "Jane Doe"}
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-gray-300 mb-1">
+                  <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
                     {isFa ? "ایمیل *" : "Email Address *"}
                   </label>
                   <input
@@ -155,27 +226,37 @@ export default function Contact({ lang }: ContactProps) {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                    style={{
+                      backgroundColor: "var(--bg-elevated)",
+                      borderColor: "var(--border)",
+                      color: "var(--text-primary)",
+                    }}
                     placeholder="example@mail.com"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-gray-300 mb-1">
+                  <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
                     {isFa ? "شماره تماس" : "Phone Number"}
                   </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
+                    style={{
+                      backgroundColor: "var(--bg-elevated)",
+                      borderColor: "var(--border)",
+                      color: "var(--text-primary)",
+                    }}
                     placeholder="09123456789"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-300 mb-1">
+                <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
                   {isFa ? "متن پیام *" : "Your Message *"}
                 </label>
                 <textarea
@@ -183,33 +264,42 @@ export default function Contact({ lang }: ContactProps) {
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
-                  placeholder={isFa ? "جزئیات پروژه یا درخواست مشاوره..." : "Describe your project or inquiry..."}
+                  className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
+                  style={{
+                    backgroundColor: "var(--bg-elevated)",
+                    borderColor: "var(--border)",
+                    color: "var(--text-primary)",
+                  }}
+                  placeholder={isFa ? "جزئیات پروژه یا زمینه همکاری را بنویسید..." : "Describe your project or inquiry..."}
                 ></textarea>
               </div>
 
               {status === "error" && (
-                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs">
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500 text-xs">
                   {errorMessage}
                 </div>
               )}
 
               {status === "success" && (
-                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs">
+                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs">
                   {isFa
-                    ? "پیام شما با موفقیت ارسال شد. در اسرع وقت پاسخ خواهم داد."
-                    : "Message sent successfully. I will get back to you soon."}
+                    ? "پیام شما با موفقیت ارسال شد. در اولین فرصت با شما تماس خواهم گرفت."
+                    : "Message sent successfully. I will get back to you promptly."}
                 </div>
               )}
 
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full py-3.5 rounded-xl bg-[var(--accent)] text-[#021024] font-bold text-sm hover:bg-opacity-90 transition-all disabled:opacity-50"
+                className="w-full py-3.5 rounded-xl font-bold text-sm hover:brightness-110 transition-all disabled:opacity-50 shadow-md"
+                style={{
+                  backgroundColor: "var(--accent)",
+                  color: "var(--accent-contrast)",
+                }}
               >
                 {status === "loading"
                   ? isFa ? "در حال ارسال..." : "Sending..."
-                  : isFa ? "ارسال پیام" : "Send Message"}
+                  : isFa ? "ارسال پیام و ثبت درخواست" : "Send Message"}
               </button>
             </form>
           </motion.div>
