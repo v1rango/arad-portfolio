@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { PERSONAL_DATA } from "@/lib/constants";
 import { FiSun, FiMoon } from "react-icons/fi";
 
@@ -35,10 +36,12 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
         <a href="#hero" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 flex-shrink-0">
             <div className="w-full h-full rounded-full p-0.5 border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors overflow-hidden bg-transparent">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/avatar.png"
-                alt="Arad Dev"
+                alt={`${PERSONAL_DATA.nameEn} — Full-Stack Developer`}
+                width={40}
+                height={40}
+                priority
                 className="w-full h-full object-contain rounded-full group-hover:scale-105 transition-transform"
               />
             </div>
@@ -147,9 +150,11 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg focus:outline-none"
+            className="p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
             style={{ color: "var(--text-primary)" }}
-            aria-label="منو"
+            aria-label={isOpen ? "بستن منو" : "باز کردن منو"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
               {isOpen ? (
@@ -163,6 +168,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
       </div>
 
       <div
+        id="mobile-menu"
         className={`md:hidden fixed inset-x-0 top-20 border-b transition-all duration-300 ease-in-out ${
           isOpen ? "opacity-100 max-h-96 py-6 shadow-2xl" : "opacity-0 max-h-0 py-0 overflow-hidden"
         }`}

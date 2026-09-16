@@ -1,4 +1,5 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://v1arad.ir";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://aradvafaee.ir";
+
 
 export interface Testimonial {
   id: string;

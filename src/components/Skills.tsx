@@ -39,7 +39,7 @@ export default function Skills({ lang }: SkillsProps) {
   return (
     <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="text-center mb-14">
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-3">
+        <h2 className="text-2xl sm:text-4xl font-extrabold mb-3" style={{ color: "var(--text-primary)" }}>
           {isFa ? "ماتریس مهارت‌ها و معماری فنی (Bento)" : "Skill Matrix & Technical Architecture"}
         </h2>
         <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl mx-auto">

@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
+import { FaTelegram, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { PERSONAL_DATA } from "@/lib/constants";
 
 interface ContactProps {
@@ -91,13 +92,13 @@ export default function Contact({ lang }: ContactProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 flex-1"
               >
-                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-[var(--accent)] font-bold"
+                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-[#229ED9]"
                   style={{
                     backgroundColor: "var(--bg-elevated)",
                     borderColor: "var(--border)",
                   }}
                 >
-                  TG
+                  <FaTelegram className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="text-xs" style={{ color: "var(--text-muted)" }}>{isFa ? "تلگرام (پاسخ سریع)" : "Telegram (Fast Reply)"}</div>
@@ -125,13 +126,13 @@ export default function Contact({ lang }: ContactProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 flex-1"
               >
-                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-emerald-500 font-bold"
+                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-emerald-500"
                   style={{
                     backgroundColor: "var(--bg-elevated)",
                     borderColor: "var(--border)",
                   }}
                 >
-                  WA
+                  <FaWhatsapp className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="text-xs" style={{ color: "var(--text-muted)" }}>{isFa ? "واتس‌اپ / تماس" : "WhatsApp / Phone"}</div>
@@ -159,13 +160,13 @@ export default function Contact({ lang }: ContactProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 flex-1"
               >
-                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-pink-500 font-bold"
+                <div className="w-11 h-11 rounded-xl border flex items-center justify-center text-pink-500"
                   style={{
                     backgroundColor: "var(--bg-elevated)",
                     borderColor: "var(--border)",
                   }}
                 >
-                  IG
+                  <FaInstagram className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="text-xs" style={{ color: "var(--text-muted)" }}>{isFa ? "اینستاگرام" : "Instagram"}</div>
@@ -198,10 +199,11 @@ export default function Contact({ lang }: ContactProps) {
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
-                  {isFa ? "نام و نام خانوادگی *" : "Full Name *"}
+                <label htmlFor="contact-name" className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
+                  {isFa ? "اسمت چیه؟ *" : "Full Name *"}
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   value={formData.name}
@@ -218,10 +220,11 @@ export default function Contact({ lang }: ContactProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
+                  <label htmlFor="contact-email" className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
                     {isFa ? "ایمیل *" : "Email Address *"}
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     value={formData.email}
@@ -237,10 +240,11 @@ export default function Contact({ lang }: ContactProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
-                    {isFa ? "شماره تماس" : "Phone Number"}
+                  <label htmlFor="contact-phone" className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
+                    {isFa ? "شماره تماس (اختیاری)" : "Phone Number"}
                   </label>
                   <input
+                    id="contact-phone"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -256,10 +260,11 @@ export default function Contact({ lang }: ContactProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
-                  {isFa ? "متن پیام *" : "Your Message *"}
+                <label htmlFor="contact-message" className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
+                  {isFa ? "پیامت چیه؟ *" : "Your Message *"}
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={4}
                   value={formData.message}
@@ -270,7 +275,7 @@ export default function Contact({ lang }: ContactProps) {
                     borderColor: "var(--border)",
                     color: "var(--text-primary)",
                   }}
-                  placeholder={isFa ? "جزئیات پروژه یا زمینه همکاری را بنویسید..." : "Describe your project or inquiry..."}
+                  placeholder={isFa ? "جزئیات پروژه، سوالت، یا هر چیزی که داری بگو..." : "Describe your project or inquiry..."}
                 ></textarea>
               </div>
 
@@ -283,8 +288,8 @@ export default function Contact({ lang }: ContactProps) {
               {status === "success" && (
                 <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs">
                   {isFa
-                    ? "پیام شما با موفقیت ارسال شد. در اولین فرصت با شما تماس خواهم گرفت."
-                    : "Message sent successfully. I will get back to you promptly."}
+                    ? "پیامت رسید! اولین فرصتی که داشتم باهات در تماسم 🙌"
+                    : "Message sent! I'll get back to you soon 🙌"}
                 </div>
               )}
 
@@ -299,10 +304,11 @@ export default function Contact({ lang }: ContactProps) {
               >
                 {status === "loading"
                   ? isFa ? "در حال ارسال..." : "Sending..."
-                  : isFa ? "ارسال پیام و ثبت درخواست" : "Send Message"}
+                  : isFa ? "بزن بریم! ارسال پیام 🚀" : "Send Message"}
               </button>
             </form>
           </motion.div>
+
 
         </div>
       </div>

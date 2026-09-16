@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { PERSONAL_DATA, FEATURED_PROJECTS } from "@/lib/constants";
+import { FEATURED_PROJECTS } from "@/lib/constants";
 
 interface Repository {
   id: number;
@@ -64,9 +64,8 @@ export default function Projects({ lang }: ProjectsProps) {
   useEffect(() => {
     async function fetchRepos() {
       try {
-        const res = await fetch(
-          `https://api.github.com/users/${PERSONAL_DATA.githubUsername}/repos?sort=updated&per_page=6`
-        );
+        // از API route سرور استفاده می‌کنیم تا token امن بمونه و rate limit نخوریم
+        const res = await fetch("/api/github-repos");
         if (!res.ok) throw new Error("Failed to fetch");
         const data: Repository[] = await res.json();
         setRepos(data);

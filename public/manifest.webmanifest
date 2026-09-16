@@ -1,0 +1,24 @@
+{
+  "name": "آراد وفایی | پورتفولیو فول‌استک و سئو نوین",
+  "short_name": "آراد وفایی",
+  "description": "پورتفولیو رسمی آراد وفایی — توسعه‌دهنده فول‌استک Next.js و متخصص AEO/GEO",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090a0f",
+  "theme_color": "#10b981",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

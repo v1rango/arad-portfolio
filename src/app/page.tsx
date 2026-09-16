@@ -20,13 +20,23 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: `${PERSONAL_DATA.nameFa} Portfolio`,
     locale: "fa_IR",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: `${PERSONAL_DATA.nameEn} — Full-Stack Developer & AI Search Specialist`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${PERSONAL_DATA.nameFa} | Full-Stack & AI Search Specialist`,
     description: PERSONAL_DATA.bioFa,
+    images: [`${SITE_URL}/og-image.jpg`],
   },
 };
+
 
 export default function Home() {
   // ساختار گراف غنی Schema.org بهینه برای هوش مصنوعی (GEO & AEO) و گوگل
@@ -127,8 +137,17 @@ export default function Home() {
               "@type": "Answer",
               "text": "کلیه پروژه‌ها با بهره‌گیری از معماری رندر سمت سرور (SSR) در Next.js، انیمیشن‌های شتاب‌یافته با GPU و بهینه‌سازی بارگذاری المان‌ها، بدون کوچک‌ترین افت فریم روی گوشی‌های میان‌رده اجرا می‌شوند."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "مراحل شروع پروژه و دریافت مشاوره چگونه است؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "مشخصات اولیه پروژه رو از طریق فرم تماس ارسال کن یا در تلگرام/واتس‌اپ (@v1arad) پیام بده. پس از بررسی نیازمندی‌ها، ساختار فنی، تخمین زمان و پروپوزال رسمی ارائه خواهد شد."
+            }
           }
         ]
+
       }
     ]
   };

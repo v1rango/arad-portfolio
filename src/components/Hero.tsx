@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { PERSONAL_DATA } from "@/lib/constants";
 
 interface HeroProps {
@@ -23,10 +24,12 @@ export default function Hero({ lang }: HeroProps) {
         >
           <div className="relative w-24 h-24 sm:w-28 sm:h-28">
             <div className="w-full h-full rounded-full p-1 border-2 border-[var(--accent)]/50 bg-transparent shadow-xl shadow-emerald-500/10 overflow-hidden group">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/avatar.png"
-                alt="Arad Dev"
+                alt={`${PERSONAL_DATA.nameEn} — Full-Stack Developer & AI Search Specialist`}
+                width={112}
+                height={112}
+                priority
                 className="w-full h-full object-contain rounded-full transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -56,13 +59,17 @@ export default function Hero({ lang }: HeroProps) {
         >
           {isFa ? (
             <>
-              خلق وب‌سایت‌های مدرن با <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Next.js 16</span>
-              <br className="hidden sm:inline" /> مهندسی‌شده برای <span className="text-[var(--accent)] border-b-2 border-[var(--border)]">موتورهای هوش مصنوعی</span>
+              <span className="text-[var(--accent)]">{PERSONAL_DATA.nameFa}</span> — سایت‌های مدرن با{" "}
+              <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Next.js 16</span>
+              <br className="hidden sm:inline" /> بهینه‌سازی‌شده برای{" "}
+              <span className="text-[var(--accent)] border-b-2 border-[var(--border)]">موتورهای هوش مصنوعی</span>
             </>
           ) : (
             <>
-              High-Performance <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Next.js 16</span> Apps
-              <br className="hidden sm:inline" /> Engineered for <span className="text-[var(--accent)] border-b-2 border-[var(--border)]">AI Engines & AEO</span>
+              <span className="text-[var(--accent)]">{PERSONAL_DATA.nameEn}</span> — High-Performance{" "}
+              <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Next.js 16</span> Apps
+              <br className="hidden sm:inline" /> Engineered for{" "}
+              <span className="text-[var(--accent)] border-b-2 border-[var(--border)]">AI Engines & AEO</span>
             </>
           )}
         </motion.h1>
