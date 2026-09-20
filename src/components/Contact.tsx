@@ -204,6 +204,8 @@ export default function Contact({ lang }: ContactProps) {
                 </label>
                 <input
                   id="contact-name"
+                  name="name"
+                  autoComplete="name"
                   type="text"
                   required
                   value={formData.name}
@@ -225,6 +227,8 @@ export default function Contact({ lang }: ContactProps) {
                   </label>
                   <input
                     id="contact-email"
+                    name="email"
+                    autoComplete="email"
                     type="email"
                     required
                     value={formData.email}
@@ -245,6 +249,8 @@ export default function Contact({ lang }: ContactProps) {
                   </label>
                   <input
                     id="contact-phone"
+                    name="phone"
+                    autoComplete="tel"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -265,6 +271,8 @@ export default function Contact({ lang }: ContactProps) {
                 </label>
                 <textarea
                   id="contact-message"
+                  name="message"
+                  autoComplete="off"
                   required
                   rows={4}
                   value={formData.message}
@@ -278,6 +286,7 @@ export default function Contact({ lang }: ContactProps) {
                   placeholder={isFa ? "جزئیات پروژه، سوالت، یا هر چیزی که داری بگو..." : "Describe your project or inquiry..."}
                 ></textarea>
               </div>
+
 
               {status === "error" && (
                 <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500 text-xs">

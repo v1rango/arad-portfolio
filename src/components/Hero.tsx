@@ -17,9 +17,9 @@ export default function Hero({ lang }: HeroProps) {
         
         {/* آواتار رسمی آراد با افکت پالس زمردی */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.4 }}
           className="relative mb-6"
         >
           <div className="relative w-24 h-24 sm:w-28 sm:h-28">
@@ -49,11 +49,11 @@ export default function Hero({ lang }: HeroProps) {
           {isFa ? "آماده پذیرش پروژه‌های جدید وب و بهینه‌سازی" : "Available for New Projects & AI SEO"}
         </motion.div>
 
-        {/* تیتر اصلی با گرادیان زیبا و تایپوگرافی چشم‌نواز */}
+        {/* تیتر اصلی با گرادیان زیبا و تایپوگرافی چشم‌نواز — بارگذاری با Opacity کامل جهت بهینه‌سازی LCP */}
         <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ y: 8 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.4 }}
           className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-snug sm:leading-tight mb-6 max-w-4xl"
           style={{ color: "var(--text-primary)" }}
         >
@@ -73,6 +73,7 @@ export default function Hero({ lang }: HeroProps) {
             </>
           )}
         </motion.h1>
+
 
         {/* بیوگرافی متمرکز بر AEO */}
         <motion.p

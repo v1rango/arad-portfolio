@@ -78,6 +78,9 @@ export default function FAQ({ lang }: FAQProps) {
               >
                 <button
                   onClick={() => toggleItem(faq.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${faq.id}`}
+                  id={`faq-question-${faq.id}`}
                   className="w-full text-right rtl:text-right ltr:text-left p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base hover:text-[var(--accent)] transition-colors"
                   style={{ color: "var(--text-primary)" }}
                 >
@@ -95,12 +98,15 @@ export default function FAQ({ lang }: FAQProps) {
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
+                      id={`faq-answer-${faq.id}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${faq.id}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <div className="p-6 pt-0 text-xs sm:text-sm border-t leading-relaxed"
+                      <div className="px-6 pb-6 text-xs sm:text-sm leading-relaxed border-t pt-4"
                         style={{
                           borderColor: "var(--border)",
                           color: "var(--text-secondary)",

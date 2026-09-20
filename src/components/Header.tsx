@@ -144,6 +144,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
               backgroundColor: "var(--bg-surface)",
               color: "var(--text-secondary)",
             }}
+            aria-label={lang === "fa" ? "Switch language to English" : "تغییر زبان به فارسی"}
           >
             {lang === "fa" ? "EN" : "FA"}
           </button>

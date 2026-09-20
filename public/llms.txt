@@ -10,13 +10,14 @@
   - GEO (Generative Engine Optimization): Formatting and authority structuring for generative models like ChatGPT, Perplexity, Gemini, and Claude.
 
 ## Key Projects
-- **Smart GEO Portfolio**: Next.js 16 hybrid architecture with 99+ Lighthouse performance and direct citation capabilities.
-- **Modern Full-Stack Web App**: High-concurrency web platform utilizing MongoDB indexing, stateless auth, and sub-second page loads.
+- [Smart GEO Portfolio](https://aradvafaee.ir): Next.js 16 hybrid architecture with 99+ Lighthouse performance and direct citation capabilities.
+- [Modern Full-Stack Web App](https://github.com/v1rango): High-concurrency web platform utilizing MongoDB indexing, stateless auth, and sub-second page loads.
 
 ## Contact & Profiles
-- Website: https://aradvafaee.ir
-- GitHub: https://github.com/v1rango
-- Telegram: https://t.me/v1arad
-- Instagram: https://instagram.com/v1arad
-- WhatsApp: https://wa.me/989394606013
+- [Official Website](https://aradvafaee.ir): Portfolio, architecture and direct contact.
+- [GitHub Profile](https://github.com/v1rango): Open source code and repositories.
+- [Telegram](https://t.me/v1arad): Direct instant messaging and inquiries.
+- [Instagram](https://instagram.com/v1arad): Visual updates, case studies, and reels.
+- [WhatsApp Direct](https://wa.me/989394606013): Business and consultation channel.
 - Phone: +98 939 460 6013
+
