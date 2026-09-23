@@ -90,6 +90,7 @@ export default function Home() {
         "jobTitle": "Full-Stack Web Developer & AI Search Optimization Specialist",
         "url": SITE_URL,
         "sameAs": [
+          PERSONAL_DATA.socials.linkedin,
           PERSONAL_DATA.socials.github,
           PERSONAL_DATA.socials.telegram,
           PERSONAL_DATA.socials.instagram,

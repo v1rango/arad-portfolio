@@ -1,7 +1,7 @@
 "use client";
 
 import { PERSONAL_DATA } from "@/lib/constants";
-import { FaGithub, FaTelegram, FaInstagram, FaWhatsapp, FaPhone, FaArrowUp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTelegram, FaInstagram, FaWhatsapp, FaPhone, FaArrowUp } from "react-icons/fa";
 
 interface FooterProps {
   lang: "fa" | "en";
@@ -90,6 +90,21 @@ export default function Footer({ lang }: FooterProps) {
             {isFa ? "شبکه‌های اجتماعی" : "Social Links"}
           </h4>
           <div className="flex flex-wrap gap-2">
+            {PERSONAL_DATA.socials.linkedin && (
+              <a
+                href={PERSONAL_DATA.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-lg border transition-all hover:border-[#0A66C2] hover:text-[#0A66C2]"
+                style={{
+                  backgroundColor: "var(--bg-elevated)",
+                  borderColor: "var(--border)",
+                }}
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className="w-4 h-4" />
+              </a>
+            )}
             <a
               href={PERSONAL_DATA.socials.github}
               target="_blank"

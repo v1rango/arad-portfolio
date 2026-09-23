@@ -100,6 +100,7 @@ export const PERSONAL_DATA = {
   ],
   secondarySkills: ["MongoDB", "Node.js", "Django", "JavaScript", "Python"],
   socials: {
+    linkedin: "https://linkedin.com/in/aradvafaee",
     whatsapp: "https://wa.me/989394606013",
     instagram: "https://instagram.com/v1arad",
     telegram: "https://t.me/v1arad",
