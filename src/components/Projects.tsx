@@ -88,8 +88,8 @@ export default function Projects({ lang }: ProjectsProps) {
           </h2>
           <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
             {isFa
-              ? "بررسی عمیق راه‌حل‌های مهندسی، سئوی هوش مصنوعی و کدهای توسعه داده شده در گیت‌هاب."
-              : "Deep dive into architectural solutions, AI optimizations, and open-source GitHub repositories."}
+              ? "بررسی نتایج واقعی، ثبت سفارش‌های لحظه‌ای و معماری‌های پرسرعتی که برای کارفرمایان ساخته‌ایم."
+              : "Deep dive into real-world business results, conversion optimizations, and open-source codebases."}
           </p>
 
           {/* فیلتر تب‌ها */}
@@ -174,7 +174,7 @@ export default function Projects({ lang }: ProjectsProps) {
                       {isFa ? proj.descriptionFa : proj.descriptionEn}
                     </p>
 
-                    {/* جعبه چالش و راه‌حل (مورد علاقه موتورهای هوش مصنوعی) */}
+                    {/* جعبه چالش و راه‌حل (مورد علاقه موتورهای هوش مصنوعی و کارفرمایان) */}
                     <div className="space-y-3 mb-6 p-4 rounded-xl border text-xs"
                       style={{
                         backgroundColor: "var(--bg-elevated)",
@@ -182,17 +182,18 @@ export default function Projects({ lang }: ProjectsProps) {
                       }}
                     >
                       <div>
-                        <span className="text-amber-500 font-semibold">{isFa ? "چالش: " : "Challenge: "}</span>
+                        <span className="text-amber-500 font-bold">{isFa ? "چالش کارفرما: " : "Client Challenge: "}</span>
                         <span style={{ color: "var(--text-secondary)" }}>{isFa ? proj.challengeFa : proj.challengeEn}</span>
                       </div>
                       <div>
-                        <span className="text-[var(--accent)] font-semibold">{isFa ? "راه‌حل مهندسی: " : "Solution: "}</span>
+                        <span className="text-[var(--accent)] font-bold">{isFa ? "راه‌حل اختصاصی ما: " : "Our Solution: "}</span>
                         <span style={{ color: "var(--text-secondary)" }}>{isFa ? proj.solutionFa : proj.solutionEn}</span>
                       </div>
-                      <div className="pt-2 border-t font-mono text-[11px] text-[var(--accent)]"
+                      <div className="pt-2 border-t font-mono text-[11px] text-[var(--accent)] font-semibold flex items-center gap-1.5"
                         style={{ borderColor: "var(--border)" }}
                       >
-                        <span>★ {isFa ? proj.metricsFa : proj.metricsEn}</span>
+                        <span>★</span>
+                        <span>{isFa ? `دستاورد: ${proj.metricsFa}` : `Result: ${proj.metricsEn}`}</span>
                       </div>
                     </div>
 

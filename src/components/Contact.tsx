@@ -199,8 +199,42 @@ export default function Contact({ lang }: ContactProps) {
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
+                <label className="block text-xs font-medium mb-2" style={{ color: "var(--text-secondary)" }}>
+                  {isFa ? "موضوع یا نوع پروژه شما:" : "Project Focus:"}
+                </label>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {[
+                    { fa: "طراحی وب‌سایت اختصاصی", en: "Custom Web Development" },
+                    { fa: "سئو نوین و هوش مصنوعی (AEO/GEO)", en: "AI SEO & AEO" },
+                    { fa: "بهینه‌سازی سرعت (Lighthouse 100)", en: "Speed Optimization" },
+                    { fa: "مشاوره و طراحی UI/UX", en: "Consultation & UI/UX" },
+                  ].map((service) => (
+                    <button
+                      key={service.fa}
+                      type="button"
+                      onClick={() => {
+                        const tag = isFa ? service.fa : service.en;
+                        setFormData((prev) => ({
+                          ...prev,
+                          message: prev.message.startsWith(`[${tag}]`) ? prev.message : `[${tag}] ${prev.message}`,
+                        }));
+                      }}
+                      className="px-3 py-1.5 rounded-lg border text-xs transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                      style={{
+                        backgroundColor: "var(--bg-elevated)",
+                        borderColor: "var(--border)",
+                        color: "var(--text-secondary)",
+                      }}
+                    >
+                      + {isFa ? service.fa : service.en}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
                 <label htmlFor="contact-name" className="block text-xs font-medium mb-1" style={{ color: "var(--text-secondary)" }}>
-                  {isFa ? "اسمت چیه؟ *" : "Full Name *"}
+                  {isFa ? "نام و نام‌خانوادگی یا نام برند *" : "Full Name / Brand *"}
                 </label>
                 <input
                   id="contact-name"
@@ -216,7 +250,7 @@ export default function Contact({ lang }: ContactProps) {
                     borderColor: "var(--border)",
                     color: "var(--text-primary)",
                   }}
-                  placeholder={isFa ? "مثلاً: علی رضایی" : "Jane Doe"}
+                  placeholder={isFa ? "مثلاً: علی رضایی (یا نام شرکت)" : "Jane Doe (or Company)"}
                 />
               </div>
 

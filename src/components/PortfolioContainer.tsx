@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Skills from "@/components/Skills";
+import Services from "@/components/Services";
+import WhyCustom from "@/components/WhyCustom";
+import Process from "@/components/Process";
 import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -54,8 +57,11 @@ export default function PortfolioContainer() {
       
       <main className="space-y-12 sm:space-y-16">
         <Hero lang={lang} />
-        <Skills lang={lang} />
+        <Services lang={lang} />
+        <WhyCustom lang={lang} />
+        <Process lang={lang} />
         <Projects lang={lang} />
+        <Skills lang={lang} />
         <Testimonials lang={lang} />
         <FAQ lang={lang} />
         <Contact lang={lang} />

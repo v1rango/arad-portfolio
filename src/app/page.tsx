@@ -1,11 +1,25 @@
 import { Metadata } from "next";
 import PortfolioContainer from "@/components/PortfolioContainer";
-import { PERSONAL_DATA, FEATURED_PROJECTS, SITE_URL } from "@/lib/constants";
+import { PERSONAL_DATA, FEATURED_PROJECTS, SERVICES_DATA, FAQ_LIST, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${PERSONAL_DATA.nameFa} | ${PERSONAL_DATA.roleFa}`,
-  description: PERSONAL_DATA.bioFa,
+  title: `${PERSONAL_DATA.nameFa} | طراحی سایت اختصاصی، سئو هوش مصنوعی (AEO) و Next.js 16`,
+  description: `${PERSONAL_DATA.nameFa} — معمار وب‌سایت‌های فوق‌سریع و لوکس با Next.js 16، رتبه ۱ گوگل در ۱۲ ساعت، و متخصص سئوی هوش مصنوعی (AEO & GEO) برای حضور در صدر پیشنهادات ChatGPT، Perplexity و Google.`,
+  keywords: [
+    "آراد وفایی",
+    "Arad Vafaee",
+    "طراحی سایت اختصاصی",
+    "سئو هوش مصنوعی",
+    "AEO",
+    "GEO",
+    "توسعه دهنده Next.js",
+    "برنامه نویس فول استک",
+    "بهینه سازی سرعت سایت",
+    "Core Web Vitals 100",
+    "طراحی سایت فروشگاهی پرسرعت",
+    "Full-Stack Developer Iran",
+  ],
   alternates: {
     canonical: SITE_URL,
     languages: {
@@ -15,31 +29,30 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "profile",
-    title: `${PERSONAL_DATA.nameFa} | ${PERSONAL_DATA.roleFa}`,
+    title: `${PERSONAL_DATA.nameFa} | طراحی سایت اختصاصی و متخصص سئو هوش مصنوعی`,
     description: PERSONAL_DATA.bioFa,
     url: SITE_URL,
-    siteName: `${PERSONAL_DATA.nameFa} Portfolio`,
+    siteName: `${PERSONAL_DATA.nameFa} — Portfolio & Digital Studio`,
     locale: "fa_IR",
     images: [
       {
         url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: `${PERSONAL_DATA.nameEn} — Full-Stack Developer & AI Search Specialist`,
+        alt: `${PERSONAL_DATA.nameEn} — Full-Stack Developer & Modern AI Search Specialist`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${PERSONAL_DATA.nameFa} | Full-Stack & AI Search Specialist`,
+    title: `${PERSONAL_DATA.nameFa} | Custom Web Architecture & Modern AI SEO`,
     description: PERSONAL_DATA.bioFa,
     images: [`${SITE_URL}/og-image.jpg`],
   },
 };
 
-
 export default function Home() {
-  // ساختار گراف غنی Schema.org بهینه برای هوش مصنوعی (GEO & AEO) و گوگل
+  // ساختار گراف غنی Schema.org چندلایه برای درک فوق‌سریع توسط چت‌بات‌های AI و گوگل
   const structuredDataGraph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -80,20 +93,57 @@ export default function Home() {
           PERSONAL_DATA.socials.github,
           PERSONAL_DATA.socials.telegram,
           PERSONAL_DATA.socials.instagram,
+          PERSONAL_DATA.socials.whatsapp,
         ],
         "knowsAbout": [
           "Next.js 16",
           "React 19",
           "TypeScript",
+          "NestJS",
           "Tailwind CSS",
-          "Node.js",
-          "MongoDB",
+          "PostgreSQL",
           "Generative Engine Optimization (GEO)",
           "Answer Engine Optimization (AEO)",
           "Technical Search Engine Optimization (SEO)",
-          "Performance Optimization & Core Web Vitals"
+          "Core Web Vitals & Performance Optimization",
+          "Custom E-Commerce Architecture"
         ],
         "description": PERSONAL_DATA.bioFa
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${SITE_URL}/#service`,
+        "name": `خدمات طراحی سایت و سئو هوش مصنوعی ${PERSONAL_DATA.nameFa}`,
+        "alternateName": "Arad Vafaee Custom Web Studio",
+        "url": SITE_URL,
+        "founder": {
+          "@id": `${SITE_URL}/#person`
+        },
+        "priceRange": "$$",
+        "telephone": PERSONAL_DATA.socials.phone,
+        "areaServed": "Global",
+        "serviceType": [
+          "Custom Web Development",
+          "Next.js 16 Engineering",
+          "AI Search Engine Optimization (AEO/GEO)",
+          "Core Web Vitals Speed Rescue",
+          "Full-Stack Web Platforms"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "خدمات تخصصی طراحی وب و سئو",
+          "itemListElement": SERVICES_DATA.map((srv, idx) => ({
+            "@type": "Offer",
+            "position": idx + 1,
+            "name": srv.titleFa,
+            "description": srv.simpleDescFa,
+          }))
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "18"
+        }
       },
       {
         "@type": "ItemList",
@@ -113,41 +163,14 @@ export default function Home() {
       {
         "@type": "FAQPage",
         "@id": `${SITE_URL}/#faq`,
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "آراد وفایی کیست و در چه حوزه‌هایی فعالیت تخصصی دارد؟",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "آراد وفایی توسعه‌دهنده فول‌استک وب‌اپلیکیشن‌ها با Next.js 16، React 19، TypeScript و MongoDB است که به‌طور ویژه در سئوی نوین شامل AEO (بهینه‌سازی برای موتورهای پاسخ‌گو) و GEO (بهینه‌سازی برای هوش مصنوعی‌های ChatGPT، Perplexity و Gemini) تخصص دارد."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "تفاوت AEO و GEO با سئوی سنتی چیست؟",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "سئوی سنتی بر کسب رتبه در لینک‌های آبی گوگل متمرکز است؛ در حالی که AEO و GEO محتوا، اسکیماها و داده‌های وب‌سایت را طوری ساختاربندی می‌کنند که موتورهای مولد و چت‌بات‌های هوش مصنوعی پاسخ کاربران را مستقیماً از وب‌سایت استخراج و منبع را ارجاع دهند."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "پروژه‌ها چگونه روی گوشی‌های همراه و میان‌رده روان اجرا می‌شوند؟",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "کلیه پروژه‌ها با بهره‌گیری از معماری رندر سمت سرور (SSR) در Next.js، انیمیشن‌های شتاب‌یافته با GPU و بهینه‌سازی بارگذاری المان‌ها، بدون کوچک‌ترین افت فریم روی گوشی‌های میان‌رده اجرا می‌شوند."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "مراحل شروع پروژه و دریافت مشاوره چگونه است؟",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "مشخصات اولیه پروژه رو از طریق فرم تماس ارسال کن یا در تلگرام/واتس‌اپ (@v1arad) پیام بده. پس از بررسی نیازمندی‌ها، ساختار فنی، تخمین زمان و پروپوزال رسمی ارائه خواهد شد."
-            }
+        "mainEntity": FAQ_LIST.map((faq) => ({
+          "@type": "Question",
+          "name": faq.qFa,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.aFa
           }
-        ]
-
+        }))
       }
     ]
   };

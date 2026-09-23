@@ -16,11 +16,13 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: "#hero", labelFa: "خانه و معرفی", labelEn: "Home" },
-    { href: "#skills", labelFa: "مهارت‌ها", labelEn: "Skills" },
+    { href: "#hero", labelFa: "خانه", labelEn: "Home" },
+    { href: "#services", labelFa: "خدمات", labelEn: "Services" },
+    { href: "#process", labelFa: "مراحل کار", labelEn: "Process" },
     { href: "#projects", labelFa: "پروژه‌ها", labelEn: "Projects" },
+    { href: "#skills", labelFa: "مهارت‌ها", labelEn: "Skills" },
     { href: "#testimonials", labelFa: "نظرات", labelEn: "Testimonials" },
-    { href: "#faq", labelFa: "سوالات متداول", labelEn: "FAQ" },
+    { href: "#faq", labelFa: "سوالات", labelEn: "FAQ" },
     { href: "#contact", labelFa: "تماس", labelEn: "Contact" },
   ];
 
