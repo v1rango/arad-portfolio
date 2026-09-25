@@ -1,29 +1,77 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { PERSONAL_DATA } from "@/lib/constants";
-import { FiSun, FiMoon } from "react-icons/fi";
+import { FiSun, FiMoon, FiChevronDown } from "react-icons/fi";
+import Link from "next/link";
 
 interface HeaderProps {
-  lang: "fa" | "en";
-  setLang: (lang: "fa" | "en") => void;
-  theme: "dark" | "light";
-  setTheme: (theme: "dark" | "light") => void;
+  lang?: "fa" | "en";
+  setLang?: (lang: "fa" | "en") => void;
+  theme?: "dark" | "light";
+  setTheme?: (theme: "dark" | "light") => void;
 }
 
-export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) {
+export default function Header({
+  lang: propLang,
+  setLang,
+  theme: propTheme,
+  setTheme,
+}: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDemosOpen, setIsDemosOpen] = useState(false);
+  const [internalLang, setInternalLang] = useState<"fa" | "en">("fa");
+  const [internalTheme, setInternalTheme] = useState<"dark" | "light">("dark");
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDemosOpen(false);
+      }
+    };
+    if (isDemosOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDemosOpen]);
+
+  const lang = propLang || internalLang;
+  const theme = propTheme || internalTheme;
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    if (setTheme) {
+      setTheme(next);
+    } else {
+      setInternalTheme(next);
+      document.documentElement.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem("portfolio-theme", next);
+      } catch (e) {}
+    }
+  };
+
+  const toggleLang = () => {
+    const next = lang === "fa" ? "en" : "fa";
+    if (setLang) {
+      setLang(next);
+    } else {
+      setInternalLang(next);
+    }
+  };
 
   const navLinks = [
-    { href: "#hero", labelFa: "خانه", labelEn: "Home" },
-    { href: "#services", labelFa: "خدمات", labelEn: "Services" },
-    { href: "#process", labelFa: "مراحل کار", labelEn: "Process" },
-    { href: "#projects", labelFa: "پروژه‌ها", labelEn: "Projects" },
-    { href: "#skills", labelFa: "مهارت‌ها", labelEn: "Skills" },
-    { href: "#testimonials", labelFa: "نظرات", labelEn: "Testimonials" },
-    { href: "#faq", labelFa: "سوالات", labelEn: "FAQ" },
-    { href: "#contact", labelFa: "تماس", labelEn: "Contact" },
+    { href: "/#hero", labelFa: "خانه", labelEn: "Home" },
+    { href: "/#services", labelFa: "خدمات", labelEn: "Services" },
+    { href: "/#process", labelFa: "مراحل کار", labelEn: "Process" },
+    { href: "/#projects", labelFa: "پروژه‌ها", labelEn: "Projects" },
+    { href: "/case-studies/arad-gallery", labelFa: "مطالعه موردی", labelEn: "Case Study" },
+    { href: "/#contact", labelFa: "تماس", labelEn: "Contact" },
   ];
 
   return (
@@ -35,7 +83,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        <a href="#hero" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 flex-shrink-0">
             <div className="w-full h-full rounded-full p-0.5 border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors overflow-hidden bg-transparent">
               <Image
@@ -57,25 +105,92 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
               {lang === "fa" ? "توسعه‌دهنده وب & سئو نوین" : "Full-Stack & Modern SEO"}
             </span>
           </div>
-        </a>
+        </Link>
 
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm font-medium transition-colors hover:text-[var(--accent)]"
               style={{ color: "var(--text-secondary)" }}
             >
               {lang === "fa" ? link.labelFa : link.labelEn}
-            </a>
+            </Link>
           ))}
+
+          {/* منوی دراپ‌داون دموهای زنده - کاملاً دکمه‌ای و کلیکی */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsDemosOpen((prev) => !prev)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 active:scale-95 transition-all select-none cursor-pointer"
+              aria-expanded={isDemosOpen}
+              aria-label={lang === "fa" ? "مشاهده دموهای زنده" : "View Live Demos"}
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{lang === "fa" ? "دموهای زنده (۳ تم)" : "Live Demos (3 Themes)"}</span>
+              <FiChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  isDemosOpen ? "rotate-180 text-emerald-300" : "text-emerald-400/70"
+                }`}
+              />
+            </button>
+
+            {isDemosOpen && (
+              <div
+                className="absolute top-full right-0 rtl:right-0 ltr:left-0 mt-2 w-64 p-2 rounded-2xl border shadow-2xl backdrop-blur-xl animate-in fade-in duration-200 z-50"
+                style={{
+                  backgroundColor: "var(--bg-surface)",
+                  borderColor: "var(--border)",
+                }}
+              >
+                <Link
+                  href="/services/corporate"
+                  onClick={() => setIsDemosOpen(false)}
+                  className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
+                >
+                  <span className="block text-xs font-bold text-[var(--text-primary)]">
+                    {lang === "fa" ? "سایت شرکتی & کلینیک" : "Corporate & Clinic"}
+                  </span>
+                  <span className="block text-[11px] text-[var(--text-secondary)] mt-0.5">
+                    {lang === "fa" ? "دمو با ۳ تم + رزرو نوبت" : "3 Themes + Appointment"}
+                  </span>
+                </Link>
+
+                <Link
+                  href="/services/ecommerce"
+                  onClick={() => setIsDemosOpen(false)}
+                  className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
+                >
+                  <span className="block text-xs font-bold text-[var(--text-primary)]">
+                    {lang === "fa" ? "فروشگاه آنلاین پرسرعت" : "Headless E-Commerce"}
+                  </span>
+                  <span className="block text-[11px] text-[var(--text-secondary)] mt-0.5">
+                    {lang === "fa" ? "سبد خرید اسلایدی بدون رفرش" : "Slide-over instant cart"}
+                  </span>
+                </Link>
+
+                <Link
+                  href="/services/web-app"
+                  onClick={() => setIsDemosOpen(false)}
+                  className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
+                >
+                  <span className="block text-xs font-bold text-[var(--text-primary)]">
+                    {lang === "fa" ? "وب‌اپلیکیشن & اتوماسیون" : "Web App & Dashboard"}
+                  </span>
+                  <span className="block text-[11px] text-[var(--text-secondary)] mt-0.5">
+                    {lang === "fa" ? "داشبورد لایو با تاخیر ۴۲ms" : "42ms low latency dashboard"}
+                  </span>
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
           {/* دکمه تغییر تم دارک / لایت */}
           <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={toggleTheme}
             className="p-2 rounded-xl border transition-all hover:border-[var(--accent)] flex items-center justify-center"
             style={{
               borderColor: "var(--border)",
@@ -94,7 +209,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
 
           {/* دکمه تغییر زبان */}
           <button
-            onClick={() => setLang(lang === "fa" ? "en" : "fa")}
+            onClick={toggleLang}
             className="px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all hover:border-[var(--accent)]"
             style={{
               borderColor: "var(--border)",
@@ -107,7 +222,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
           </button>
           
           <a
-            href="#contact"
+            href="/#contact"
             className="px-4 py-2 text-sm font-bold rounded-xl transition-all shadow-md active:scale-95"
             style={{
               backgroundColor: "var(--accent)",
@@ -121,7 +236,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
         <div className="flex md:hidden items-center gap-2">
           {/* دکمه تم در موبایل */}
           <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={toggleTheme}
             className="p-2 rounded-lg border"
             style={{
               borderColor: "var(--border)",
@@ -139,7 +254,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
 
           {/* دکمه زبان در موبایل */}
           <button
-            onClick={() => setLang(lang === "fa" ? "en" : "fa")}
+            onClick={toggleLang}
             className="px-2.5 py-1 text-xs font-semibold rounded-lg border"
             style={{
               borderColor: "var(--border)",
@@ -180,20 +295,48 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
           borderColor: "var(--border)",
         }}
       >
-        <div className="flex flex-col gap-4 px-6">
+        <div className="flex flex-col gap-3 px-6 max-h-[70vh] overflow-y-auto">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-base font-medium transition-colors hover:text-[var(--accent)]"
+              className="text-sm font-medium transition-colors hover:text-[var(--accent)]"
               style={{ color: "var(--text-primary)" }}
             >
               {lang === "fa" ? link.labelFa : link.labelEn}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+
+          <div className="pt-2 border-t border-[var(--border)] flex flex-col gap-2">
+            <span className="text-[11px] font-bold text-[var(--accent)]">
+              {lang === "fa" ? "⚡ دموهای زنده با ۳ تم:" : "⚡ Live Demos (3 Themes):"}
+            </span>
+            <Link
+              href="/services/corporate"
+              onClick={() => setIsOpen(false)}
+              className="text-xs text-[var(--text-secondary)] hover:text-white"
+            >
+              {lang === "fa" ? "• سایت شرکتی و کلینیک زیبایی" : "• Corporate & Clinic"}
+            </Link>
+            <Link
+              href="/services/ecommerce"
+              onClick={() => setIsOpen(false)}
+              className="text-xs text-[var(--text-secondary)] hover:text-white"
+            >
+              {lang === "fa" ? "• فروشگاه آنلاین فوق‌سریع" : "• Headless E-Commerce"}
+            </Link>
+            <Link
+              href="/services/web-app"
+              onClick={() => setIsOpen(false)}
+              className="text-xs text-[var(--text-secondary)] hover:text-white"
+            >
+              {lang === "fa" ? "• وب‌اپلیکیشن و اتوماسیون" : "• Web App & Automation"}
+            </Link>
+          </div>
+
+          <Link
+            href="/#contact"
             onClick={() => setIsOpen(false)}
             className="mt-2 w-full text-center py-2.5 text-sm font-bold rounded-xl shadow-md transition-all active:scale-95"
             style={{
@@ -202,7 +345,7 @@ export default function Header({ lang, setLang, theme, setTheme }: HeaderProps) 
             }}
           >
             {lang === "fa" ? "شروع پروژه" : "Let's Talk"}
-          </a>
+          </Link>
         </div>
       </div>
     </header>

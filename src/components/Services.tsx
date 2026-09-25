@@ -13,6 +13,8 @@ import {
   FiLayers,
 } from "react-icons/fi";
 
+import Link from "next/link";
+
 interface ServicesProps {
   lang: "fa" | "en";
 }
@@ -22,6 +24,13 @@ const iconMap = {
   ai: FiCpu,
   speed: FiZap,
   fullstack: FiServer,
+};
+
+const demoUrlMap: Record<string, { href: string; labelFa: string; labelEn: string }> = {
+  "custom-web": { href: "/services/corporate", labelFa: "دموی زنده (۳ تم)", labelEn: "Live Demo (3 Themes)" },
+  "ai-seo": { href: "/case-studies/arad-gallery", labelFa: "مطالعه موردی رتبه ۱", labelEn: "Case Study #1 Google" },
+  "speed-optimization": { href: "/services/ecommerce", labelFa: "دموی فروشگاه آنلاین", labelEn: "E-Commerce Demo" },
+  "fullstack": { href: "/services/web-app", labelFa: "دموی وب‌اپلیکیشن", labelEn: "Web App Demo" },
 };
 
 export default function Services({ lang }: ServicesProps) {
@@ -163,17 +172,24 @@ export default function Services({ lang }: ServicesProps) {
                   </ul>
                 </div>
 
-                <div className="pt-4 border-t flex items-center justify-between" style={{ borderColor: "var(--border)" }}>
+                <div className="pt-4 border-t flex flex-wrap items-center justify-between gap-2" style={{ borderColor: "var(--border)" }}>
                   <a
                     href="#contact"
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--accent)] group-hover:underline"
                   >
-                    <span>{isFa ? "سفارش و مشاوره این خدمت" : "Inquire About This Service"}</span>
+                    <span>{isFa ? "سفارش این خدمت" : "Inquire"}</span>
                     <FiArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:group-hover:-translate-x-0.5" />
                   </a>
-                  <span className="text-[10px] font-mono opacity-50" style={{ color: "var(--text-muted)" }}>
-                    {"0" + (index + 1) + " • PRO"}
-                  </span>
+
+                  {demoUrlMap[service.id] && (
+                    <Link
+                      href={demoUrlMap[service.id].href}
+                      className="px-2.5 py-1 rounded-xl text-[11px] font-bold border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-all flex items-center gap-1.5"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>{isFa ? demoUrlMap[service.id].labelFa : demoUrlMap[service.id].labelEn}</span>
+                    </Link>
+                  )}
                 </div>
               </motion.div>
             );

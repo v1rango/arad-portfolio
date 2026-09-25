@@ -29,9 +29,9 @@ export default function Footer({ lang }: FooterProps) {
         style={{ backgroundColor: "var(--accent-subtle)" }}
       />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b" style={{ borderColor: "var(--border)" }}>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b" style={{ borderColor: "var(--border)" }}>
         {/* ستون اول: معرفی و برند */}
-        <div className="md:col-span-2 space-y-4">
+        <div className="space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/20">
               AV
@@ -57,28 +57,52 @@ export default function Footer({ lang }: FooterProps) {
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
-              <a href="#hero" className="hover:text-[var(--accent)] transition-colors">
-                {isFa ? "خانه" : "Home"}
+              <a href="/#hero" className="hover:text-[var(--accent)] transition-colors">
+                {isFa ? "صفحه اصلی" : "Home"}
               </a>
             </li>
             <li>
-              <a href="#skills" className="hover:text-[var(--accent)] transition-colors">
-                {isFa ? "مهارت‌ها" : "Skills"}
+              <a href="/#services" className="hover:text-[var(--accent)] transition-colors">
+                {isFa ? "خدمات مهندسی" : "Services"}
               </a>
             </li>
             <li>
-              <a href="#projects" className="hover:text-[var(--accent)] transition-colors">
+              <a href="/#projects" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "پروژه‌ها" : "Projects"}
               </a>
             </li>
             <li>
-              <a href="#faq" className="hover:text-[var(--accent)] transition-colors">
-                {isFa ? "سوالات متداول" : "FAQ"}
+              <a href="/case-studies/arad-gallery" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
+                {isFa ? "مطالعه موردی رتبه ۱ گوگل" : "Case Study #1 Google"}
               </a>
             </li>
             <li>
-              <a href="#contact" className="hover:text-[var(--accent)] transition-colors">
-                {isFa ? "ارتباط با من" : "Contact"}
+              <a href="/#contact" className="hover:text-[var(--accent)] transition-colors">
+                {isFa ? "استعلام قیمت و تماس" : "Contact"}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* ستون سوم: خدمات و دموهای زنده */}
+        <div className="space-y-3">
+          <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
+            {isFa ? "دموهای زنده (۳ تم)" : "Live Showcases"}
+          </h4>
+          <ul className="space-y-2 text-xs">
+            <li>
+              <a href="/services/corporate" className="hover:text-[var(--accent)] transition-colors">
+                {isFa ? "طراحی سایت شرکتی و کلینیک" : "Corporate & Clinic Web"}
+              </a>
+            </li>
+            <li>
+              <a href="/services/ecommerce" className="hover:text-[var(--accent)] transition-colors">
+                {isFa ? "طراحی فروشگاه آنلاین پرسرعت" : "Headless E-Commerce"}
+              </a>
+            </li>
+            <li>
+              <a href="/services/web-app" className="hover:text-[var(--accent)] transition-colors">
+                {isFa ? "طراحی وب‌اپلیکیشن و اتوماسیون" : "Web Apps & Automation"}
               </a>
             </li>
           </ul>
