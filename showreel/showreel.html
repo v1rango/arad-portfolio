@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>ARAD VAFAEE — 15s Programmatic Motion Graphics Showreel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #050608;
+      color: #f3f4f6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    #canvas-container {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(16, 185, 129, 0.15);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #06070a;
+    }
+    #controls {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 24px;
+      background: rgba(17, 20, 31, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+    }
+    button {
+      padding: 8px 20px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-play {
+      background: #10b981;
+      color: #050608;
+    }
+    .btn-play:hover {
+      background: #34d399;
+      transform: scale(1.04);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    #time-display {
+      font-family: monospace;
+      font-size: 13px;
+      color: #10b981;
+      min-width: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="canvas-container">
+    <canvas id="canvas" width="1280" height="720"></canvas>
+  </div>
+
+  <div id="controls">
+    <button id="playBtn" class="btn-play">▶ پخش شو‌ریل (Real-Time 60 FPS)</button>
+    <button id="restartBtn" class="btn-secondary">↺ بازنشانی</button>
+    <div id="time-display">00.00s / 15.00s</div>
+    <span style="font-size: 11px; color: #9ca3af; font-family: monospace;">120 BPM • 60 FPS • 720p</span>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const playBtn = document.getElementById("playBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const timeDisplay = document.getElementById("time-display");
+
+    const WIDTH = 1280;
+    const HEIGHT = 720;
+    const DURATION = 15.0; // 15 seconds
+    const BPM = 120;
+    const BEAT_DURATION = 60 / BPM; // 0.5s
+
+    // Colors
+    const COLOR_BG = "#06070a";
+    const COLOR_EMERALD = "#10b981";
+    const COLOR_EMERALD_BRIGHT = "#34d399";
+    const COLOR_CYAN = "#06b6d4";
+    const COLOR_GOLD = "#f59e0b";
+    const COLOR_WHITE = "#ffffff";
+    const COLOR_TEXT_MUTED = "#94a3b8";
+
+    // Easing Formulas
+    function easeOutExpo(x) {
+      return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    }
+    function easeOutBack(x) {
+      const c1 = 1.70158;
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+    function easeInOutQuad(x) {
+      return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+    }
+
+    // 3D Geometry: Wireframe Torus / 3D Cyber Core
+    const TORUS_R = 140;
+    const TORUS_r = 55;
+    const NUM_SEGMENTS_U = 16;
+    const NUM_SEGMENTS_V = 10;
+    const torusPoints = [];
+
+    for (let u = 0; u < NUM_SEGMENTS_U; u++) {
+      const theta = (u / NUM_SEGMENTS_U) * Math.PI * 2;
+      for (let v = 0; v < NUM_SEGMENTS_V; v++) {
+        const phi = (v / NUM_SEGMENTS_V) * Math.PI * 2;
+        const x = (TORUS_R + TORUS_r * Math.cos(phi)) * Math.cos(theta);
+        const y = (TORUS_R + TORUS_r * Math.cos(phi)) * Math.sin(theta);
+        const z = TORUS_r * Math.sin(phi);
+        torusPoints.push({ x, y, z, u, v });
+      }
+    }
+
+    // Random Particle Field (Precalculated)
+    const NUM_PARTICLES = 300;
+    const particles = [];
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      particles.push({
+        baseX: (Math.random() - 0.5) * WIDTH * 1.5,
+        baseY: (Math.random() - 0.5) * HEIGHT * 1.5,
+        baseZ: Math.random() * 800 + 200,
+        speed: Math.random() * 0.8 + 0.4,
+        size: Math.random() * 2.5 + 1.0,
+        color: i % 3 === 0 ? COLOR_CYAN : COLOR_EMERALD,
+      });
+    }
+
+    // ==============================================================
+    // PURE DETERMINISTIC FUNCTION: renderFrame(t)
+    // t: Float in range [0.0, 15.0] seconds
+    // ==============================================================
+    window.renderFrame = function(t) {
+      // Clamp t
+      t = Math.max(0, Math.min(DURATION, t));
+      const beat = t / BEAT_DURATION;
+      const beatFraction = beat % 1.0;
+      const beatPulse = Math.exp(-beatFraction * 8); // Kick pulse (1 -> 0 quickly)
+
+      // Clear Canvas
+      ctx.fillStyle = COLOR_BG;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      // Save root state
+      ctx.save();
+
+      // ============================================================
+      // CAMERA SHAKE & BEAT FLASH (Triggered on kick beats)
+      // ============================================================
+      const isKickHit = (beat < 8 || (beat >= 12 && beat < 21) || beat >= 26);
+      if (isKickHit && beatPulse > 0.05) {
+        const shakeX = (Math.sin(t * 80) * 4) * beatPulse;
+        const shakeY = (Math.cos(t * 70) * 4) * beatPulse;
+        ctx.translate(shakeX, shakeY);
+      }
+
+      // ============================================================
+      // BACKGROUND PERSPECTIVE GRID
+      // ============================================================
+      drawCyberGrid(t, beatPulse);
+
+      // ============================================================
+      // SCENE ROUTER BASED ON TIME t
+      // ============================================================
+      if (t >= 0.0 && t < 3.8) {
+        // SCENE 1: THE NAME REVEAL & SPEED REVOLUTION (0s - 3.8s)
+        renderScene1(t);
+      } else if (t >= 3.8 && t < 7.4) {
+        // SCENE 2: 3D CYBER CORE & PERFORMANCE GAUGE (3.8s - 7.4s)
+        renderScene2(t - 3.8, beatPulse);
+      } else if (t >= 7.4 && t < 10.8) {
+        // SCENE 3: HIGH-TICKET SHOWCASES & WEAPONS (7.4s - 10.8s)
+        renderScene3(t - 7.4, beatPulse);
+      } else if (t >= 10.8 && t < 12.8) {
+        // SCENE 4: THE REWIND & DIGITAL GLITCH (10.8s - 12.8s)
+        renderScene4(t - 10.8);
+      } else {
+        // SCENE 5: FINAL IMPACT & LOGO LOCKUP (12.8s - 15.0s)
+        renderScene5(t - 12.8, beatPulse);
+      }
+
+      // ============================================================
+      // MASTER POST-PROCESSING: VIGNETTE & FILM SCANLINES
+      // ============================================================
+      drawVignetteAndScanlines(t);
+
+      ctx.restore();
+    };
+
+    // ------------------------------------------------------------
+    // BACKGROUND 3D PERSPECTIVE GRID
+    // ------------------------------------------------------------
+    function drawCyberGrid(t, beatPulse) {
+      ctx.save();
+      const horizonY = HEIGHT * 0.58;
+      const fov = 350;
+      const speed = (t * 240) % 80;
+
+      ctx.strokeStyle = `rgba(16, 185, 129, ${0.12 + beatPulse * 0.08})`;
+      ctx.lineWidth = 1.2;
+
+      // Vertical perspective vanishing lines
+      for (let x = -WIDTH * 0.8; x <= WIDTH * 1.8; x += 90) {
+        ctx.beginPath();
+        ctx.moveTo(WIDTH / 2, horizonY);
+        ctx.lineTo(x, HEIGHT + 100);
+        ctx.stroke();
+      }
+
+      // Horizontal moving grid lines
+      for (let z = 20; z < 700; z += 40) {
+        const currentZ = (z - speed + 700) % 700;
+        if (currentZ < 10) continue;
+        const screenY = horizonY + (fov * 200) / currentZ;
+        if (screenY <= HEIGHT + 50 && screenY >= horizonY) {
+          const alpha = Math.min(0.25, (screenY - horizonY) / 300);
+          ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
+          ctx.beginPath();
+          ctx.moveTo(0, screenY);
+          ctx.lineTo(WIDTH, screenY);
+          ctx.stroke();
+        }
+      }
+
+      // Ambient horizon glow
+      const horizonGrad = ctx.createRadialGradient(WIDTH / 2, horizonY, 10, WIDTH / 2, horizonY, 450);
+      horizonGrad.addColorStop(0, `rgba(16, 185, 129, ${0.18 + beatPulse * 0.1})`);
+      horizonGrad.addColorStop(0.5, "rgba(6, 182, 212, 0.05)");
+      horizonGrad.addColorStop(1, "transparent");
+      ctx.fillStyle = horizonGrad;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      ctx.restore();
+    }
+
+    // ------------------------------------------------------------
+    // SCENE 1: THE NAME REVEAL & SPEED REVOLUTION (0s - 3.8s)
+    // ------------------------------------------------------------
+    function renderScene1(t) {
+      const enterProgress = Math.min(1.0, t / 1.2);
+      const ease1 = easeOutBack(enterProgress);
+
+      // Particle Convergence
+      ctx.save();
+      for (let i = 0; i < NUM_PARTICLES; i++) {
+        const p = particles[i];
+        // Swirl in
+        const angle = t * 2.5 + i * 0.1;
+        const radius = (1.0 - enterProgress) * (300 + (i % 5) * 60);
+        const px = WIDTH / 2 + Math.cos(angle) * radius + p.baseX * enterProgress * 0.4;
+        const py = HEIGHT / 2 + Math.sin(angle) * radius + p.baseY * enterProgress * 0.4;
+
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.min(1, t * 1.5);
+        ctx.beginPath();
+        ctx.arc(px, py, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+
+      // Top Tagline
+      ctx.save();
+      ctx.textAlign = "center";
+      ctx.fillStyle = COLOR_EMERALD;
+      ctx.font = "bold 15px monospace";
+      ctx.letterSpacing = "6px";
+      const tagAlpha = Math.min(1.0, Math.max(0, (t - 0.2) / 0.5));
+      ctx.globalAlpha = tagAlpha;
+      ctx.fillText("/// PRODUCTION ARCHITECTURE • 2026 ///", WIDTH / 2, HEIGHT / 2 - 110);
+      ctx.restore();
+
+      // Big Title: ARAD VAFAEE
+      ctx.save();
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      const scale = 0.7 + 0.3 * ease1;
+      ctx.translate(WIDTH / 2, HEIGHT / 2 - 20);
+      ctx.scale(scale, scale);
+
+      // Glow layer
+      ctx.shadowColor = COLOR_EMERALD;
+      ctx.shadowBlur = 35;
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "900 76px system-ui, sans-serif";
+      ctx.letterSpacing = "8px";
+      ctx.fillText("ARAD VAFAEE", 0, 0);
+
+      // Subtitle: NEXT-GEN WEB ARCHITECT
+      ctx.shadowBlur = 15;
+      ctx.fillStyle = COLOR_CYAN;
+      ctx.font = "700 24px monospace";
+      ctx.letterSpacing = "10px";
+      const subAlpha = Math.min(1.0, Math.max(0, (t - 0.6) / 0.5));
+      ctx.globalAlpha = subAlpha;
+      ctx.fillText("NEXT-GEN WEB ARCHITECT", 0, 65);
+
+      // Persian Name Badge
+      ctx.font = "bold 18px system-ui";
+      ctx.fillStyle = COLOR_EMERALD_BRIGHT;
+      ctx.letterSpacing = "2px";
+      ctx.fillText("آراد وفایی — توسعه‌دهنده فول‌استک", 0, 115);
+      ctx.restore();
+    }
+
+    // ------------------------------------------------------------
+    // SCENE 2: 3D CYBER CORE & PERFORMANCE GAUGE (3.8s - 7.4s)
+    // ------------------------------------------------------------
+    function renderScene2(localT, beatPulse) {
+      const enterT = Math.min(1.0, localT / 0.8);
+      const ease = easeOutExpo(enterT);
+
+      // Render 3D Wireframe Torus with Pure Math
+      ctx.save();
+      const centerX = WIDTH * 0.35;
+      const centerY = HEIGHT * 0.5;
+      const fov = 400;
+
+      // Rotation angles
+      const rotX = localT * 0.9;
+      const rotY = localT * 1.4;
+      const rotZ = localT * 0.5;
+
+      const projectedPoints = [];
+
+      for (let i = 0; i < torusPoints.length; i++) {
+        const pt = torusPoints[i];
+
+        // 3D Rotation Matrix Math
+        // Rotate Y
+        let x1 = pt.x * Math.cos(rotY) + pt.z * Math.sin(rotY);
+        let y1 = pt.y;
+        let z1 = -pt.x * Math.sin(rotY) + pt.z * Math.cos(rotY);
+
+        // Rotate X
+        let x2 = x1;
+        let y2 = y1 * Math.cos(rotX) - z1 * Math.sin(rotX);
+        let z2 = y1 * Math.sin(rotX) + z1 * Math.cos(rotX);
+
+        // Perspective Projection
+        const cameraZ = z2 + 480;
+        const projX = centerX + (x2 * fov) / cameraZ;
+        const projY = centerY + (y2 * fov) / cameraZ;
+        const size = Math.max(0.8, (2.2 * fov) / cameraZ);
+        const alpha = Math.max(0.15, Math.min(0.9, (cameraZ - 200) / 400));
+
+        projectedPoints.push({ x: projX, y: projY, z: z2, alpha, size, u: pt.u, v: pt.v });
+      }
+
+      // Draw wireframe connecting lines
+      ctx.lineWidth = 1.0;
+      for (let i = 0; i < projectedPoints.length; i++) {
+        const p1 = projectedPoints[i];
+        // Connect to next v
+        const nextV = (p1.v + 1) % NUM_SEGMENTS_V;
+        const p2 = projectedPoints[p1.u * NUM_SEGMENTS_V + nextV];
+        if (p2) {
+          ctx.strokeStyle = `rgba(16, 185, 129, ${p1.alpha * 0.45})`;
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+
+      // Draw Glowing Vertex Nodes
+      for (let i = 0; i < projectedPoints.length; i++) {
+        const p = projectedPoints[i];
+        ctx.fillStyle = i % 4 === 0 ? COLOR_CYAN : COLOR_EMERALD_BRIGHT;
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+
+      // Right Side: High-Impact Performance Metrics Card
+      ctx.save();
+      const cardX = WIDTH * 0.62;
+      const cardY = HEIGHT * 0.22;
+      ctx.translate(cardX + (1 - ease) * 120, cardY);
+
+      // Card Background Glow
+      ctx.fillStyle = "rgba(17, 20, 31, 0.85)";
+      ctx.strokeStyle = `rgba(16, 185, 129, ${0.4 + beatPulse * 0.4})`;
+      ctx.lineWidth = 2;
+      roundRect(ctx, 0, 0, 420, 400, 24);
+      ctx.fill();
+      ctx.stroke();
+
+      // Metric 1: Speed Benchmark
+      ctx.textAlign = "right";
+      ctx.fillStyle = COLOR_EMERALD;
+      ctx.font = "bold 13px monospace";
+      ctx.fillText("BENCHMARK METRICS", 380, 45);
+
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "900 32px system-ui";
+      ctx.fillText("سرعت لود زیر ۰.۸ ثانیه", 380, 95);
+
+      ctx.fillStyle = COLOR_TEXT_MUTED;
+      ctx.font = "14px system-ui";
+      ctx.fillText("معماری Next.js 16 + کش لبه کلودفلر", 380, 125);
+
+      // Visual Speed Gauge Meter
+      const gaugeWidth = 360;
+      const gaugeFill = Math.min(1.0, localT / 1.5) * gaugeWidth;
+      ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+      roundRect(ctx, 380 - gaugeWidth, 145, gaugeWidth, 14, 7);
+      ctx.fill();
+
+      // Gradient filled bar
+      const barGrad = ctx.createLinearGradient(380 - gaugeWidth, 0, 380, 0);
+      barGrad.addColorStop(0, COLOR_CYAN);
+      barGrad.addColorStop(1, COLOR_EMERALD_BRIGHT);
+      ctx.fillStyle = barGrad;
+      roundRect(ctx, 380 - gaugeFill, 145, gaugeFill, 14, 7);
+      ctx.fill();
+
+      // Metric 2: Lighthouse 100/100
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "900 28px monospace";
+      ctx.fillText("LIGHTHOUSE 100 / 100", 380, 215);
+
+      ctx.fillStyle = COLOR_EMERALD_BRIGHT;
+      ctx.font = "bold 15px system-ui";
+      ctx.fillText("★ رتبه ۱ گوگل در ۱۲ ساعت", 380, 245);
+
+      // Metric 3: Zero Bloatware
+      ctx.fillStyle = "rgba(244, 63, 94, 0.15)";
+      ctx.strokeStyle = "rgba(244, 63, 94, 0.4)";
+      roundRect(ctx, 380 - 360, 275, 360, 50, 14);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = "#fda4af";
+      ctx.font = "bold 14px system-ui";
+      ctx.fillText("❌ پایان دوره قالب‌های کند و ۹ ثانیه‌ای وردپرس", 365, 305);
+
+      ctx.restore();
+    }
+
+    // ------------------------------------------------------------
+    // SCENE 3: HIGH-TICKET SHOWCASES & WEAPONS (7.4s - 10.8s)
+    // ------------------------------------------------------------
+    function renderScene3(localT, beatPulse) {
+      const enterT = Math.min(1.0, localT / 0.6);
+
+      ctx.save();
+      ctx.textAlign = "center";
+
+      // Section Header
+      ctx.fillStyle = COLOR_CYAN;
+      ctx.font = "bold 14px monospace";
+      ctx.letterSpacing = "6px";
+      ctx.fillText("/// HIGH-TICKET LIVE SHOWCASES ///", WIDTH / 2, 75);
+
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "900 44px system-ui";
+      ctx.letterSpacing = "1px";
+      ctx.fillText("۳ ویترین تخصصی با ۳ تم بصری اختصاصی", WIDTH / 2, 135);
+
+      // 3 High-End Showcase Cards floating side-by-side
+      const cardWidth = 360;
+      const cardHeight = 360;
+      const spacing = 36;
+      const startX = (WIDTH - (3 * cardWidth + 2 * spacing)) / 2;
+      const cardY = 190;
+
+      const showcases = [
+        {
+          tag: "CORPORATE & CLINIC",
+          title: "کلینیک زیبایی و شرکتی",
+          sub: "رزرواسیون آنلاین بدون رفرش",
+          color: COLOR_GOLD,
+          bg: "rgba(245, 158, 11, 0.08)",
+          accent: "#f59e0b",
+        },
+        {
+          tag: "HEADLESS COMMERCE",
+          title: "فروشگاه آنلاین پرسرعت",
+          sub: "سبد خرید اسلایدی و Fast Checkout",
+          color: "#f43f5e",
+          bg: "rgba(244, 63, 94, 0.08)",
+          accent: "#fb7185",
+        },
+        {
+          tag: "SaaS & AUTOMATION",
+          title: "وب‌اپلیکیشن و داشبورد",
+          sub: "تاخیر پاسخگویی ۴۲ میلی‌ثانیه",
+          color: COLOR_EMERALD,
+          bg: "rgba(16, 185, 129, 0.08)",
+          accent: "#34d399",
+        },
+      ];
+
+      for (let i = 0; i < showcases.length; i++) {
+        const sc = showcases[i];
+        const cardX = startX + i * (cardWidth + spacing);
+        const cardEnter = Math.min(1.0, Math.max(0, (localT - i * 0.15) / 0.5));
+        const offsetY = (1.0 - easeOutBack(cardEnter)) * 80;
+
+        ctx.save();
+        ctx.translate(cardX, cardY + offsetY);
+
+        // Card Box
+        ctx.fillStyle = "rgba(17, 20, 31, 0.9)";
+        ctx.strokeStyle = i === 1 && beatPulse > 0.3 ? COLOR_WHITE : sc.color;
+        ctx.lineWidth = 2;
+        roundRect(ctx, 0, 0, cardWidth, cardHeight, 22);
+        ctx.fill();
+        ctx.stroke();
+
+        // Top Badge
+        ctx.fillStyle = sc.bg;
+        ctx.strokeStyle = sc.color;
+        roundRect(ctx, 24, 24, cardWidth - 48, 36, 12);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = sc.accent;
+        ctx.font = "bold 12px monospace";
+        ctx.letterSpacing = "2px";
+        ctx.fillText(sc.tag, cardWidth / 2, 47);
+
+        // Card Graphic Icon
+        ctx.beginPath();
+        ctx.arc(cardWidth / 2, 140, 45, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+        ctx.strokeStyle = sc.color;
+        ctx.lineWidth = 2.5;
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = sc.color;
+        ctx.font = "900 24px monospace";
+        ctx.fillText("0" + (i + 1), cardWidth / 2, 148);
+
+        // Title & Description
+        ctx.fillStyle = COLOR_WHITE;
+        ctx.font = "bold 22px system-ui";
+        ctx.fillText(sc.title, cardWidth / 2, 230);
+
+        ctx.fillStyle = COLOR_TEXT_MUTED;
+        ctx.font = "14px system-ui";
+        ctx.fillText(sc.sub, cardWidth / 2, 265);
+
+        ctx.fillStyle = sc.color;
+        ctx.font = "bold 13px monospace";
+        ctx.fillText("⚡ 3 DYNAMIC THEMES", cardWidth / 2, 310);
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+    }
+
+    // ------------------------------------------------------------
+    // SCENE 4: THE REWIND & DIGITAL GLITCH (10.8s - 12.8s)
+    // ------------------------------------------------------------
+    function renderScene4(localT) {
+      // Time is rewinding!
+      const progress = localT / 2.0;
+
+      // Draw heavily distorted previous scenes in reverse
+      ctx.save();
+
+      // Digital Glitch Horizontal Slices
+      const numSlices = 14;
+      for (let i = 0; i < numSlices; i++) {
+        const sliceY = (i / numSlices) * HEIGHT;
+        const sliceHeight = HEIGHT / numSlices;
+        const offsetX = (Math.random() - 0.5) * 60 * Math.sin(localT * 40);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(0, sliceY, WIDTH, sliceHeight);
+        ctx.clip();
+        ctx.translate(offsetX, 0);
+
+        // Render fast inverted wireframe
+        renderScene2(3.0 - progress * 2.0, 0.5);
+        ctx.restore();
+      }
+
+      // Chromatic RGB Aberration overlay
+      ctx.globalCompositeOperation = "screen";
+      ctx.fillStyle = "rgba(255, 0, 80, 0.15)";
+      ctx.fillRect(Math.sin(localT * 60) * 12, 0, WIDTH, HEIGHT);
+      ctx.fillStyle = "rgba(0, 240, 255, 0.15)";
+      ctx.fillRect(-Math.sin(localT * 60) * 12, 0, WIDTH, HEIGHT);
+      ctx.globalCompositeOperation = "source-over";
+
+      // Huge Rewind Text HUD
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#f43f5e";
+      ctx.font = "900 56px monospace";
+      ctx.letterSpacing = "12px";
+      ctx.fillText("<< REWINDING TO 0.8s SPEED <<", WIDTH / 2, HEIGHT / 2 - 20);
+
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "bold 24px monospace";
+      ctx.fillText("SLOW SITES CANCELLED • PURE NEXT.JS ARCHITECTURE", WIDTH / 2, HEIGHT / 2 + 50);
+
+      ctx.restore();
+    }
+
+    // ------------------------------------------------------------
+    // SCENE 5: FINAL IMPACT & LOGO LOCKUP (12.8s - 15.0s)
+    // ------------------------------------------------------------
+    function renderScene5(localT, beatPulse) {
+      const enterProgress = Math.min(1.0, localT / 0.6);
+      const ease = easeOutBack(enterProgress);
+
+      // Mega Flash on initial drop
+      if (localT < 0.25) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${1.0 - localT / 0.25})`;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+      }
+
+      ctx.save();
+      ctx.textAlign = "center";
+      ctx.translate(WIDTH / 2, HEIGHT / 2);
+
+      const scale = 0.8 + 0.2 * ease;
+      ctx.scale(scale, scale);
+
+      // Huge AV Monogram Emblem
+      ctx.save();
+      const emblemSize = 130;
+      ctx.translate(0, -110);
+
+      // Outer glowing ring
+      ctx.beginPath();
+      ctx.arc(0, 0, emblemSize / 2, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(16, 185, 129, 0.12)";
+      ctx.strokeStyle = COLOR_EMERALD;
+      ctx.lineWidth = 3.5;
+      ctx.shadowColor = COLOR_EMERALD;
+      ctx.shadowBlur = 35;
+      ctx.fill();
+      ctx.stroke();
+
+      // AV Text inside
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "900 48px system-ui";
+      ctx.fillText("AV", 0, 16);
+      ctx.restore();
+
+      // Brand Title
+      ctx.shadowColor = COLOR_EMERALD;
+      ctx.shadowBlur = 30;
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "900 64px system-ui";
+      ctx.letterSpacing = "6px";
+      ctx.fillText("ARAD VAFAEE", 0, 15);
+
+      // Professional Tagline
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = COLOR_EMERALD_BRIGHT;
+      ctx.font = "bold 20px monospace";
+      ctx.letterSpacing = "8px";
+      ctx.fillText("DIGITAL STUDIO & WEB ARCHITECTURE", 0, 65);
+
+      // Website URL Box
+      ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.strokeStyle = "rgba(16, 185, 129, 0.5)";
+      ctx.lineWidth = 1.5;
+      roundRect(ctx, -190, 105, 380, 48, 24);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = COLOR_WHITE;
+      ctx.font = "bold 18px monospace";
+      ctx.letterSpacing = "4px";
+      ctx.fillText("ARADVAFAEE.IR", 0, 136);
+
+      // CTA Banner
+      ctx.fillStyle = COLOR_TEXT_MUTED;
+      ctx.font = "bold 14px system-ui";
+      ctx.letterSpacing = "1px";
+      ctx.fillText("طراحی سایت‌های لوکس، سریع و آماده برای هوش مصنوعی", 0, 195);
+
+      ctx.restore();
+    }
+
+    // ------------------------------------------------------------
+    // POST-PROCESSING: Vignette & CRT Scanlines
+    // ------------------------------------------------------------
+    function drawVignetteAndScanlines(t) {
+      ctx.save();
+
+      // Dark radial vignette
+      const vig = ctx.createRadialGradient(WIDTH / 2, HEIGHT / 2, WIDTH * 0.35, WIDTH / 2, HEIGHT / 2, WIDTH * 0.75);
+      vig.addColorStop(0, "transparent");
+      vig.addColorStop(1, "rgba(2, 3, 5, 0.75)");
+      ctx.fillStyle = vig;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      // Subtle horizontal scanlines
+      ctx.fillStyle = "rgba(255, 255, 255, 0.015)";
+      for (let y = 0; y < HEIGHT; y += 4) {
+        ctx.fillRect(0, y, WIDTH, 1.5);
+      }
+
+      ctx.restore();
+    }
+
+    // Helper: Rounded Rectangle
+    function roundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    // ==============================================================
+    // IN-BROWSER INTERACTIVE PLAYER & AUDIO SYNC
+    // ==============================================================
+    let isPlaying = false;
+    let startTime = 0;
+    let audioContext = null;
+    let audioBuffer = null;
+    let audioSource = null;
+
+    // Load audio.wav if available
+    async function initAudio() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioCtx();
+        const resp = await fetch("audio.wav");
+        if (resp.ok) {
+          const arrayBuf = await resp.arrayBuffer();
+          audioBuffer = await audioContext.decodeAudioData(arrayBuf);
+          console.log("[Audio] audio.wav loaded successfully.");
+        }
+      } catch (err) {
+        console.warn("[Audio] audio.wav could not be loaded directly, playback visual only:", err);
+      }
+    }
+    initAudio();
+
+    function playLoop(timestamp) {
+      if (!isPlaying) return;
+      if (!startTime) startTime = timestamp;
+
+      const elapsed = (timestamp - startTime) / 1000.0;
+      timeDisplay.textContent = elapsed.toFixed(2) + "s / 15.00s";
+
+      if (elapsed >= DURATION) {
+        window.renderFrame(DURATION);
+        isPlaying = false;
+        playBtn.textContent = "▶ پخش مجدد";
+        if (audioSource) {
+          try { audioSource.stop(); } catch(e) {}
+        }
+        return;
+      }
+
+      window.renderFrame(elapsed);
+      requestAnimationFrame(playLoop);
+    }
+
+    playBtn.addEventListener("click", () => {
+      if (isPlaying) {
+        isPlaying = false;
+        playBtn.textContent = "▶ ادامه پخش";
+        if (audioSource) {
+          try { audioSource.stop(); } catch(e) {}
+        }
+      } else {
+        isPlaying = true;
+        playBtn.textContent = "⏸ توقف";
+        startTime = 0;
+
+        if (audioContext && audioBuffer) {
+          if (audioContext.state === "suspended") {
+            audioContext.resume();
+          }
+          audioSource = audioContext.createBufferSource();
+          audioSource.buffer = audioBuffer;
+          audioSource.connect(audioContext.destination);
+          audioSource.start(0);
+        }
+
+        requestAnimationFrame(playLoop);
+      }
+    });
+
+    restartBtn.addEventListener("click", () => {
+      isPlaying = false;
+      startTime = 0;
+      if (audioSource) {
+        try { audioSource.stop(); } catch(e) {}
+      }
+      playBtn.textContent = "▶ پخش شو‌ریل (Real-Time 60 FPS)";
+      timeDisplay.textContent = "00.00s / 15.00s";
+      window.renderFrame(0);
+    });
+
+    // Initial render at t = 0
+    window.renderFrame(0);
+  </script>
+</body>
+</html>

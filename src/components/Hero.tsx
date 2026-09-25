@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { PERSONAL_DATA } from "@/lib/constants";
-import { FiArrowDown, FiCheckCircle, FiShield, FiTrendingUp } from "react-icons/fi";
+import { FiArrowDown, FiCheckCircle, FiShield, FiTrendingUp, FiPlay, FiX } from "react-icons/fi";
 
 interface HeroProps {
   lang: "fa" | "en";
@@ -11,6 +12,23 @@ interface HeroProps {
 
 export default function Hero({ lang }: HeroProps) {
   const isFa = lang === "fa";
+  const [isShowreelOpen, setIsShowreelOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsShowreelOpen(false);
+    };
+    if (isShowreelOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isShowreelOpen]);
 
   return (
     <section id="hero" className="relative pt-10 sm:pt-14 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -108,28 +126,44 @@ export default function Hero({ lang }: HeroProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-12 flex-wrap"
         >
           <a
             href="#contact"
-            className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2"
             style={{
               backgroundColor: "var(--accent)",
               color: "var(--accent-contrast)",
             }}
           >
-            <span>{isFa ? "مشاوره رایگان و شروع پروژه" : "Book Free Project Consultation"}</span>
+            <span>{isFa ? "مشاوره و شروع پروژه" : "Book Consultation"}</span>
           </a>
-          <a
-            href="#services"
-            className="w-full sm:w-auto px-8 py-4 rounded-xl border font-semibold text-sm transition-all hover:border-[var(--accent)] active:scale-95 flex items-center justify-center gap-2"
+
+          {/* دکمه تماشای شو‌ریل ۱۵ ثانیه‌ای */}
+          <button
+            onClick={() => setIsShowreelOpen(true)}
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-bold text-sm transition-all hover:border-[var(--accent)] hover:shadow-lg hover:shadow-emerald-500/10 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
             style={{
               backgroundColor: "var(--bg-surface)",
               borderColor: "var(--border)",
               color: "var(--text-primary)",
             }}
           >
-            <span>{isFa ? "مشاهده خدمات و تعرفه‌ها" : "Explore Services & Solutions"}</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 group-hover:animate-ping" />
+            <FiPlay className="w-4 h-4 text-emerald-400 fill-emerald-400" />
+            <span>{isFa ? "شو‌ریل استودیو (۱۵ ثانیه)" : "Studio Showreel (15s)"}</span>
+          </button>
+
+          <a
+            href="#services"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-semibold text-sm transition-all hover:border-[var(--accent)] active:scale-95 flex items-center justify-center gap-2"
+            style={{
+              backgroundColor: "var(--bg-surface)",
+              borderColor: "var(--border)",
+              color: "var(--text-secondary)",
+            }}
+          >
+            <span>{isFa ? "مشاهده خدمات و دموها" : "Services & Demos"}</span>
             <FiArrowDown className="w-4 h-4 text-[var(--accent)]" />
           </a>
         </motion.div>
@@ -178,6 +212,61 @@ export default function Hero({ lang }: HeroProps) {
         </motion.div>
 
       </div>
+
+      {/* پاپ‌آپ سینمایی پخش شو‌ریل ۱۵ ثانیه‌ای (Lazy-loaded Modal) */}
+      {isShowreelOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-2xl animate-in fade-in duration-200"
+          onClick={() => setIsShowreelOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-4xl rounded-3xl border border-emerald-500/30 bg-[#06070a] shadow-2xl overflow-hidden p-3 sm:p-5 space-y-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-2 border-b border-white/10 px-2">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-mono font-bold text-xs sm:text-sm text-white">
+                  ARAD VAFAEE — 15s PROGRAMMATIC SHOWREEL
+                </span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden sm:inline">
+                  60 FPS • 720p HD
+                </span>
+              </div>
+              <button
+                onClick={() => setIsShowreelOpen(false)}
+                className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                aria-label="Close Showreel"
+              >
+                <FiX className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Video Player Container */}
+            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-inner">
+              <video
+                src="/showreel.mp4"
+                controls
+                autoPlay
+                playsInline
+                preload="none"
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            {/* Modal Footer Note */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-2 text-[11px] text-gray-400 font-sans">
+              <span>
+                💡 این شو‌ریل ۱۰۰٪ با کدهای ریاضی، فرمول‌های پرسپکتیو WebGL و سنتز فرکانس صوتی در Node.js رندر شده است.
+              </span>
+              <span className="font-mono text-emerald-400 font-bold">
+                ARADVAFAEE.IR
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
