@@ -38,7 +38,13 @@ export default function Skills({ lang }: SkillsProps) {
 
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <div className="text-center mb-14">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center mb-14"
+      >
         <h2 className="text-2xl sm:text-4xl font-extrabold mb-3" style={{ color: "var(--text-primary)" }}>
           {isFa ? "ماتریس مهارت‌ها و معماری ارزش‌آفرینی" : "Skill Matrix & Core Architecture"}
         </h2>
@@ -47,17 +53,17 @@ export default function Skills({ lang }: SkillsProps) {
             ? "ترکیبی دقیق از ابزارهای سطح اول جهانی برای خلق وب‌سایت‌هایی که هرگز قطع نمی‌شوند و در ثانیه‌ای لود می‌شوند."
             : "An engineered combination of high-speed full-stack development and search/AI generative optimization."}
         </p>
-      </div>
+      </motion.div>
 
       {/* شبکه Bento Grid مدرن */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         {/* جعبه اول (بزرگ): استک اصلی توسعه وب */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          initial={{ opacity: 0, y: 30, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
         >
           <div>
@@ -119,10 +125,10 @@ export default function Skills({ lang }: SkillsProps) {
 
         {/* جعبه دوم: تخصص ویژه هوش مصنوعی (AEO & GEO) */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          initial={{ opacity: 0, y: 30, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent)]"
           style={{
             background: "linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-surface) 60%)",
@@ -170,10 +176,10 @@ export default function Skills({ lang }: SkillsProps) {
 
         {/* جعبه سوم: بهینه‌سازی سرعت و فریم‌ریت موبایل */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          initial={{ opacity: 0, y: 30, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
         >
           <div>
@@ -210,10 +216,10 @@ export default function Skills({ lang }: SkillsProps) {
 
         {/* جعبه چهارم (بزرگ): سایر تکنولوژی‌ها و ابزارهای بک‌اند */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
+          initial={{ opacity: 0, y: 30, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
         >
           <div>

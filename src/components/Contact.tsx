@@ -59,7 +59,13 @@ export default function Contact({ lang }: ContactProps) {
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
         
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-16"
+        >
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "ارتباط و شروع سفارش پروژه" : "Get In Touch & Start Project"}
           </h2>
@@ -68,16 +74,16 @@ export default function Contact({ lang }: ContactProps) {
               ? "جهت ثبت سفارش، دریافت مشاوره تخصصی سئو و هوش مصنوعی، یا شروع گفتگو پیام بفرستید."
               : "Send a message for project inquiries, AI/AEO consultation, or direct collaboration."}
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* ستون کانال‌های ارتباط مستقیم */}
           <motion.div
-            initial={{ opacity: 0, x: -15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-4"
           >
             <h3 className="text-lg font-bold mb-4" style={{ color: "var(--text-primary)" }}>
@@ -191,10 +197,10 @@ export default function Contact({ lang }: ContactProps) {
 
           {/* فرم ارسال پیام */}
           <motion.div
-            initial={{ opacity: 0, x: 15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="bento-card p-6 sm:p-8"
           >
             <form onSubmit={handleSubmit} className="space-y-4">

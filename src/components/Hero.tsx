@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { PERSONAL_DATA } from "@/lib/constants";
 import { FiArrowDown, FiCheckCircle, FiShield, FiTrendingUp, FiPlay, FiX } from "react-icons/fi";
+import PixelHeroTitle from "@/components/PixelHeroTitle";
 
 interface HeroProps {
   lang: "fa" | "en";
@@ -79,55 +80,42 @@ export default function Hero({ lang }: HeroProps) {
           </span>
         </motion.div>
 
-        {/* تیتر اصلی با گرادیان پرقدرت و کلمات کلیدی هدف */}
-        <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.25] sm:leading-[1.2] mb-6 max-w-4xl"
-          style={{ color: "var(--text-primary)" }}
-        >
+        {/* تیتر پیکسلی هیرو با انیمیشن شناور نرم و شتاب سخت‌افزاری */}
+        <div className="w-full flex justify-center mb-6">
           {isFa ? (
-            <>
-              طراحی وب‌سایت‌های <span className="text-gradient-emerald">فوق‌سریع و اختصاصی</span>
-              <br className="hidden sm:inline" /> هم‌تراز برترین شرکت‌های دنیا با{" "}
-              <span className="text-[var(--accent)]">Next.js 16</span>
-            </>
+            <div className="w-full flex justify-center animate-hero-float">
+              <PixelHeroTitle />
+            </div>
           ) : (
-            <>
+            <h1
+              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.25] sm:leading-[1.2] max-w-4xl"
+              style={{ color: "var(--text-primary)" }}
+            >
               Architecting <span className="text-gradient-emerald">Ultra-Fast Custom Websites</span>
               <br className="hidden sm:inline" /> Engineered with{" "}
               <span className="text-[var(--accent)]">Next.js 16 & AI Search</span>
-            </>
+            </h1>
           )}
-        </motion.h1>
+        </div>
 
         {/* توضیح شفاف، عامیانه و قانع‌کننده برای کارفرما */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+        <p
           className="text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed mb-8"
           style={{ color: "var(--text-secondary)" }}
         >
           {isFa ? (
             <>
-              سایتی می‌سازم که زیر یک ثانیه باز شود تا هیچ خریداری را از دست ندهید، هویت برندتان را با ظاهری لوکس ارتقا دهد و علاوه بر صفحه اول گوگل، در هوش مصنوعی‌هایی مثل <strong>ChatGPT و Perplexity</strong> گزینه اول معرفی به کاربران باشد.
+              علاوه بر سرعت بالای لود سایت، می‌توانید شاهد دیده شدن اسم کسب‌وکارتان در هوش مصنوعی‌های بزرگ مثل <strong className="text-[var(--text-primary)]">ChatGPT، Gemini و Claude</strong> باشید.
             </>
           ) : (
             <>
-              I craft bespoke web platforms loading in sub-second times with Silicon Valley-grade aesthetics, engineered to dominate Google search and be cited directly by <strong>ChatGPT and Perplexity</strong>.
+              Beyond sub-second website speed, get your brand discovered and cited directly in major AI engines like <strong className="text-[var(--text-primary)]">ChatGPT, Gemini, and Claude</strong>.
             </>
           )}
-        </motion.p>
+        </p>
 
         {/* دکمه‌های اقدام سریع CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-12 flex-wrap"
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-12 flex-wrap">
           <a
             href="#contact"
             className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2"
@@ -151,7 +139,7 @@ export default function Hero({ lang }: HeroProps) {
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 group-hover:animate-ping" />
             <FiPlay className="w-4 h-4 text-emerald-400 fill-emerald-400" />
-            <span>{isFa ? "شو‌ریل استودیو (۱۵ ثانیه)" : "Studio Showreel (15s)"}</span>
+            <span>{isFa ? "مشاهده تریلر" : "Watch Trailer"}</span>
           </button>
 
           <a
@@ -166,7 +154,7 @@ export default function Hero({ lang }: HeroProps) {
             <span>{isFa ? "مشاهده خدمات و دموها" : "Services & Demos"}</span>
             <FiArrowDown className="w-4 h-4 text-[var(--accent)]" />
           </a>
-        </motion.div>
+        </div>
 
         {/* شاخص‌های عملکردی لایت‌هاوس گوگل */}
         <motion.div

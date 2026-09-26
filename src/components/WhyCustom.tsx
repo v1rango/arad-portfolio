@@ -15,7 +15,13 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
     <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-5xl mx-auto">
         
-        <div className="text-center mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-14"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
             <FiShield className="w-3.5 h-3.5" />
             <span>{isFa ? "مقایسه هوشمندانه قبل از تصمیم‌گیری" : "Informed Decision Making"}</span>
@@ -28,14 +34,14 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
               ? "اگر برای اعتبار برند، فروش مداوم و عدم قطعی ارزش قائلید، تفاوت کیفیت در کدهای زیرساخت نهفته است."
               : "When brand reputation and sales conversions matter, the technical foundation makes all the difference."}
           </p>
-        </div>
+        </motion.div>
 
         {/* جدول و کارت‌های مقایسه */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="bento-card overflow-hidden shadow-xl"
         >
           {/* هدر جدول */}

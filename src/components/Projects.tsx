@@ -82,9 +82,15 @@ export default function Projects({ lang }: ProjectsProps) {
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-12"
+        >
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
-            {isFa ? "پروژه‌ها و مطالعات موردی (Case Studies)" : "Projects & Case Studies"}
+            {isFa ? "مشاهده نمونه کارها" : "Featured Portfolio & Work"}
           </h2>
           <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
             {isFa
@@ -128,7 +134,7 @@ export default function Projects({ lang }: ProjectsProps) {
               {isFa ? "مخازن زنده گیت‌هاب" : "Live GitHub Repos"}
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* بخش پروژه‌های شاخص همراه با مطالعه موردی (AEO/GEO Citation Friendly) */}
         {(tab === "all" || tab === "featured") && (
@@ -142,10 +148,10 @@ export default function Projects({ lang }: ProjectsProps) {
               {FEATURED_PROJECTS.map((proj, idx) => (
                 <motion.div
                   key={proj.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.97 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.55, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
                   className="bento-card p-6 sm:p-8 flex flex-col justify-between"
                 >
                   <div>
@@ -246,7 +252,7 @@ export default function Projects({ lang }: ProjectsProps) {
           <div>
             <h3 className="text-lg font-bold flex items-center gap-2 mb-6" style={{ color: "var(--text-primary)" }}>
               <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              {isFa ? "آخرین مخازن متن‌باز از گیت‌هاب" : "Latest GitHub Open-Source Repos"}
+              {isFa ? "مشاهده لایو پروژه‌ها در گیت‌هاب" : "Live Projects on GitHub"}
             </h3>
 
             {loading ? (
@@ -276,10 +282,10 @@ export default function Projects({ lang }: ProjectsProps) {
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: index * 0.05 }}
+                    initial={{ opacity: 0, y: 25, scale: 0.97 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
                     className="group bento-card p-6 flex flex-col justify-between"
                   >
                     <div>

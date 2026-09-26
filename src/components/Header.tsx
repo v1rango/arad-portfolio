@@ -70,7 +70,7 @@ export default function Header({
     { href: "/#services", labelFa: "خدمات", labelEn: "Services" },
     { href: "/#process", labelFa: "مراحل کار", labelEn: "Process" },
     { href: "/#projects", labelFa: "پروژه‌ها", labelEn: "Projects" },
-    { href: "/case-studies/arad-gallery", labelFa: "مطالعه موردی", labelEn: "Case Study" },
+    { href: "/case-studies/arad-gallery", labelFa: "روش کار", labelEn: "Workflow" },
     { href: "/#contact", labelFa: "تماس", labelEn: "Contact" },
   ];
 

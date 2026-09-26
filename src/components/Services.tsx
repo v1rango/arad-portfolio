@@ -47,8 +47,14 @@ export default function Services({ lang }: ServicesProps) {
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-6xl mx-auto">
         
-        {/* هدر بخش همراه با سوئیچ هوشمند دیدگاه کاربر */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        {/* هدر بخش همراه با سوئیچ هوشمند دیدگاه کاربر با انیمیشن ورود روان */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
+        >
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
               <FiLayers className="w-3.5 h-3.5" />
@@ -98,7 +104,7 @@ export default function Services({ lang }: ServicesProps) {
               {isFa ? "نمای فنی (برای مهندسان)" : "Tech / Architecture"}
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* کارت‌های Bento با افکت موس نورانی (Spotlight) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -108,10 +114,10 @@ export default function Services({ lang }: ServicesProps) {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
+                initial={{ opacity: 0, y: 30, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 onMouseMove={handleMouseMove}
                 className="spotlight-card p-6 sm:p-8 flex flex-col justify-between group"
               >
