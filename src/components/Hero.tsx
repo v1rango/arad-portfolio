@@ -65,7 +65,7 @@ export default function Hero({ lang }: HeroProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-10 sm:mb-12 shadow-sm"
         >
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -81,7 +81,7 @@ export default function Hero({ lang }: HeroProps) {
         </motion.div>
 
         {/* تیتر پیکسلی هیرو با انیمیشن شناور نرم و شتاب سخت‌افزاری */}
-        <div className="w-full flex justify-center mb-6">
+        <div className="w-full flex justify-center mb-6 pt-2 sm:pt-4">
           {isFa ? (
             <div className="w-full flex justify-center animate-hero-float">
               <PixelHeroTitle />
