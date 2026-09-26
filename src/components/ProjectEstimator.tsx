@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
   FiBriefcase,
   FiShoppingBag,
@@ -190,13 +189,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
       <div className="max-w-5xl mx-auto">
         
         {/* هدر ماشین‌حساب */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-14"
-        >
+        <div className="text-center mb-14 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-bold text-[var(--accent)] mb-3">
             <FiDollarSign className="w-4 h-4" />
             <span>{isFa ? "محاسبه‌گر شفاف و هوشمند پروژه" : "Transparent Project Estimator"}</span>
@@ -209,7 +202,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
               ? "نوع پروژه و نیازهای اختصاصی کسب‌وکارتان را انتخاب کنید تا بازه بودجه و زمان تحویل دقیق را بلافاصله مشاهده کنید."
               : "Select your project category and specialized add-ons to get an immediate real-time estimate."}
           </p>
-        </motion.div>
+        </div>
 
         {/* جعبه اصلی محاسبه‌گر */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -333,9 +326,8 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
 
           {/* ستون کارت نمایش خروجی برآورد (Sticky در دسکتاپ) */}
           <div className="lg:col-span-5 sticky top-28">
-            <motion.div
-              layout
-              className="p-6 sm:p-7 rounded-3xl border shadow-2xl relative overflow-hidden bento-card"
+            <div
+              className="p-6 sm:p-7 rounded-3xl border shadow-2xl relative overflow-hidden bento-card transition-all duration-300"
               style={{
                 backgroundColor: "var(--bg-surface)",
                 borderColor: "var(--border)",
@@ -420,7 +412,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
                 </a>
               </div>
 
-            </motion.div>
+            </div>
           </div>
 
         </div>

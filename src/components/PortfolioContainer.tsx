@@ -13,7 +13,7 @@ const WhyCustom = dynamic(() => import("@/components/WhyCustom"));
 const Process = dynamic(() => import("@/components/Process"));
 const Projects = dynamic(() => import("@/components/Projects"));
 const Skills = dynamic(() => import("@/components/Skills"));
-const ProjectEstimator = dynamic(() => import("@/components/ProjectEstimator"));
+const ProjectEstimator = dynamic(() => import("@/components/ProjectEstimator"), { ssr: false });
 const Testimonials = dynamic(() => import("@/components/Testimonials"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const Contact = dynamic(() => import("@/components/Contact"));

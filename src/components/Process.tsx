@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { WORK_PROCESS } from "@/lib/constants";
 import { FiCheck, FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
@@ -15,13 +14,7 @@ export default function Process({ lang }: ProcessProps) {
     <section id="process" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-6xl mx-auto">
         
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
             <span>{isFa ? "مسیر شفاف و مطمئن" : "Transparent Delivery"}</span>
           </div>
@@ -33,17 +26,13 @@ export default function Process({ lang }: ProcessProps) {
               ? "فرآیندی استاندارد و گام‌به‌گام با گزارش‌دهی منظم، تا پروژه شما بدون کوچک‌ترین اتلاف وقت و با بالاترین کیفیت تحویل داده شود."
               : "A structured, reliable development roadmap with weekly checkpoints and zero delays."}
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          {WORK_PROCESS.map((step, index) => (
-            <motion.div
+          {WORK_PROCESS.map((step) => (
+            <div
               key={step.stepNumber}
-              initial={{ opacity: 0, y: 30, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="bento-card p-6 flex flex-col justify-between relative group hover:border-[var(--accent)]"
+              className="bento-card p-6 flex flex-col justify-between relative group hover:border-[var(--accent)] animate-fade-in-up"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -78,7 +67,7 @@ export default function Process({ lang }: ProcessProps) {
                 <FiCheck className="w-3.5 h-3.5 flex-shrink-0" />
                 <span>{isFa ? step.highlightFa : step.highlightEn}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

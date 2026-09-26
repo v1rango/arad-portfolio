@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FAQ_LIST } from "@/lib/constants";
 
 interface FAQProps {
@@ -19,13 +18,7 @@ export default function FAQ({ lang }: FAQProps) {
   return (
     <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "پرسش‌های پرتکرار (AEO Direct Answers)" : "Frequently Asked Questions"}
           </h2>
@@ -34,30 +27,26 @@ export default function FAQ({ lang }: FAQProps) {
               ? "پاسخ‌های شفاف و مستقیم به پرسش‌های کلیدی درباره خدمات، تکنولوژی‌ها و بهینه‌سازی AI."
               : "Direct answers to key questions regarding services, tech stack, and AI optimization."}
           </p>
-        </motion.div>
+        </div>
 
         <div className="space-y-4">
-          {FAQ_LIST.map((faq, index) => {
+          {FAQ_LIST.map((faq) => {
             const isOpen = openId === faq.id;
             return (
-              <motion.div
+              <div
                 key={faq.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.45, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="bento-card overflow-hidden transition-colors"
+                className="bento-card overflow-hidden transition-colors animate-fade-in-up"
               >
                 <button
                   onClick={() => toggleItem(faq.id)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
                   id={`faq-question-${faq.id}`}
-                  className="w-full text-right rtl:text-right ltr:text-left p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base hover:text-[var(--accent)] transition-colors"
+                  className="w-full text-right rtl:text-right ltr:text-left p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base hover:text-[var(--accent)] transition-colors cursor-pointer"
                   style={{ color: "var(--text-primary)" }}
                 >
                   <span>{isFa ? faq.qFa : faq.qEn}</span>
-                  <span className="text-lg text-[var(--accent)] font-mono w-6 h-6 flex items-center justify-center rounded-md border"
+                  <span className="text-lg text-[var(--accent)] font-mono w-6 h-6 flex items-center justify-center rounded-md border transition-transform duration-200"
                     style={{
                       backgroundColor: "var(--bg-elevated)",
                       borderColor: "var(--border)",
@@ -67,33 +56,32 @@ export default function FAQ({ lang }: FAQProps) {
                   </span>
                 </button>
 
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      id={`faq-answer-${faq.id}`}
-                      role="region"
-                      aria-labelledby={`faq-question-${faq.id}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                <div
+                  id={`faq-answer-${faq.id}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${faq.id}`}
+                  className="grid transition-[grid-template-rows,opacity] duration-300 ease-out"
+                  style={{
+                    gridTemplateRows: isOpen ? "1fr" : "0fr",
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-6 text-xs sm:text-sm leading-relaxed border-t pt-4"
+                      style={{
+                        borderColor: "var(--border)",
+                        color: "var(--text-secondary)",
+                      }}
                     >
-                      <div className="px-6 pb-6 text-xs sm:text-sm leading-relaxed border-t pt-4"
-                        style={{
-                          borderColor: "var(--border)",
-                          color: "var(--text-secondary)",
-                        }}
-                      >
-                        {isFa ? faq.aFa : faq.aEn}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                      {isFa ? faq.aFa : faq.aEn}
+                    </div>
+                  </div>
+                </div>
+              </div>
             );
           })}
         </div>
       </div>
     </section>
   );
-}
+}

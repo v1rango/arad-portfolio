@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { FEATURED_PROJECTS } from "@/lib/constants";
 
 interface Repository {
@@ -63,33 +62,51 @@ export default function Projects({ lang }: ProjectsProps) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+
     async function fetchRepos() {
       try {
-        // از API route سرور استفاده می‌کنیم تا token امن بمونه و rate limit نخوریم
         const res = await fetch("/api/github-repos");
         if (!res.ok) throw new Error("Failed to fetch");
         const data: Repository[] = await res.json();
-        setRepos(data);
+        if (!cancelled) {
+          setRepos(data);
+          setError(false);
+        }
       } catch {
-        setError(true);
+        if (!cancelled) setError(true);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }
 
-    fetchRepos();
-  }, []);
+    // لود سبک: در صورت انتخاب تب گیت‌هاب بلافاصله و در غیر این صورت پس از اتمام رندر صفحه با زمان Idle
+    if (tab === "github") {
+      fetchRepos();
+    } else {
+      const timer = setTimeout(() => {
+        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+          window.requestIdleCallback(() => fetchRepos(), { timeout: 3000 });
+        } else {
+          fetchRepos();
+        }
+      }, 2000);
+
+      return () => {
+        cancelled = true;
+        clearTimeout(timer);
+      };
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [tab]);
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "مشاهده نمونه کارها" : "Featured Portfolio & Work"}
           </h2>
@@ -135,7 +152,7 @@ export default function Projects({ lang }: ProjectsProps) {
               {isFa ? "مخازن زنده گیت‌هاب" : "Live GitHub Repos"}
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* بخش پروژه‌های شاخص همراه با مطالعه موردی (AEO/GEO Citation Friendly) */}
         {(tab === "all" || tab === "featured") && (
@@ -146,14 +163,10 @@ export default function Projects({ lang }: ProjectsProps) {
             </h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {FEATURED_PROJECTS.map((proj, idx) => (
-                <motion.div
+              {FEATURED_PROJECTS.map((proj) => (
+                <div
                   key={proj.id}
-                  initial={{ opacity: 0, y: 30, scale: 0.97 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.55, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  className="bento-card p-6 sm:p-8 flex flex-col justify-between"
+                  className="bento-card p-6 sm:p-8 flex flex-col justify-between animate-fade-in-up"
                 >
                   <div>
                     <ProjectPreview
@@ -242,7 +255,7 @@ export default function Projects({ lang }: ProjectsProps) {
                       </a>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -277,17 +290,13 @@ export default function Projects({ lang }: ProjectsProps) {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {repos.map((repo, index) => (
-                  <motion.a
+                {repos.map((repo) => (
+                  <a
                     key={repo.id}
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 25, scale: 0.97 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                    className="group bento-card p-6 flex flex-col justify-between"
+                    className="group bento-card p-6 flex flex-col justify-between animate-fade-in-up"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-3">
@@ -325,7 +334,7 @@ export default function Projects({ lang }: ProjectsProps) {
                         {isFa ? "سورس کد ↗" : "Source ↗"}
                       </span>
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             )}

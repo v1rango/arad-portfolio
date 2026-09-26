@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { TESTIMONIALS_DATA } from "@/lib/constants";
 
 interface TestimonialsProps {
@@ -14,13 +13,7 @@ export default function Testimonials({ lang }: TestimonialsProps) {
     <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
         
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "نظرات کارفرمایان و همکاران فنی" : "Testimonials & Partner Reviews"}
           </h2>
@@ -29,17 +22,13 @@ export default function Testimonials({ lang }: TestimonialsProps) {
               ? "بازخورد مدیران محصول، مدیران مارکتینگ و توسعه‌دهندگانی که افتخار همکاری با آن‌ها را داشته‌ام."
               : "Feedback from tech leads, founders, and marketing directors on delivered projects."}
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TESTIMONIALS_DATA.map((item, index) => (
-            <motion.div
+          {TESTIMONIALS_DATA.map((item) => (
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 30, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="bento-card p-6 flex flex-col justify-between"
+              className="bento-card p-6 flex flex-col justify-between animate-fade-in-up"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -75,7 +64,7 @@ export default function Testimonials({ lang }: TestimonialsProps) {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

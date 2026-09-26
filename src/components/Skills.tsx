@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { PERSONAL_DATA } from "@/lib/constants";
 import {
   SiNextdotjs,
@@ -38,13 +37,7 @@ export default function Skills({ lang }: SkillsProps) {
 
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center mb-14"
-      >
+      <div className="text-center mb-14 animate-fade-in-up">
         <h2 className="text-2xl sm:text-4xl font-extrabold mb-3" style={{ color: "var(--text-primary)" }}>
           {isFa ? "ماتریس مهارت‌ها و معماری ارزش‌آفرینی" : "Skill Matrix & Core Architecture"}
         </h2>
@@ -53,19 +46,13 @@ export default function Skills({ lang }: SkillsProps) {
             ? "ترکیبی دقیق از ابزارهای سطح اول جهانی برای خلق وب‌سایت‌هایی که هرگز قطع نمی‌شوند و در ثانیه‌ای لود می‌شوند."
             : "An engineered combination of high-speed full-stack development and search/AI generative optimization."}
         </p>
-      </motion.div>
+      </div>
 
       {/* شبکه Bento Grid مدرن */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         {/* جعبه اول (بزرگ): استک اصلی توسعه وب */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
-        >
+        <div className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)] animate-fade-in-up">
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
@@ -121,15 +108,11 @@ export default function Skills({ lang }: SkillsProps) {
               })}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* جعبه دوم: تخصص ویژه هوش مصنوعی (AEO & GEO) */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent)]"
+        <div
+          className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent)] animate-fade-in-up"
           style={{
             background: "linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-surface) 60%)",
           }}
@@ -172,15 +155,11 @@ export default function Skills({ lang }: SkillsProps) {
             <span>LLM Crawlers Allowed</span>
             <span>100% Verified</span>
           </div>
-        </motion.div>
+        </div>
 
         {/* جعبه سوم: بهینه‌سازی سرعت و فریم‌ریت موبایل */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
+        <div
+          className="bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)] animate-fade-in-up"
         >
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -212,15 +191,11 @@ export default function Skills({ lang }: SkillsProps) {
               <span className="text-[var(--accent)] font-bold">0.00</span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* جعبه چهارم (بزرگ): سایر تکنولوژی‌ها و ابزارهای بک‌اند */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
+        <div
+          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)] animate-fade-in-up"
         >
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -271,7 +246,7 @@ export default function Skills({ lang }: SkillsProps) {
               ? "امنیت اتصال به درگاه پرداخت بانکی، حفظ اطلاعات کاربران و احراز هویت پیامکی بدون قطعی."
               : "Complete RESTful APIs architecture, secure DB pooling, and payment gateway integrations."}
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

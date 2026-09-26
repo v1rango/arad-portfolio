@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { SERVICES_DATA } from "@/lib/constants";
 import {
   FiLayout,
@@ -48,13 +47,7 @@ export default function Services({ lang }: ServicesProps) {
       <div className="max-w-6xl mx-auto">
         
         {/* هدر بخش همراه با سوئیچ هوشمند دیدگاه کاربر با انیمیشن ورود روان */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
-        >
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 animate-fade-in-up">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
               <FiLayers className="w-3.5 h-3.5" />
@@ -104,22 +97,18 @@ export default function Services({ lang }: ServicesProps) {
               {isFa ? "نمای فنی (برای مهندسان)" : "Tech / Architecture"}
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* کارت‌های Bento با افکت موس نورانی (Spotlight) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {SERVICES_DATA.map((service, index) => {
+          {SERVICES_DATA.map((service) => {
             const IconComponent = iconMap[service.icon];
 
             return (
-              <motion.div
+              <div
                 key={service.id}
-                initial={{ opacity: 0, y: 30, scale: 0.97 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 onMouseMove={handleMouseMove}
-                className="spotlight-card p-6 sm:p-8 flex flex-col justify-between group"
+                className="spotlight-card p-6 sm:p-8 flex flex-col justify-between group animate-fade-in-up"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
@@ -197,7 +186,7 @@ export default function Services({ lang }: ServicesProps) {
                     </Link>
                   )}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

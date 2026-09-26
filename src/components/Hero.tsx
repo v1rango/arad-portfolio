@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { PERSONAL_DATA } from "@/lib/constants";
 import { FiArrowDown, FiCheckCircle, FiShield, FiTrendingUp, FiPlay, FiX } from "react-icons/fi";
@@ -40,16 +39,11 @@ export default function Hero({ lang }: HeroProps) {
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center z-10">
         
         {/* آواتار رسمی با نشان وضعیت فعال و کاراکتر رانگو در کنار آن */}
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="relative mb-6"
-        >
+        <div className="relative mb-6 animate-fade-in-scale">
           <div className="relative w-24 h-24 sm:w-28 sm:h-28">
             <div className="w-full h-full rounded-full p-1 border-2 border-[var(--accent)] bg-[var(--bg-surface)] shadow-2xl shadow-emerald-500/20 overflow-hidden group">
               <Image
-                src="/avatar.png"
+                src="/avatar.webp"
                 alt={`${PERSONAL_DATA.nameEn} — Full-Stack Developer & Modern SEO Architect`}
                 width={112}
                 height={112}
@@ -79,15 +73,10 @@ export default function Hero({ lang }: HeroProps) {
               کلیک کن رفیق! 🤠
             </span>
           </a>
-        </motion.div>
+        </div>
 
         {/* نشان رتبه ۱ و آماده به همکاری */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm"
-        >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm animate-fade-in-up">
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -99,7 +88,7 @@ export default function Hero({ lang }: HeroProps) {
           <span>
             {isFa ? "آماده پذیرش سفارش‌های جدید" : "Accepting High-Impact Projects"}
           </span>
-        </motion.div>
+        </div>
 
         {/* تیتر پیکسلی هیرو با انیمیشن شناور نرم و شتاب سخت‌افزاری */}
         <div className="w-full flex justify-center mb-6">
@@ -178,12 +167,7 @@ export default function Hero({ lang }: HeroProps) {
         </div>
 
         {/* شاخص‌های عملکردی لایت‌هاوس گوگل */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mb-12"
-        >
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mb-12 animate-fade-in-up">
           {PERSONAL_DATA.metrics.map((metric, i) => (
             <div
               key={i}
@@ -198,15 +182,10 @@ export default function Hero({ lang }: HeroProps) {
               </span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* گواهی ۳ گانه اعتبار در قالب بج‌های مدرن */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[var(--text-secondary)] font-medium"
-        >
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[var(--text-secondary)] font-medium animate-fade-in">
           <div className="flex items-center gap-1.5">
             <FiCheckCircle className="w-4 h-4 text-[var(--accent)]" />
             <span>{isFa ? "سرعت تضمینی زیر ۰.۸ ثانیه" : "Sub-0.8s Load Guarantee"}</span>
@@ -219,7 +198,7 @@ export default function Hero({ lang }: HeroProps) {
             <FiTrendingUp className="w-4 h-4 text-[var(--accent)]" />
             <span>{isFa ? "بهینه‌سازی ۱۰۰٪ برای هوش مصنوعی" : "Native AEO & GEO Ready"}</span>
           </div>
-        </motion.div>
+        </div>
 
       </div>
 

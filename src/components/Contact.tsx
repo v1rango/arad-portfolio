@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { motion } from "framer-motion";
 import { FaTelegram, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { PERSONAL_DATA } from "@/lib/constants";
 
@@ -59,13 +58,7 @@ export default function Contact({ lang }: ContactProps) {
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
         
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "ارتباط و شروع سفارش پروژه" : "Get In Touch & Start Project"}
           </h2>
@@ -74,18 +67,12 @@ export default function Contact({ lang }: ContactProps) {
               ? "جهت ثبت سفارش، دریافت مشاوره تخصصی سئو و هوش مصنوعی، یا شروع گفتگو پیام بفرستید."
               : "Send a message for project inquiries, AI/AEO consultation, or direct collaboration."}
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* ستون کانال‌های ارتباط مستقیم */}
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-4"
-          >
+          <div className="space-y-4 animate-fade-in-up">
             <h3 className="text-lg font-bold mb-4" style={{ color: "var(--text-primary)" }}>
               {isFa ? "راه‌های دسترسی مستقیم و فوری" : "Direct & Fast Communication"}
             </h3>
@@ -193,16 +180,10 @@ export default function Contact({ lang }: ContactProps) {
                 {isFa ? "مشاهده" : "Open"}
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* فرم ارسال پیام */}
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="bento-card p-6 sm:p-8"
-          >
+          <div className="bento-card p-6 sm:p-8 animate-fade-in-up">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-medium mb-2" style={{ color: "var(--text-secondary)" }}>
@@ -356,7 +337,7 @@ export default function Contact({ lang }: ContactProps) {
                   : isFa ? "بزن بریم! ارسال پیام 🚀" : "Send Message"}
               </button>
             </form>
-          </motion.div>
+          </div>
 
 
         </div>
