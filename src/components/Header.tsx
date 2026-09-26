@@ -332,6 +332,7 @@ export default function Header({
 
       <div
         id="mobile-menu"
+        aria-hidden={!isOpen}
         className={`md:hidden fixed inset-x-0 top-20 z-50 border-b shadow-2xl transition-all duration-300 ease-out ${
           isOpen
             ? "opacity-100 translate-y-0 visible"

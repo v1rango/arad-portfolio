@@ -22,7 +22,9 @@ export default function PixelHeroTitle({ className = "" }: PixelHeroTitleProps) 
         className="w-full h-auto drop-shadow-lg transition-transform duration-300"
         role="img"
         aria-label="اینجا هرچی بخوای میشه فقط اراده کن"
+        aria-labelledby="hero-title-svg"
       >
+        <title id="hero-title-svg">اینجا هرچی بخوای میشه فقط اراده کن</title>
         <defs>
           {/* گرادیان نئونی و بسیار شفاف برای کلمه اراده */}
           <linearGradient id="aradeh-gradient" x1="100%" y1="0%" x2="0%" y2="100%">

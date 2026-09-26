@@ -69,7 +69,7 @@ export default function Testimonials({ lang }: TestimonialsProps) {
                   {item.name.charAt(0)}
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold" style={{ color: "var(--text-primary)" }}>{item.name}</h4>
+                  <h3 className="text-sm font-bold" style={{ color: "var(--text-primary)" }}>{item.name}</h3>
                   <p className="text-[11px]" style={{ color: "var(--text-secondary)" }}>
                     {item.role} • {item.company}
                   </p>

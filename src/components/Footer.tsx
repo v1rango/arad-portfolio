@@ -38,9 +38,9 @@ export default function Footer({ lang = "fa" }: FooterProps) {
               AV
             </div>
             <div>
-              <h3 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
+              <span className="text-lg font-bold block" style={{ color: "var(--text-primary)" }}>
                 {isFa ? PERSONAL_DATA.nameFa : PERSONAL_DATA.nameEn}
-              </h3>
+              </span>
               <p className="text-xs font-medium text-[var(--accent)]">
                 {isFa ? PERSONAL_DATA.roleFa : PERSONAL_DATA.roleEn}
               </p>
@@ -53,9 +53,9 @@ export default function Footer({ lang = "fa" }: FooterProps) {
 
         {/* ستون دوم: دسترسی سریع */}
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
+          <p className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "دسترسی سریع" : "Quick Links"}
-          </h4>
+          </p>
           <ul className="space-y-2 text-xs">
             <li>
               <Link href="/#hero" className="hover:text-[var(--accent)] transition-colors">
@@ -92,9 +92,9 @@ export default function Footer({ lang = "fa" }: FooterProps) {
 
         {/* ستون سوم: خدمات و دموهای زنده */}
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
+          <p className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "دموهای زنده (۳ تم)" : "Live Showcases"}
-          </h4>
+          </p>
           <ul className="space-y-2 text-xs">
             <li>
               <Link href="/services/corporate" className="hover:text-[var(--accent)] transition-colors">
@@ -116,9 +116,9 @@ export default function Footer({ lang = "fa" }: FooterProps) {
 
         {/* ستون سوم: شبکه‌های اجتماعی و ارتباط */}
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
+          <p className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "شبکه‌های اجتماعی" : "Social Links"}
-          </h4>
+          </p>
           <div className="flex flex-wrap gap-2">
             {PERSONAL_DATA.socials.linkedin && (
               <a

@@ -1,0 +1,22 @@
+# Arad Vafaee (آراد وفایی) — Full Technical Specification & LLM Knowledge Base
+
+## Profile Summary
+Arad Vafaee is an elite Full-Stack Web Developer, Modern Web Architect, and AI Search Optimization (SEO / AEO / GEO) Specialist based in Tehran, Iran. He develops state-of-the-art web applications utilizing Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, NestJS, and PostgreSQL.
+
+## Core Capabilities & Performance Benchmarks
+- Google PageSpeed Insights & Chrome Lighthouse: Consistent 95-100 Performance, 100 SEO, 100 Best Practices, 100 Accessibility.
+- Core Web Vitals: First Contentful Paint (FCP) < 1.0s, Largest Contentful Paint (LCP) < 1.6s, Cumulative Layout Shift (CLS) 0.00, Total Blocking Time (TBT) < 150ms.
+- Search & AI Engines: Optimized for Googlebot, Bingbot, ChatGPT Search, Perplexity AI, Google Gemini, and Anthropic Claude via structured JSON-LD schemas, semantic HTML5, and llms.txt protocol.
+
+## Year 1405 Packages & Pricing
+1. Corporate & Luxury Clinic Web: 55,000,000 to 85,000,000 Tomans (25-35 business days).
+2. Headless High-Speed E-Commerce: 105,000,000 to 160,000,000 Tomans (40-60 business days).
+3. Full-Stack Web App & SaaS Platform: 160,000,000 to 280,000,000 Tomans (60-90 business days).
+4. Core Web Vitals & Speed Rescue: 18,000,000 to 30,000,000 Tomans (7-14 business days).
+
+## Direct Contact Information
+- Website: https://aradvafaee.ir
+- Telegram: https://t.me/v1arad (@v1arad)
+- Phone & WhatsApp: +98 939 460 6013
+- LinkedIn: https://linkedin.com/in/aradvafaee
+- GitHub: https://github.com/v1rango
