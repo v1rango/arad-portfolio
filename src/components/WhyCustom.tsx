@@ -74,12 +74,18 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
                   {isFa ? item.featureFa : item.featureEn}
                 </div>
 
-                <div className="col-span-12 sm:col-span-4 flex items-center gap-2 text-[var(--accent)] font-medium mb-1 sm:mb-0">
+                <div className="col-span-12 sm:col-span-4 flex items-center gap-2 text-[var(--accent)] font-medium mb-1.5 sm:mb-0">
+                  <span className="sm:hidden text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 font-bold border border-emerald-500/30 whitespace-nowrap">
+                    {isFa ? "اختصاصی" : "Next.js"}
+                  </span>
                   <FiCheck className="w-4 h-4 flex-shrink-0 text-[var(--accent)]" />
                   <span>{isFa ? item.customFa : item.customEn}</span>
                 </div>
 
                 <div className="col-span-12 sm:col-span-4 flex items-center gap-2 text-[var(--text-muted)] text-[11px] sm:text-xs">
+                  <span className="sm:hidden text-[10px] px-2 py-0.5 rounded-md bg-rose-500/15 text-rose-400 font-bold border border-rose-500/30 whitespace-nowrap">
+                    {isFa ? "وردپرس" : "WP"}
+                  </span>
                   <FiX className="w-4 h-4 flex-shrink-0 text-rose-500/70" />
                   <span>{isFa ? item.standardFa : item.standardEn}</span>
                 </div>

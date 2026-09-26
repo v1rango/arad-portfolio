@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -8,33 +7,16 @@ import WhyCustom from "@/components/WhyCustom";
 import Process from "@/components/Process";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
+import ProjectEstimator from "@/components/ProjectEstimator";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import FloatingMobileBar from "@/components/FloatingMobileBar";
+import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 
 export default function PortfolioContainer() {
-  const [lang, setLang] = useState<"fa" | "en">("fa");
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("portfolio-theme") as "dark" | "light" | null;
-    if (savedTheme) {
-      queueMicrotask(() => setTheme(savedTheme));
-      document.documentElement.setAttribute("data-theme", savedTheme);
-    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-      queueMicrotask(() => setTheme("light"));
-      document.documentElement.setAttribute("data-theme", "light");
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-  }, []);
-
-  const toggleTheme = (newTheme: "dark" | "light") => {
-    setTheme(newTheme);
-    localStorage.setItem("portfolio-theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
+  const { theme, setTheme, lang, setLang } = useThemeLanguage();
 
   return (
     <div
@@ -52,7 +34,7 @@ export default function PortfolioContainer() {
         lang={lang}
         setLang={setLang}
         theme={theme}
-        setTheme={toggleTheme}
+        setTheme={setTheme}
       />
       
       <main className="space-y-12 sm:space-y-16">
@@ -62,12 +44,14 @@ export default function PortfolioContainer() {
         <Process lang={lang} />
         <Projects lang={lang} />
         <Skills lang={lang} />
+        <ProjectEstimator lang={lang} />
         <Testimonials lang={lang} />
         <FAQ lang={lang} />
         <Contact lang={lang} />
       </main>
 
       <Footer lang={lang} />
+      <FloatingMobileBar lang={lang} />
     </div>
   );
 }

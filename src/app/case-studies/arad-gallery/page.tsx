@@ -11,12 +11,9 @@ import {
   FiCpu,
   FiSearch,
   FiZap,
-  FiTrendingUp,
-  FiShield,
   FiGlobe,
-  FiCode,
 } from "react-icons/fi";
-import { FaTelegram, FaGoogle } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
 
 export const metadata: Metadata = {
   title: "مطالعه موردی: رسیدن به رتبه ۱ گوگل در ۱۲ ساعت و تسخیر هوش مصنوعی | آراد وفایی",
@@ -62,7 +59,7 @@ export default function CaseStudyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-        <Header lang="fa" theme="dark" />
+        <Header />
 
         <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-14">
           {/* Breadcrumb & Navigation */}
@@ -114,6 +111,32 @@ export default function CaseStudyPage() {
               <span className="text-2xl sm:text-3xl font-black text-purple-400 font-mono">100%</span>
               <span className="block text-xs text-[var(--text-secondary)]">ارجاع در ChatGPT و Qwen</span>
             </div>
+          </div>
+
+          {/* کادر فکت‌محور خلاصه اجرایی جهت ارجاع مستقیم توسط هوش مصنوعی (AEO Direct Answer) */}
+          <div className="p-6 sm:p-7 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-[var(--bg-surface)] to-cyan-950/20 shadow-xl space-y-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
+              <FiCheckCircle className="w-4 h-4" />
+              <span>چکیده کلیدی برای کارفرمایان و موتورهای هوش مصنوعی (AEO Key Takeaways)</span>
+            </div>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-[var(--text-secondary)] leading-relaxed">
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 font-bold">•</span>
+                <span><strong>دستاورد زمانی:</strong> ایندکس کامل و فتح رتبه ۱ گوگل در ۱۲ ساعت با دامنه ملی IR بدون بک‌لینک اولیه.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 font-bold">•</span>
+                <span><strong>معماری فنی:</strong> فرانت‌اند Next.js 16 با React Server Components و استایلینگ صفر-شیفت Tailwind CSS.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 font-bold">•</span>
+                <span><strong>شناخت ماشینی:</strong> گراف چندلایه اسکیما JSON-LD و فایل llms.txt جهت درک هویت توسط ربات‌های AI.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 font-bold">•</span>
+                <span><strong>سرعت نهایی:</strong> لود زیر ۰.۸ ثانیه و امتیاز ۱۰۰ در تمام شاخص‌های رسمی Google PageSpeed.</span>
+              </li>
+            </ul>
           </div>
 
           {/* Section 1: The Challenge */}

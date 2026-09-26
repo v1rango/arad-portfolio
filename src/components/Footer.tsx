@@ -1,13 +1,14 @@
 "use client";
 
 import { PERSONAL_DATA } from "@/lib/constants";
+import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTelegram, FaInstagram, FaWhatsapp, FaPhone, FaArrowUp } from "react-icons/fa";
 
 interface FooterProps {
-  lang: "fa" | "en";
+  lang?: "fa" | "en";
 }
 
-export default function Footer({ lang }: FooterProps) {
+export default function Footer({ lang = "fa" }: FooterProps) {
   const isFa = lang === "fa";
   const currentYear = new Date().getFullYear();
 
@@ -57,29 +58,34 @@ export default function Footer({ lang }: FooterProps) {
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
-              <a href="/#hero" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/#hero" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "صفحه اصلی" : "Home"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#services" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/#services" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "خدمات مهندسی" : "Services"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#projects" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/#projects" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "پروژه‌ها" : "Projects"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/case-studies/arad-gallery" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
+              <Link href="/case-studies/arad-gallery" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
                 {isFa ? "مطالعه موردی رتبه ۱ گوگل" : "Case Study #1 Google"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#contact" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/#estimator" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
+                {isFa ? "محاسبه‌گر آنلاین هزینه و زمان" : "Cost & Timeline Estimator"}
+              </Link>
+            </li>
+            <li>
+              <Link href="/#contact" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "استعلام قیمت و تماس" : "Contact"}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -91,19 +97,19 @@ export default function Footer({ lang }: FooterProps) {
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
-              <a href="/services/corporate" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/services/corporate" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "طراحی سایت شرکتی و کلینیک" : "Corporate & Clinic Web"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/services/ecommerce" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/services/ecommerce" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "طراحی فروشگاه آنلاین پرسرعت" : "Headless E-Commerce"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/services/web-app" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/services/web-app" className="hover:text-[var(--accent)] transition-colors">
                 {isFa ? "طراحی وب‌اپلیکیشن و اتوماسیون" : "Web Apps & Automation"}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -45,7 +45,7 @@ export default function EcommerceServicePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-        <Header lang="fa" theme="dark" />
+        <Header />
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
           <EcommerceShowcaseClient />

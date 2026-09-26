@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import PortfolioContainer from "@/components/PortfolioContainer";
-import { PERSONAL_DATA, FEATURED_PROJECTS, SERVICES_DATA, FAQ_LIST, SITE_URL } from "@/lib/constants";
+import { PERSONAL_DATA, FEATURED_PROJECTS, SERVICES_DATA, FAQ_LIST, WORK_PROCESS, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
     languages: {
       "fa-IR": SITE_URL,
-      "en-US": SITE_URL,
+      "x-default": SITE_URL,
     },
   },
   openGraph: {
@@ -109,7 +109,27 @@ export default function Home() {
           "Core Web Vitals & Performance Optimization",
           "Custom E-Commerce Architecture"
         ],
-        "description": PERSONAL_DATA.bioFa
+        "description": PERSONAL_DATA.bioFa,
+        "award": "رتبه ۱ گوگل در ۱۲ ساعت برای پلتفرم اختصاصی Next.js 16",
+        "nationality": {
+          "@type": "Country",
+          "name": "Iran"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": `${SITE_URL}/#how-we-work`,
+        "name": "مراحل طراحی و پیاده‌سازی وب‌سایت با Next.js و سئوی هوش مصنوعی",
+        "description": "فرآیند ۴ مرحله‌ای ساخت وب‌سایت اختصاصی فوق‌سریع و کسب رتبه ۱ گوگل و هوش مصنوعی",
+        "step": WORK_PROCESS.map((step, idx) => ({
+          "@type": "HowToStep",
+          "position": idx + 1,
+          "name": step.titleFa,
+          "itemListElement": {
+            "@type": "HowToDirection",
+            "text": step.descFa,
+          },
+        })),
       },
       {
         "@type": "ProfessionalService",

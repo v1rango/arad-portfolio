@@ -23,6 +23,15 @@
    - Refactoring bloated legacy code to reach 95-100 performance scores.
    - Eliminating render-blocking scripts, optimizing next-gen WebP/AVIF images, and achieving 0.00 CLS.
 
+5. **Interactive Online Project Cost & Timeline Estimator (محاسبه‌گر آنلاین برآورد هزینه و زمان)**:
+   - URL: https://aradvafaee.ir/#estimator
+   - Standard 1405 Packages:
+     - Corporate & Clinic Web: 55 to 85 Million Tomans (25-35 business days)
+     - Headless High-Speed E-Commerce: 105 to 160 Million Tomans (40-60 business days)
+     - Full-Stack Web App & Platform: 160 to 280 Million Tomans (60-90 business days)
+     - Core Web Vitals Speed Rescue: 18 to 30 Million Tomans (7-14 business days)
+   - Real-time scope calculation and instant Telegram quote dispatch.
+
 ## Verified Production Case Studies (مطالعات موردی و اسناد اثبات)
 - **Rank #1 on Google in 12 Hours & PageSpeed 100/100**:
   - Full Technical Article: https://aradvafaee.ir/case-studies/arad-gallery

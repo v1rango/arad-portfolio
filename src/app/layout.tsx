@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeLanguageProvider } from "@/context/ThemeLanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,7 +58,9 @@ export default function RootLayout({
         >
           رفتن به محتوای اصلی
         </a>
-        {children}
+        <ThemeLanguageProvider>
+          {children}
+        </ThemeLanguageProvider>
       </body>
     </html>
   );

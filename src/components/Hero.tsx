@@ -6,6 +6,7 @@ import Image from "next/image";
 import { PERSONAL_DATA } from "@/lib/constants";
 import { FiArrowDown, FiCheckCircle, FiShield, FiTrendingUp, FiPlay, FiX } from "react-icons/fi";
 import PixelHeroTitle from "@/components/PixelHeroTitle";
+import CountUpNumber from "@/components/CountUpNumber";
 
 interface HeroProps {
   lang: "fa" | "en";
@@ -59,11 +60,11 @@ export default function Hero({ lang }: HeroProps) {
             <span className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[var(--bg-primary)] shadow-sm animate-pulse"></span>
           </div>
 
-          {/* کاراکتر زنده رانگو بغل لوگو */}
+          {/* کاراکتر زنده رانگو بغل لوگو با فاصله بهینه و ایمن در موبایل */}
           <a
             href="#contact"
             title="کاراکتر رانگو — شروع همکاری"
-            className="absolute -right-16 sm:-right-20 md:-right-24 bottom-0 w-14 sm:w-18 md:w-22 z-20 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-2 cursor-pointer group"
+            className="absolute -right-10 sm:-right-20 md:-right-24 bottom-0 w-12 sm:w-18 md:w-22 z-20 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-2 cursor-pointer group"
           >
             <Image
               src="/mascot-rango.webp"
@@ -188,9 +189,10 @@ export default function Hero({ lang }: HeroProps) {
               key={i}
               className="p-4 rounded-xl flex flex-col items-center justify-center text-center bento-card hover:border-[var(--accent)] transition-colors"
             >
-              <span className="text-xl sm:text-2xl font-black font-mono text-[var(--accent)]">
-                {metric.value}
-              </span>
+              <CountUpNumber
+                value={metric.value}
+                className="text-xl sm:text-2xl font-black font-mono text-[var(--accent)]"
+              />
               <span className="text-xs mt-1" style={{ color: "var(--text-secondary)" }}>
                 {isFa ? metric.labelFa : metric.labelEn}
               </span>
