@@ -38,7 +38,7 @@ export default function Hero({ lang }: HeroProps) {
 
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center z-10">
         
-        {/* آواتار رسمی با نشان وضعیت فعال */}
+        {/* آواتار رسمی با نشان وضعیت فعال و کاراکتر رانگو در کنار آن */}
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -58,6 +58,26 @@ export default function Hero({ lang }: HeroProps) {
             </div>
             <span className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[var(--bg-primary)] shadow-sm animate-pulse"></span>
           </div>
+
+          {/* کاراکتر زنده رانگو بغل لوگو */}
+          <a
+            href="#contact"
+            title="کاراکتر رانگو — شروع همکاری"
+            className="absolute -right-16 sm:-right-20 md:-right-24 bottom-0 w-14 sm:w-18 md:w-22 z-20 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-2 cursor-pointer group"
+          >
+            <Image
+              src="/mascot-rango.webp"
+              alt="کاراکتر رانگو — آراد وفایی"
+              width={320}
+              height={480}
+              priority
+              className="w-full h-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
+            />
+            {/* پیام تعاملی در هاور */}
+            <span className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500 text-black shadow-lg shadow-emerald-500/30">
+              کلیک کن رفیق! 🤠
+            </span>
+          </a>
         </motion.div>
 
         {/* نشان رتبه ۱ و آماده به همکاری */}
@@ -65,7 +85,7 @@ export default function Hero({ lang }: HeroProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-10 sm:mb-12 shadow-sm"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm"
         >
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -81,7 +101,7 @@ export default function Hero({ lang }: HeroProps) {
         </motion.div>
 
         {/* تیتر پیکسلی هیرو با انیمیشن شناور نرم و شتاب سخت‌افزاری */}
-        <div className="w-full flex justify-center mb-6 pt-2 sm:pt-4">
+        <div className="w-full flex justify-center mb-6">
           {isFa ? (
             <div className="w-full flex justify-center animate-hero-float">
               <PixelHeroTitle />
