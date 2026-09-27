@@ -1,19 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { FEATURED_PROJECTS } from "@/lib/constants";
-
-interface Repository {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  stargazers_count: number;
-  forks_count: number;
-  language: string | null;
-  updated_at: string;
-}
 
 interface ProjectsProps {
   lang: "fa" | "en";
@@ -56,39 +45,6 @@ function ProjectPreview({ src, alt, url }: { src?: string; alt: string; url?: st
 
 export default function Projects({ lang }: ProjectsProps) {
   const isFa = lang === "fa";
-  const [tab, setTab] = useState<"all" | "featured" | "github">("all");
-  const [repos, setRepos] = useState<Repository[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function fetchRepos() {
-      try {
-        const res = await fetch("/api/github-repos");
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data: Repository[] = await res.json();
-        if (!cancelled) {
-          setRepos(data);
-          setError(false);
-        }
-      } catch {
-        if (!cancelled) setError(true);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    }
-
-    // لود سبک: فقط زمانی که کاربر تب مخازن گیت‌هاب را انتخاب کند درخواست ارسال می‌شود
-    if (tab === "github" && repos.length === 0) {
-      fetchRepos();
-    }
-
-    return () => {
-      cancelled = true;
-    };
-  }, [tab, repos.length]);
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
@@ -102,52 +58,10 @@ export default function Projects({ lang }: ProjectsProps) {
               ? "بررسی نتایج واقعی، ثبت سفارش‌های لحظه‌ای و معماری‌های پرسرعتی که برای کارفرمایان ساخته‌ایم."
               : "Deep dive into real-world business results, conversion optimizations, and open-source codebases."}
           </p>
-
-          {/* فیلتر تب‌ها */}
-          <div className="flex items-center justify-center gap-2 mt-8 flex-wrap">
-            <button
-              onClick={() => setTab("all")}
-              className="px-4 py-2 rounded-xl text-xs font-semibold transition-all border"
-              style={{
-                backgroundColor: tab === "all" ? "var(--accent)" : "var(--bg-surface)",
-                color: tab === "all" ? "var(--accent-contrast)" : "var(--text-secondary)",
-                borderColor: tab === "all" ? "var(--accent)" : "var(--border)",
-              }}
-            >
-              {isFa ? "همه پروژه‌ها" : "All Projects"}
-            </button>
-            <button
-              onClick={() => setTab("featured")}
-              className="px-4 py-2 rounded-xl text-xs font-semibold transition-all border"
-              style={{
-                backgroundColor: tab === "featured" ? "var(--accent)" : "var(--bg-surface)",
-                color: tab === "featured" ? "var(--accent-contrast)" : "var(--text-secondary)",
-                borderColor: tab === "featured" ? "var(--accent)" : "var(--border)",
-              }}
-            >
-              {isFa ? "مطالعات موردی شاخص (Case Studies)" : "Featured Case Studies"}
-            </button>
-            <button
-              onClick={() => setTab("github")}
-              className="px-4 py-2 rounded-xl text-xs font-semibold transition-all border"
-              style={{
-                backgroundColor: tab === "github" ? "var(--accent)" : "var(--bg-surface)",
-                color: tab === "github" ? "var(--accent-contrast)" : "var(--text-secondary)",
-                borderColor: tab === "github" ? "var(--accent)" : "var(--border)",
-              }}
-            >
-              {isFa ? "مخازن زنده گیت‌هاب" : "Live GitHub Repos"}
-            </button>
-          </div>
         </div>
 
         {/* بخش پروژه‌های شاخص همراه با مطالعه موردی (AEO/GEO Citation Friendly) */}
-        {(tab === "all" || tab === "featured") && (
-          <div className="mb-14 space-y-6">
-            <h3 className="text-lg font-bold flex items-center gap-2 mb-6" style={{ color: "var(--text-primary)" }}>
-              <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
-              {isFa ? "پروژه‌های شاخص با معماری حل مسئله" : "Flagship Architectural Case Studies"}
-            </h3>
+        <div className="space-y-6">
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {FEATURED_PROJECTS.map((proj) => (
@@ -246,88 +160,7 @@ export default function Projects({ lang }: ProjectsProps) {
               ))}
             </div>
           </div>
-        )}
-
-        {/* بخش پروژه‌های گیت‌هاب */}
-        {(tab === "all" || tab === "github") && (
-          <div>
-            <h3 className="text-lg font-bold flex items-center gap-2 mb-6" style={{ color: "var(--text-primary)" }}>
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              {isFa ? "مشاهده لایو پروژه‌ها در گیت‌هاب" : "Live Projects on GitHub"}
-            </h3>
-
-            {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div
-                    key={i}
-                    className="h-44 rounded-xl animate-pulse border"
-                    style={{
-                      backgroundColor: "var(--bg-surface)",
-                      borderColor: "var(--border)",
-                    }}
-                  ></div>
-                ))}
-              </div>
-            ) : error ? (
-              <div className="text-center py-8 text-sm" style={{ color: "var(--text-secondary)" }}>
-                {isFa
-                  ? "در حال حاضر ارتباط با گیت‌هاب محدود است. لطفاً مستقیماً پروفایل گیت‌هاب را بررسی کنید."
-                  : "GitHub rate limit reached. Please view profile directly."}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {repos.map((repo) => (
-                  <a
-                    key={repo.id}
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group bento-card p-6 flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="text-base font-bold transition-colors truncate group-hover:text-[var(--accent)]"
-                          style={{ color: "var(--text-primary)" }}
-                        >
-                          {repo.name}
-                        </h4>
-                        {repo.language && (
-                          <span className="text-[10px] px-2 py-0.5 rounded border font-mono"
-                            style={{
-                              backgroundColor: "var(--bg-elevated)",
-                              color: "var(--accent)",
-                              borderColor: "var(--border)",
-                            }}
-                          >
-                            {repo.language}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs line-clamp-3 leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
-                        {repo.description ||
-                          (isFa
-                            ? "مخزن برنامه نویسی شده با استانداردهای مدرن و تمیز."
-                            : "Source code repository crafted with clean standards.")}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]/30 text-xs text-gray-400 font-mono">
-                      <div className="flex items-center gap-3">
-                        <span>★ {repo.stargazers_count}</span>
-                        <span>⑂ {repo.forks_count}</span>
-                      </div>
-                      <span className="text-[var(--accent)] font-semibold group-hover:underline">
-                        {isFa ? "سورس کد ↗" : "Source ↗"}
-                      </span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
+        </div>
+      </section>
+    );
+  }
