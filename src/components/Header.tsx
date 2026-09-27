@@ -122,14 +122,19 @@ export default function Header({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           {/* لوگو و نام برند */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link
+            href="/"
+            className="flex items-center gap-3 group"
+            aria-label={lang === "fa" ? "صفحه اصلی آراد وفایی" : "Arad Vafaee Homepage"}
+          >
             <div className="relative w-10 h-10 flex-shrink-0">
               <div className="w-full h-full rounded-full p-0.5 border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors overflow-hidden bg-transparent">
                 <Image
-                  src="/avatar.png"
+                  src="/avatar.webp"
                   alt={`${PERSONAL_DATA.nameEn} — Full-Stack Developer`}
                   width={40}
                   height={40}
+                  sizes="40px"
                   priority
                   className="w-full h-full object-contain rounded-full group-hover:scale-105 transition-transform"
                 />
@@ -238,7 +243,7 @@ export default function Header({
                 color: "var(--text-primary)",
               }}
               title={theme === "dark" ? "سوییچ به حالت روشن (Light Mode)" : "سوییچ به حالت تاریک (Dark Mode)"}
-              aria-label="Toggle Theme"
+              aria-label={theme === "dark" ? (lang === "fa" ? "سوییچ به حالت روشن" : "Switch to light theme") : (lang === "fa" ? "سوییچ به حالت تاریک" : "Switch to dark theme")}
             >
               {theme === "dark" ? (
                 <FiSun className="w-4 h-4 text-amber-400" />
@@ -282,7 +287,7 @@ export default function Header({
                 backgroundColor: "var(--bg-surface)",
                 color: "var(--text-primary)",
               }}
-              aria-label="Toggle Theme"
+              aria-label={theme === "dark" ? (lang === "fa" ? "سوییچ به حالت روشن" : "Switch to light theme") : (lang === "fa" ? "سوییچ به حالت تاریک" : "Switch to dark theme")}
             >
               {theme === "dark" ? (
                 <FiSun className="w-4 h-4 text-amber-400" />

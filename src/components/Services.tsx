@@ -46,8 +46,8 @@ export default function Services({ lang }: ServicesProps) {
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-6xl mx-auto">
         
-        {/* هدر بخش همراه با سوئیچ هوشمند دیدگاه کاربر با انیمیشن ورود روان */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 animate-fade-in-up">
+        {/* هدر بخش همراه با سوئیچ هوشمند دیدگاه کاربر */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
               <FiLayers className="w-3.5 h-3.5" />
@@ -108,7 +108,7 @@ export default function Services({ lang }: ServicesProps) {
               <div
                 key={service.id}
                 onMouseMove={handleMouseMove}
-                className="spotlight-card p-6 sm:p-8 flex flex-col justify-between group animate-fade-in-up"
+                className="spotlight-card p-6 sm:p-8 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">

@@ -21,30 +21,20 @@ export function ThemeLanguageProvider({ children }: { children: React.ReactNode 
   const [lang, setLangState] = useState<Language>("fa");
 
   useEffect(() => {
-    queueMicrotask(() => {
+    try {
       const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
-      const currentAttr = document.documentElement.getAttribute("data-theme") as Theme | null;
-      
-      if (savedTheme) {
+      if (savedTheme === "light" || savedTheme === "dark") {
         setThemeState(savedTheme);
         document.documentElement.setAttribute("data-theme", savedTheme);
-      } else if (currentAttr) {
-        setThemeState(currentAttr);
-      } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-        setThemeState("light");
-        document.documentElement.setAttribute("data-theme", "light");
-      } else {
-        setThemeState("dark");
-        document.documentElement.setAttribute("data-theme", "dark");
       }
 
       const savedLang = localStorage.getItem("portfolio-lang") as Language | null;
-      if (savedLang) {
+      if (savedLang === "fa" || savedLang === "en") {
         setLangState(savedLang);
         document.documentElement.setAttribute("lang", savedLang);
         document.documentElement.setAttribute("dir", savedLang === "fa" ? "rtl" : "ltr");
       }
-    });
+    } catch {}
   }, []);
 
   const setTheme = (newTheme: Theme) => {

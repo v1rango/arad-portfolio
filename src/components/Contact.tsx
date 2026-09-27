@@ -58,7 +58,7 @@ export default function Contact({ lang }: ContactProps) {
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
         
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "ارتباط و شروع سفارش پروژه" : "Get In Touch & Start Project"}
           </h2>
@@ -72,7 +72,7 @@ export default function Contact({ lang }: ContactProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* ستون کانال‌های ارتباط مستقیم */}
-          <div className="space-y-4 animate-fade-in-up">
+          <div className="space-y-4">
             <h3 className="text-lg font-bold mb-4" style={{ color: "var(--text-primary)" }}>
               {isFa ? "راه‌های دسترسی مستقیم و فوری" : "Direct & Fast Communication"}
             </h3>
@@ -183,7 +183,7 @@ export default function Contact({ lang }: ContactProps) {
           </div>
 
           {/* فرم ارسال پیام */}
-          <div className="bento-card p-6 sm:p-8 animate-fade-in-up">
+          <div className="bento-card p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-medium mb-2" style={{ color: "var(--text-secondary)" }}>

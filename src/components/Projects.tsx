@@ -80,33 +80,20 @@ export default function Projects({ lang }: ProjectsProps) {
       }
     }
 
-    // لود سبک: در صورت انتخاب تب گیت‌هاب بلافاصله و در غیر این صورت پس از اتمام رندر صفحه با زمان Idle
-    if (tab === "github") {
+    // لود سبک: فقط زمانی که کاربر تب مخازن گیت‌هاب را انتخاب کند درخواست ارسال می‌شود
+    if (tab === "github" && repos.length === 0) {
       fetchRepos();
-    } else {
-      const timer = setTimeout(() => {
-        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-          window.requestIdleCallback(() => fetchRepos(), { timeout: 3000 });
-        } else {
-          fetchRepos();
-        }
-      }, 2000);
-
-      return () => {
-        cancelled = true;
-        clearTimeout(timer);
-      };
     }
 
     return () => {
       cancelled = true;
     };
-  }, [tab]);
+  }, [tab, repos.length]);
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 animate-fade-in-up">
+        <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "مشاهده نمونه کارها" : "Featured Portfolio & Work"}
           </h2>
@@ -166,7 +153,7 @@ export default function Projects({ lang }: ProjectsProps) {
               {FEATURED_PROJECTS.map((proj) => (
                 <div
                   key={proj.id}
-                  className="bento-card p-6 sm:p-8 flex flex-col justify-between animate-fade-in-up"
+                  className="bento-card p-6 sm:p-8 flex flex-col justify-between"
                 >
                   <div>
                     <ProjectPreview
@@ -296,7 +283,7 @@ export default function Projects({ lang }: ProjectsProps) {
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bento-card p-6 flex flex-col justify-between animate-fade-in-up"
+                    className="group bento-card p-6 flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-3">

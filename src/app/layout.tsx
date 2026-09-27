@@ -30,20 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={`${vazirmatn.variable}`}>
+    <html lang="fa" dir="rtl" data-theme="dark" className={`${vazirmatn.variable}`}>
       <head>
-        {/* رفع مشکل flash تم: قبل از hydration React، تم رو از localStorage می‌خونیم */}
+        {/* رفع کامل مشکل flash تم: خواندن فقط تم ذخیره‌شده صریح کاربر */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
                 var t = localStorage.getItem('portfolio-theme');
-                if (t) {
+                if (t === 'light' || t === 'dark') {
                   document.documentElement.setAttribute('data-theme', t);
-                } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-                  document.documentElement.setAttribute('data-theme', 'light');
-                } else {
-                  document.documentElement.setAttribute('data-theme', 'dark');
                 }
               } catch(e) {}
             `,

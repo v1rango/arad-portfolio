@@ -39,7 +39,7 @@ export default function Hero({ lang }: HeroProps) {
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center z-10">
         
         {/* آواتار رسمی با نشان وضعیت فعال و کاراکتر رانگو در کنار آن */}
-        <div className="relative mb-6 animate-fade-in-scale">
+        <div className="relative mb-6">
           <div className="relative w-24 h-24 sm:w-28 sm:h-28">
             <div className="w-full h-full rounded-full p-1 border-2 border-[var(--accent)] bg-[var(--bg-surface)] shadow-2xl shadow-emerald-500/20 overflow-hidden group">
               <Image
@@ -47,6 +47,7 @@ export default function Hero({ lang }: HeroProps) {
                 alt={`${PERSONAL_DATA.nameEn} — Full-Stack Developer & Modern SEO Architect`}
                 width={112}
                 height={112}
+                sizes="(max-width: 640px) 96px, 112px"
                 priority
                 className="w-full h-full object-contain rounded-full transition-transform duration-500 group-hover:scale-105"
               />
@@ -65,7 +66,8 @@ export default function Hero({ lang }: HeroProps) {
               alt="کاراکتر رانگو — آراد وفایی"
               width={320}
               height={480}
-              priority
+              sizes="(max-width: 640px) 84px, (max-width: 768px) 120px, 160px"
+              loading="lazy"
               className="w-full h-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
             />
             {/* پیام تعاملی در هاور */}
@@ -76,7 +78,7 @@ export default function Hero({ lang }: HeroProps) {
         </div>
 
         {/* نشان رتبه ۱ و آماده به همکاری */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm animate-fade-in-up">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm">
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -167,7 +169,7 @@ export default function Hero({ lang }: HeroProps) {
         </div>
 
         {/* شاخص‌های عملکردی لایت‌هاوس گوگل */}
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mb-12 animate-fade-in-up">
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mb-12">
           {PERSONAL_DATA.metrics.map((metric, i) => (
             <div
               key={i}
@@ -185,7 +187,7 @@ export default function Hero({ lang }: HeroProps) {
         </div>
 
         {/* گواهی ۳ گانه اعتبار در قالب بج‌های مدرن */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[var(--text-secondary)] font-medium animate-fade-in">
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[var(--text-secondary)] font-medium">
           <div className="flex items-center gap-1.5">
             <FiCheckCircle className="w-4 h-4 text-[var(--accent)]" />
             <span>{isFa ? "سرعت تضمینی زیر ۰.۸ ثانیه" : "Sub-0.8s Load Guarantee"}</span>

@@ -14,7 +14,7 @@ export default function Process({ lang }: ProcessProps) {
     <section id="process" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-6xl mx-auto">
         
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
             <span>{isFa ? "مسیر شفاف و مطمئن" : "Transparent Delivery"}</span>
           </div>
@@ -32,7 +32,7 @@ export default function Process({ lang }: ProcessProps) {
           {WORK_PROCESS.map((step) => (
             <div
               key={step.stepNumber}
-              className="bento-card p-6 flex flex-col justify-between relative group hover:border-[var(--accent)] animate-fade-in-up"
+              className="bento-card p-6 flex flex-col justify-between relative group hover:border-[var(--accent)]"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">

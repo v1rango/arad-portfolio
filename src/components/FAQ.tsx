@@ -18,7 +18,7 @@ export default function FAQ({ lang }: FAQProps) {
   return (
     <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
             {isFa ? "پرسش‌های پرتکرار (AEO Direct Answers)" : "Frequently Asked Questions"}
           </h2>
@@ -35,7 +35,7 @@ export default function FAQ({ lang }: FAQProps) {
             return (
               <div
                 key={faq.id}
-                className="bento-card overflow-hidden transition-colors animate-fade-in-up"
+                className="bento-card overflow-hidden transition-colors"
               >
                 <button
                   onClick={() => toggleItem(faq.id)}

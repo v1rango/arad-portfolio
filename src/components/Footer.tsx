@@ -205,7 +205,8 @@ export default function Footer({ lang = "fa" }: FooterProps) {
 
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-2 text-xs hover:text-[var(--accent)] transition-colors group"
+          aria-label={isFa ? "بازگشت به بالای صفحه" : "Back to top of page"}
+          className="flex items-center gap-2 text-xs hover:text-[var(--accent)] transition-colors group cursor-pointer"
           style={{ color: "var(--text-secondary)" }}
         >
           <span>{isFa ? "بازگشت به بالا" : "Back to top"}</span>

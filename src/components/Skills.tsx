@@ -37,7 +37,7 @@ export default function Skills({ lang }: SkillsProps) {
 
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <div className="text-center mb-14 animate-fade-in-up">
+      <div className="text-center mb-14">
         <h2 className="text-2xl sm:text-4xl font-extrabold mb-3" style={{ color: "var(--text-primary)" }}>
           {isFa ? "ماتریس مهارت‌ها و معماری ارزش‌آفرینی" : "Skill Matrix & Core Architecture"}
         </h2>
@@ -52,7 +52,7 @@ export default function Skills({ lang }: SkillsProps) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         {/* جعبه اول (بزرگ): استک اصلی توسعه وب */}
-        <div className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)] animate-fade-in-up">
+        <div className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]">
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
@@ -112,7 +112,7 @@ export default function Skills({ lang }: SkillsProps) {
 
         {/* جعبه دوم: تخصص ویژه هوش مصنوعی (AEO & GEO) */}
         <div
-          className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent)] animate-fade-in-up"
+          className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent)]"
           style={{
             background: "linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-surface) 60%)",
           }}
@@ -159,7 +159,7 @@ export default function Skills({ lang }: SkillsProps) {
 
         {/* جعبه سوم: بهینه‌سازی سرعت و فریم‌ریت موبایل */}
         <div
-          className="bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)] animate-fade-in-up"
+          className="bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
         >
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -195,7 +195,7 @@ export default function Skills({ lang }: SkillsProps) {
 
         {/* جعبه چهارم (بزرگ): سایر تکنولوژی‌ها و ابزارهای بک‌اند */}
         <div
-          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)] animate-fade-in-up"
+          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
         >
           <div>
             <div className="flex items-center gap-2 mb-4">
