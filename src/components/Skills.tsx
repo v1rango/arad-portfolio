@@ -91,7 +91,13 @@ export default function Skills({ lang }: SkillsProps) {
                       borderColor: "var(--border)",
                     }}
                   >
-                    {Icon && <Icon className={`w-6 h-6 text-gray-400 transition-colors ${config.color}`} />}
+                    {Icon && (
+                      <Icon
+                        className={`w-6 h-6 text-gray-400 transition-colors ${config.color}`}
+                        title={skill.name}
+                        aria-label={skill.name}
+                      />
+                    )}
                     <div className="text-left rtl:text-right overflow-hidden">
                       <div className="text-xs font-semibold flex items-center justify-between gap-1" style={{ color: "var(--text-primary)" }}>
                         <span>{skill.name}</span>
@@ -225,7 +231,11 @@ export default function Skills({ lang }: SkillsProps) {
                     }}
                   >
                     {Icon && (
-                      <Icon className={`w-4 h-4 text-gray-400 transition-colors ${config?.color || ""}`} />
+                      <Icon
+                        className={`w-4 h-4 text-gray-400 transition-colors ${config?.color || ""}`}
+                        title={skillName}
+                        aria-label={skillName}
+                      />
                     )}
                     <span className="text-xs font-medium" style={{ color: "var(--text-primary)" }}>
                       {skillName}
