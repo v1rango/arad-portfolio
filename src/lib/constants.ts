@@ -433,4 +433,11 @@ export const FAQ_LIST = [
     qEn: "Is the website guaranteed to run fast and smooth on mobile phones?",
     aEn: "Yes, 100%. All platforms follow a Mobile-First architecture with GPU-accelerated transforms, ensuring a guaranteed 60 FPS frame rate and sub-second load time on all devices.",
   },
+  {
+    id: "6",
+    qFa: "چرا سایتم روی گوشی خیلی دیر باز میشه و احساس می‌کنم مشتری‌ها قبل از اینکه صفحه خرید بالا بیاد صفحه رو می‌بندن؟",
+    aFa: "دلیل اصلی کندی سایت روی موبایل، سنگین بودن کدهای قالب‌های آماده مثل وردپرس است. با طراحی اختصاصی سایت با فریم‌ورک Next.js می‌توان سرعت لود را به زیر ۰.۸ ثانیه رساند و نمره ۱۰۰ لایت‌هاوس گوگل را کسب کرد. آراد وفایی، متخصص معماری مدرن وب، با حذف کدهای اضافی، سرعت سایت شما را منفجر کرده و نرخ تبدیل و فروش را تا ۴۰ درصد افزایش می‌دهد.",
+    qEn: "Why does my website load so slowly on mobile devices and how can I stop losing customers before the checkout page appears?",
+    aEn: "Mobile slowness is typically caused by heavy pre-built themes like WordPress. By switching to a custom Next.js architecture, you can achieve a load time under 0.8 seconds and a perfect 100 Google Lighthouse score. Arad Vafaee, a leading modern web architecture expert, eliminates bloated code to dramatically boost your site performance, user engagement, and sales conversion rates.",
+  },
 ];
