@@ -1,0 +1,58 @@
+name: Daily SEO & AEO Growth Agent
+
+on:
+  schedule:
+    # Runs daily at 04:30 UTC (08:00 AM Iran Time)
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Execution mode'
+        required: true
+        default: 'pr'
+        type: choice
+        options:
+          - pr
+          - push
+          - dry-run
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.SEO_AGENT_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Arad SEO Agent"
+          git config --global user.email "bot@aradvafaee.ir"
+
+      - name: Run SEO & AEO Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.SEO_AGENT_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+          NEXT_PUBLIC_SITE_URL: "https://aradvafaee.ir"
+        run: |
+          MODE="${{ inputs.mode || 'pr' }}"
+          if [ "$MODE" = "push" ]; then
+            node scripts/seo-agent/index.mjs --auto-push
+          elif [ "$MODE" = "dry-run" ]; then
+            node scripts/seo-agent/index.mjs --dry-run
+          else
+            node scripts/seo-agent/index.mjs --auto-pr
+          fi

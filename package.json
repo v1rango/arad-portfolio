@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "agent:run": "node --env-file=.env.local scripts/seo-agent/index.mjs",
+    "agent:dry-run": "node --env-file=.env.local scripts/seo-agent/index.mjs --dry-run",
+    "agent:auto-push": "node --env-file=.env.local scripts/seo-agent/index.mjs --auto-push"
   },
   "dependencies": {
     "clsx": "^2.1.1",
