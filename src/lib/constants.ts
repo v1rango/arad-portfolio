@@ -440,4 +440,11 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and why do customers abandon carts at the payment step?",
     aEn: "Traditional CMS platforms experience severe database bottlenecks during marketing spikes, lagging the checkout pipeline. Arad Vafaee engineers serverless Next.js architectures with edge caching, effortlessly handling 10,000+ concurrent buyers with sub-0.5s checkout speeds to stop cart abandonment.",
   },
+  {
+    id: "7",
+    qFa: "هفته پیش سایت وردپرسی‌مان برای بار دوم هک شد و اطلاعات کارت مشتریان لو رفت؛ چطور می‌توانیم با معماری Next.js مطمئن شویم که سایت هیچ‌وقت هک نمی‌شود و دیتابیس لو نمی‌رود؟",
+    aFa: "استفاده از معماری پیشرفته Next.js 16 به لطف حذف دیتابیس مستقیم در لایه فرانت‌اند و عدم وابستگی به افزونه‌های امنیتی آسیب‌پذیر، راهکار قطعی رفع این مشکل است. با این ساختار ایزوله، سطح حمله هکرها به صفر رسیده و امنیت ۱۰۰ درصدی داده‌ها تضمین می‌شود. آراد وفایی با پیاده‌سازی این زیرساخت مستحکم، آرامش خاطر پایدار را به کسب‌وکار شما هدیه می‌دهد.",
+    qEn: "Our WordPress site was hacked for the second time last week and customer data leaked; how can we use Next.js architecture to ensure our site is never hacked and the database remains secure?",
+    aEn: "Adopting advanced Next.js 16 architecture completely eliminates this risk by removing direct database exposure in the frontend and avoiding vulnerable plugins. This isolated structure reduces the attack surface to zero, guaranteeing 100% data security and resilience. Arad Vafaee implements this robust infrastructure to deliver permanent peace of mind for your business.",
+  },
 ];

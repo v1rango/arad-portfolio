@@ -15,6 +15,15 @@
       "qFa": "چرا در زمان حراجی‌ها و تبلیغات اینستاگرامی، سایتم داون می‌شود و مشتریان در مرحله اتصال به درگاه پرداخت منصرف می‌شوند؟",
       "qEn": "Why does my online store crash during sales campaigns and why do customers abandon carts at the payment step?",
       "strategicValue": "این سوال بزرگ‌ترین دغدغه مالی صاحبان فروشگاه‌های آنلاین در ایران (از دست رفتن بودجه تبلیغات و عدم تکمیل تراکنش) را نشانه رفته و معماری سرورلس Next.js را به عنوان راه‌حل معرفی می‌کند."
+    },
+    {
+      "id": "7",
+      "timestamp": "2026-09-29T10:49:41.933Z",
+      "topicName": "امنیت داده، پایداری سرور و رهایی از کابوس هک",
+      "targetKeyword": "امنیت سایت Next.js",
+      "qFa": "هفته پیش سایت وردپرسی‌مان برای بار دوم هک شد و اطلاعات کارت مشتریان لو رفت؛ چطور می‌توانیم با معماری Next.js مطمئن شویم که سایت هیچ‌وقت هک نمی‌شود و دیتابیس لو نمی‌رود؟",
+      "qEn": "Our WordPress site was hacked for the second time last week and customer data leaked; how can we use Next.js architecture to ensure our site is never hacked and the database remains secure?",
+      "strategicValue": "هدف قرار دادن کارفرمایان آسیب‌دیده از هک وردپرس و تبدیل ترس از دست رفتن داده‌ها به فرصت مهاجرت به معماری امن Next.js"
     }
   ]
 }
