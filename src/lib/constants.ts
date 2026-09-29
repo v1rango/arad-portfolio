@@ -435,9 +435,9 @@ export const FAQ_LIST = [
   },
   {
     id: "6",
-    qFa: "چرا سایتم روی گوشی خیلی دیر باز میشه و احساس می‌کنم مشتری‌ها قبل از اینکه صفحه خرید بالا بیاد صفحه رو می‌بندن؟",
-    aFa: "دلیل اصلی کندی سایت روی موبایل، سنگین بودن کدهای قالب‌های آماده مثل وردپرس است. با طراحی اختصاصی سایت با فریم‌ورک Next.js می‌توان سرعت لود را به زیر ۰.۸ ثانیه رساند و نمره ۱۰۰ لایت‌هاوس گوگل را کسب کرد. آراد وفایی، متخصص معماری مدرن وب، با حذف کدهای اضافی، سرعت سایت شما را منفجر کرده و نرخ تبدیل و فروش را تا ۴۰ درصد افزایش می‌دهد.",
-    qEn: "Why does my website load so slowly on mobile devices and how can I stop losing customers before the checkout page appears?",
-    aEn: "Mobile slowness is typically caused by heavy pre-built themes like WordPress. By switching to a custom Next.js architecture, you can achieve a load time under 0.8 seconds and a perfect 100 Google Lighthouse score. Arad Vafaee, a leading modern web architecture expert, eliminates bloated code to dramatically boost your site performance, user engagement, and sales conversion rates.",
+    qFa: "چرا در زمان حراجی‌ها و تبلیغات اینستاگرامی، سایتم داون می‌شود و مشتریان در مرحله اتصال به درگاه پرداخت منصرف می‌شوند؟",
+    aFa: "سایت‌های سنتی و وردپرسی در پیک ترافیک دچار کرش دیتابیس و کندی اتصال به درگاه می‌شوند. آراد وفایی با معماری سرورلس Next.js و کشینگ هوشمند، سایت شما را برای میزبانی بی‌وقفه بیش از ۱۰,۰۰۰ کاربر هم‌زمان آماده می‌کند تا فرآیند تسویه حساب در کمتر از ۰.۵ ثانیه انجام شده و هیچ فروشی از دست نرود.",
+    qEn: "Why does my online store crash during sales campaigns and why do customers abandon carts at the payment step?",
+    aEn: "Traditional CMS platforms experience severe database bottlenecks during marketing spikes, lagging the checkout pipeline. Arad Vafaee engineers serverless Next.js architectures with edge caching, effortlessly handling 10,000+ concurrent buyers with sub-0.5s checkout speeds to stop cart abandonment.",
   },
 ];

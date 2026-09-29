@@ -10,10 +10,15 @@ interface FAQProps {
 export default function FAQ({ lang }: FAQProps) {
   const isFa = lang === "fa";
   const [openId, setOpenId] = useState<string | null>("1");
+  const [showAll, setShowAll] = useState(false);
 
   const toggleItem = (id: string) => {
     setOpenId(openId === id ? null : id);
   };
+
+  const INITIAL_VISIBLE_COUNT = 5;
+  const visibleFaqs = showAll ? FAQ_LIST : FAQ_LIST.slice(0, INITIAL_VISIBLE_COUNT);
+  const hiddenCount = FAQ_LIST.length - INITIAL_VISIBLE_COUNT;
 
   return (
     <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
@@ -30,7 +35,7 @@ export default function FAQ({ lang }: FAQProps) {
         </div>
 
         <div className="space-y-4">
-          {FAQ_LIST.map((faq) => {
+          {visibleFaqs.map((faq) => {
             const isOpen = openId === faq.id;
             return (
               <div
@@ -81,6 +86,30 @@ export default function FAQ({ lang }: FAQProps) {
             );
           })}
         </div>
+
+        {hiddenCount > 0 && (
+          <div className="mt-8 text-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 rounded-xl border text-xs sm:text-sm font-semibold transition-all duration-200 hover:border-[var(--accent)] hover:text-[var(--accent)] cursor-pointer inline-flex items-center gap-2"
+              style={{
+                borderColor: "var(--border)",
+                backgroundColor: "var(--bg-elevated)",
+                color: "var(--text-primary)",
+              }}
+            >
+              {showAll ? (
+                <span>{isFa ? "بستن پرسش‌های اضافه ↑" : "Show Less ↑"}</span>
+              ) : (
+                <span>
+                  {isFa
+                    ? `مشاهده سایر پرسش‌های تخصصی (${hiddenCount}+ مورد دیگر) ↓`
+                    : `View More Questions (+${hiddenCount} more) ↓`}
+                </span>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
