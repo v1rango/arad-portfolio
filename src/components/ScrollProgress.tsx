@@ -12,7 +12,6 @@ export default function ScrollProgress() {
       return;
     }
 
-    setUseJsFallback(true);
     let ticking = false;
 
     const updateScroll = () => {
@@ -33,6 +32,7 @@ export default function ScrollProgress() {
 
     // فعال‌سازی لیسنر پس از لود اولیه جهت عدم ایجاد Forced Reflow در بدو ورود
     const timer = setTimeout(() => {
+      setUseJsFallback(true);
       window.addEventListener("scroll", handleScroll, { passive: true });
     }, 1000);
 

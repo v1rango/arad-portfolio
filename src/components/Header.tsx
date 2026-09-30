@@ -173,7 +173,7 @@ export default function Header({
                 aria-label={lang === "fa" ? "مشاهده دموهای زنده" : "View Live Demos"}
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>{lang === "fa" ? "دموهای زنده (۳ تم)" : "Live Demos (3 Themes)"}</span>
+                <span>{lang === "fa" ? "خدمات و دموهای زنده" : "Live Demos & Services"}</span>
                 <FiChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     isDemosOpen ? "rotate-180 text-emerald-300" : "text-emerald-400/70"
@@ -221,10 +221,49 @@ export default function Header({
                     className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
                   >
                     <span className="block text-xs font-bold text-[var(--text-primary)]">
-                      {lang === "fa" ? "وب‌اپلیکیشن & اتوماسیون" : "Web App & Dashboard"}
+                      {lang === "fa" ? "وب‌اپلیکیشن & داشبورد" : "Web App & Dashboard"}
                     </span>
                     <span className="block text-[11px] text-[var(--text-secondary)] mt-0.5">
                       {lang === "fa" ? "داشبورد لایو با تاخیر ۴۲ms" : "42ms low latency dashboard"}
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/services/speed-optimization"
+                    onClick={() => setIsDemosOpen(false)}
+                    className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
+                  >
+                    <span className="block text-xs font-bold text-emerald-400">
+                      {lang === "fa" ? "افزایش سرعت سایت (PageSpeed 100)" : "Speed Optimization (100)"}
+                    </span>
+                    <span className="block text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      {lang === "fa" ? "لود زیر ۰.۸ ثانیه و رفع کندی" : "Sub-second load & Core Web Vitals"}
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/services/telegram-bots-ai"
+                    onClick={() => setIsDemosOpen(false)}
+                    className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
+                  >
+                    <span className="block text-xs font-bold text-[var(--text-primary)]">
+                      {lang === "fa" ? "ربات تلگرام & اتوماسیون AI" : "Telegram Bot & AI Automation"}
+                    </span>
+                    <span className="block text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      {lang === "fa" ? "ربات‌های هوشمند و اتوماسیون اداری" : "Custom bots & smart workflows"}
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/services/mobile-apps"
+                    onClick={() => setIsDemosOpen(false)}
+                    className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
+                  >
+                    <span className="block text-xs font-bold text-[var(--text-primary)]">
+                      {lang === "fa" ? "اپلیکیشن موبایل (اندروید/iOS)" : "Mobile Apps (Android/iOS)"}
+                    </span>
+                    <span className="block text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      {lang === "fa" ? "PWA فوق‌سریع و React Native" : "Ultra-fast PWA & Native feel"}
                     </span>
                   </Link>
                 </div>
@@ -396,6 +435,33 @@ export default function Header({
               >
                 <span className="font-bold">{lang === "fa" ? "وب‌اپلیکیشن و اتوماسیون" : "Web App & Dashboard"}</span>
                 <span className="text-[10px] text-[var(--text-secondary)] mt-0.5">{lang === "fa" ? "داشبورد بلادرنگ با پاسخ ۴۲ms" : "42ms low latency dashboard"}</span>
+              </Link>
+
+              <Link
+                href="/services/speed-optimization"
+                onClick={() => setIsOpen(false)}
+                className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
+              >
+                <span className="font-bold text-emerald-400">{lang === "fa" ? "افزایش سرعت سایت (PageSpeed 100)" : "Speed Optimization (100)"}</span>
+                <span className="text-[10px] text-[var(--text-secondary)] mt-0.5">{lang === "fa" ? "لود زیر ۰.۸ ثانیه و رفع کندی" : "Sub-second load & Core Web Vitals"}</span>
+              </Link>
+
+              <Link
+                href="/services/telegram-bots-ai"
+                onClick={() => setIsOpen(false)}
+                className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
+              >
+                <span className="font-bold">{lang === "fa" ? "ربات تلگرام & اتوماسیون AI" : "Telegram Bot & AI Automation"}</span>
+                <span className="text-[10px] text-[var(--text-secondary)] mt-0.5">{lang === "fa" ? "ربات‌های هوشمند و اتوماسیون اداری" : "Custom bots & smart workflows"}</span>
+              </Link>
+
+              <Link
+                href="/services/mobile-apps"
+                onClick={() => setIsOpen(false)}
+                className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
+              >
+                <span className="font-bold">{lang === "fa" ? "اپلیکیشن موبایل (اندروید/iOS)" : "Mobile Apps (Android/iOS)"}</span>
+                <span className="text-[10px] text-[var(--text-secondary)] mt-0.5">{lang === "fa" ? "PWA فوق‌سریع و React Native" : "Ultra-fast PWA & Native feel"}</span>
               </Link>
             </div>
           </div>

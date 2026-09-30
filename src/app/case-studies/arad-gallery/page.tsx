@@ -37,9 +37,14 @@ export default function CaseStudyPage() {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
+    "@id": `${SITE_URL}/case-studies/arad-gallery/#article`,
     "headline": "مطالعه موردی: چگونگی دستیابی به رتبه ۱ گوگل در کمتر از ۱۲ ساعت با معماری Next.js 16",
+    "image": `${SITE_URL}/projects/geo-portfolio.webp`,
+    "datePublished": "2026-03-01T08:00:00+03:30",
+    "dateModified": "2026-03-25T12:00:00+03:30",
     "author": {
       "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
       "name": PERSONAL_DATA.nameFa,
       "url": SITE_URL,
     },
@@ -47,9 +52,14 @@ export default function CaseStudyPage() {
       "@type": "Organization",
       "name": `${PERSONAL_DATA.nameFa} Studio`,
       "url": SITE_URL,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_URL}/icon.png`,
+      },
     },
     "description":
       "بررسی استراتژی‌های سئوی هوش مصنوعی (AEO)، داده‌های ساختاریافته Schema.org و مهندسی پرفورمنس در مقیاس وب مدرن.",
+    "mainEntityOfPage": `${SITE_URL}/case-studies/arad-gallery`,
   };
 
   return (

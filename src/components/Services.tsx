@@ -26,10 +26,12 @@ const iconMap = {
 };
 
 const demoUrlMap: Record<string, { href: string; labelFa: string; labelEn: string }> = {
-  "custom-web": { href: "/services/corporate", labelFa: "دموی زنده (۳ تم)", labelEn: "Live Demo (3 Themes)" },
+  "custom-web": { href: "/services/corporate", labelFa: "دموی شرکتی (۳ تم)", labelEn: "Corporate Demo (3 Themes)" },
   "ai-seo": { href: "/case-studies/arad-gallery", labelFa: "مطالعه موردی رتبه ۱", labelEn: "Case Study #1 Google" },
-  "speed-optimization": { href: "/services/ecommerce", labelFa: "دموی فروشگاه آنلاین", labelEn: "E-Commerce Demo" },
-  "fullstack": { href: "/services/web-app", labelFa: "دموی وب‌اپلیکیشن", labelEn: "Web App Demo" },
+  "speed-optimization": { href: "/services/speed-optimization", labelFa: "آنالیز و افزایش سرعت", labelEn: "Speed Optimization" },
+  "fullstack-platforms": { href: "/services/web-app", labelFa: "دموی وب‌اپلیکیشن", labelEn: "Web App Demo" },
+  "telegram-bots-ai": { href: "/services/telegram-bots-ai", labelFa: "ربات تلگرام & AI", labelEn: "Telegram & AI Bot" },
+  "mobile-apps": { href: "/services/mobile-apps", labelFa: "اپلیکیشن موبایل", labelEn: "Mobile Apps" },
 };
 
 export default function Services({ lang }: ServicesProps) {
@@ -51,10 +53,10 @@ export default function Services({ lang }: ServicesProps) {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
               <FiLayers className="w-3.5 h-3.5" />
-              <span>{isFa ? "خدمات تخصصی با استاندارد بین‌المللی" : "World-Class Engineering Services"}</span>
+              <span>{isFa ? "خدمات تخصصی مهندسی وب با استاندارد بین‌المللی" : "World-Class Engineering Services"}</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight" style={{ color: "var(--text-primary)" }}>
-              {isFa ? "راه‌حل‌های مهندسی برای رشد کسب‌وکار شما" : "High-Impact Digital Solutions"}
+              {isFa ? "طراحی سایت اختصاصی، افزایش سرعت و سئو هوش مصنوعی" : "Custom Web Engineering, Speed Rescue & AI SEO"}
             </h2>
             <p className="text-xs sm:text-sm mt-2 max-w-xl" style={{ color: "var(--text-secondary)" }}>
               {isFa

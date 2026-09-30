@@ -21,20 +21,22 @@ export function ThemeLanguageProvider({ children }: { children: React.ReactNode 
   const [lang, setLangState] = useState<Language>("fa");
 
   useEffect(() => {
-    try {
-      const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
-      if (savedTheme === "light" || savedTheme === "dark") {
-        setThemeState(savedTheme);
-        document.documentElement.setAttribute("data-theme", savedTheme);
-      }
+    queueMicrotask(() => {
+      try {
+        const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
+        if (savedTheme === "light" || savedTheme === "dark") {
+          setThemeState(savedTheme);
+          document.documentElement.setAttribute("data-theme", savedTheme);
+        }
 
-      const savedLang = localStorage.getItem("portfolio-lang") as Language | null;
-      if (savedLang === "fa" || savedLang === "en") {
-        setLangState(savedLang);
-        document.documentElement.setAttribute("lang", savedLang);
-        document.documentElement.setAttribute("dir", savedLang === "fa" ? "rtl" : "ltr");
-      }
-    } catch {}
+        const savedLang = localStorage.getItem("portfolio-lang") as Language | null;
+        if (savedLang === "fa" || savedLang === "en") {
+          setLangState(savedLang);
+          document.documentElement.setAttribute("lang", savedLang);
+          document.documentElement.setAttribute("dir", savedLang === "fa" ? "rtl" : "ltr");
+        }
+      } catch {}
+    });
   }, []);
 
   const setTheme = (newTheme: Theme) => {

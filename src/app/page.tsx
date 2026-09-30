@@ -1,21 +1,34 @@
 import { Metadata } from "next";
 import PortfolioContainer from "@/components/PortfolioContainer";
-import { PERSONAL_DATA, FEATURED_PROJECTS, SERVICES_DATA, FAQ_LIST, WORK_PROCESS, SITE_URL } from "@/lib/constants";
+import {
+  PERSONAL_DATA,
+  FEATURED_PROJECTS,
+  SERVICES_DATA,
+  FAQ_LIST,
+  WORK_PROCESS,
+  TESTIMONIALS_DATA,
+  SITE_URL,
+} from "@/lib/constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${PERSONAL_DATA.nameFa} | طراحی سایت اختصاصی، سئو هوش مصنوعی (AEO) و Next.js 16`,
-  description: `${PERSONAL_DATA.nameFa} — معمار وب‌سایت‌های فوق‌سریع و لوکس با Next.js 16، رتبه ۱ گوگل در ۱۲ ساعت، و متخصص سئوی هوش مصنوعی (AEO & GEO) برای حضور در صدر پیشنهادات ChatGPT، Perplexity و Google.`,
+  title: `${PERSONAL_DATA.nameFa} | طراحی و ساخت سایت، افزایش سرعت سایت و سئو هوش مصنوعی (Next.js 16)`,
+  description: `${PERSONAL_DATA.nameFa} — معمار وب‌سایت‌های فوق‌سریع اختصاصی با Next.js 16، افزایش سرعت سایت (PageSpeed 100)، ساخت ربات تلگرام و اتوماسیون هوش مصنوعی، و سئوی نوین AEO/GEO برای حضور در صدر نتایج گوگل و ChatGPT.`,
   keywords: [
     "آراد وفایی",
     "Arad Vafaee",
     "طراحی سایت اختصاصی",
+    "ساخت و توسعه سایت",
+    "افزایش سرعت سایت",
+    "بهینه سازی سرعت سایت",
     "سئو هوش مصنوعی",
     "AEO",
     "GEO",
+    "ساخت ربات تلگرام",
+    "اتوماسیون هوش مصنوعی",
+    "طراحی اپلیکیشن موبایل",
+    "PWA",
     "توسعه دهنده Next.js",
-    "برنامه نویس فول استک",
-    "بهینه سازی سرعت سایت",
     "Core Web Vitals 100",
     "طراحی سایت فروشگاهی پرسرعت",
     "Full-Stack Developer Iran",
@@ -146,24 +159,57 @@ export default function Home() {
         "serviceType": [
           "Custom Web Development",
           "Next.js 16 Engineering",
+          "Website Speed Optimization & Core Web Vitals",
+          "Telegram Bot Development & AI Automation",
+          "Mobile Application & PWA Development",
           "AI Search Engine Optimization (AEO/GEO)",
-          "Core Web Vitals Speed Rescue",
           "Full-Stack Web Platforms"
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "خدمات تخصصی طراحی وب و سئو",
-          "itemListElement": SERVICES_DATA.map((srv, idx) => ({
-            "@type": "Offer",
-            "position": idx + 1,
-            "name": srv.titleFa,
-            "description": srv.simpleDescFa,
-          }))
+          "itemListElement": [
+            ...SERVICES_DATA.map((srv, idx) => ({
+              "@type": "Offer",
+              "position": idx + 1,
+              "name": srv.titleFa,
+              "description": srv.simpleDescFa,
+            })),
+            {
+              "@type": "Offer",
+              "position": SERVICES_DATA.length + 1,
+              "name": "طراحی ربات تلگرام و اتوماسیون هوش مصنوعی",
+              "description": "ساخت ربات‌های اختصاصی تلگرام متصل به سایت و هوش مصنوعی",
+              "url": `${SITE_URL}/services/telegram-bots-ai`,
+            },
+            {
+              "@type": "Offer",
+              "position": SERVICES_DATA.length + 2,
+              "name": "طراحی اپلیکیشن موبایل (اندروید و iOS)",
+              "description": "توسعه PWA فوق‌سریع و اپلیکیشن چندسکویی بدون تحریم استورها",
+              "url": `${SITE_URL}/services/mobile-apps`,
+            },
+          ]
         },
+        "review": TESTIMONIALS_DATA.map((t) => ({
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": t.name,
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": t.rating.toString(),
+            "bestRating": "5",
+          },
+          "reviewBody": t.commentFa,
+        })),
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "5.0",
-          "reviewCount": "18"
+          "reviewCount": TESTIMONIALS_DATA.length.toString(),
+          "bestRating": "5",
+          "worstRating": "1",
         }
       },
       {

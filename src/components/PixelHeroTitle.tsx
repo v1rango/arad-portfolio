@@ -13,7 +13,7 @@ export default function PixelHeroTitle({ className = "" }: PixelHeroTitleProps) 
   return (
     <div className={`relative w-full max-w-3xl mx-auto flex items-center justify-center select-none ${className}`}>
       <h1 className="sr-only">
-        اینجا هرچی بخوای میشه فقط اراده کن
+        طراحی و ساخت سایت اختصاصی، افزایش سرعت سایت و سئو هوش مصنوعی (AEO/GEO) — آراد وفایی
       </h1>
       <svg
         viewBox="0 0 1024 357"
@@ -21,10 +21,10 @@ export default function PixelHeroTitle({ className = "" }: PixelHeroTitleProps) 
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-auto drop-shadow-lg transition-transform duration-300 gpu-accelerated"
         role="img"
-        aria-label="اینجا هرچی بخوای میشه فقط اراده کن"
+        aria-label="طراحی و توسعه وب‌سایت اختصاصی، افزایش سرعت سایت و سئو نوین — فقط اراده کن"
         aria-labelledby="hero-title-svg"
       >
-        <title id="hero-title-svg">اینجا هرچی بخوای میشه فقط اراده کن</title>
+        <title id="hero-title-svg">طراحی سایت اختصاصی، افزایش سرعت سایت و سئو هوش مصنوعی — آراد وفایی</title>
         <defs>
           {/* گرادیان نئونی و بسیار شفاف برای کلمه اراده */}
           <linearGradient id="aradeh-gradient" x1="100%" y1="0%" x2="0%" y2="100%">

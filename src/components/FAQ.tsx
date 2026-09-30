@@ -50,7 +50,9 @@ export default function FAQ({ lang }: FAQProps) {
                   className="w-full text-right rtl:text-right ltr:text-left p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base hover:text-[var(--accent)] transition-colors cursor-pointer"
                   style={{ color: "var(--text-primary)" }}
                 >
-                  <span>{isFa ? faq.qFa : faq.qEn}</span>
+                  <h3 className="font-bold text-sm sm:text-base text-inherit m-0 p-0 flex-1">
+                    {isFa ? faq.qFa : faq.qEn}
+                  </h3>
                   <span className="text-lg text-[var(--accent)] font-mono w-6 h-6 flex items-center justify-center rounded-md border transition-transform duration-200"
                     style={{
                       backgroundColor: "var(--bg-elevated)",

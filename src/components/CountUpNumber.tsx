@@ -72,7 +72,7 @@ export default function CountUpNumber({
   }, [value, duration]);
 
   return (
-    <span ref={elementRef} className={className}>
+    <span ref={elementRef} className={`inline-block ${className}`} dir="ltr">
       {displayValue}
     </span>
   );
