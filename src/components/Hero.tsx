@@ -86,7 +86,7 @@ export default function Hero({ lang }: HeroProps) {
               alt="کاراکتر رانگو — آراد وفایی"
               width={320}
               height={480}
-              sizes="(max-width: 640px) 84px, (max-width: 768px) 120px, 160px"
+              sizes="(max-width: 640px) 48px, (max-width: 768px) 72px, 88px"
               loading="lazy"
               className="w-full h-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
             />

@@ -125,7 +125,7 @@ export default function Header({
           <Link
             href="/"
             className="flex items-center gap-3 group"
-            aria-label={lang === "fa" ? "صفحه اصلی آراد وفایی" : "Arad Vafaee Homepage"}
+            aria-label={lang === "fa" ? `${PERSONAL_DATA.nameFa} — توسعه‌دهنده وب & سئو نوین` : `${PERSONAL_DATA.nameEn} — Full-Stack & Modern SEO`}
           >
             <div className="relative w-10 h-10 flex-shrink-0">
               <div className="w-full h-full rounded-full p-0.5 border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors overflow-hidden bg-transparent">
@@ -157,6 +157,7 @@ export default function Header({
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 className="text-sm font-medium transition-colors hover:text-[var(--accent)]"
                 style={{ color: "var(--text-secondary)" }}
               >
@@ -191,6 +192,7 @@ export default function Header({
                 >
                   <Link
                     href="/services/corporate"
+                    prefetch={false}
                     onClick={() => setIsDemosOpen(false)}
                     className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
                   >
@@ -204,6 +206,7 @@ export default function Header({
 
                   <Link
                     href="/services/ecommerce"
+                    prefetch={false}
                     onClick={() => setIsDemosOpen(false)}
                     className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
                   >
@@ -217,6 +220,7 @@ export default function Header({
 
                   <Link
                     href="/services/web-app"
+                    prefetch={false}
                     onClick={() => setIsDemosOpen(false)}
                     className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
                   >
@@ -230,6 +234,7 @@ export default function Header({
 
                   <Link
                     href="/services/speed-optimization"
+                    prefetch={false}
                     onClick={() => setIsDemosOpen(false)}
                     className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
                   >
@@ -243,6 +248,7 @@ export default function Header({
 
                   <Link
                     href="/services/telegram-bots-ai"
+                    prefetch={false}
                     onClick={() => setIsDemosOpen(false)}
                     className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
                   >
@@ -256,6 +262,7 @@ export default function Header({
 
                   <Link
                     href="/services/mobile-apps"
+                    prefetch={false}
                     onClick={() => setIsDemosOpen(false)}
                     className="block p-2.5 rounded-xl hover:bg-[var(--bg-elevated)] transition-colors text-right"
                   >
@@ -393,6 +400,7 @@ export default function Header({
             <Link
               key={link.href}
               href={link.href}
+              prefetch={false}
               onClick={() => setIsOpen(false)}
               className="text-base font-semibold py-1.5 transition-colors hover:text-[var(--accent)] flex items-center justify-between border-b border-[var(--border)]/30"
               style={{ color: "var(--text-primary)" }}
@@ -412,6 +420,7 @@ export default function Header({
             <div className="grid grid-cols-1 gap-2 mt-1">
               <Link
                 href="/services/corporate"
+                prefetch={false}
                 onClick={() => setIsOpen(false)}
                 className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
               >
@@ -421,6 +430,7 @@ export default function Header({
               
               <Link
                 href="/services/ecommerce"
+                prefetch={false}
                 onClick={() => setIsOpen(false)}
                 className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
               >
@@ -430,6 +440,7 @@ export default function Header({
 
               <Link
                 href="/services/web-app"
+                prefetch={false}
                 onClick={() => setIsOpen(false)}
                 className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
               >
@@ -439,6 +450,7 @@ export default function Header({
 
               <Link
                 href="/services/speed-optimization"
+                prefetch={false}
                 onClick={() => setIsOpen(false)}
                 className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
               >
@@ -448,6 +460,7 @@ export default function Header({
 
               <Link
                 href="/services/telegram-bots-ai"
+                prefetch={false}
                 onClick={() => setIsOpen(false)}
                 className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
               >
@@ -457,6 +470,7 @@ export default function Header({
 
               <Link
                 href="/services/mobile-apps"
+                prefetch={false}
                 onClick={() => setIsOpen(false)}
                 className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs text-[var(--text-primary)] hover:border-[var(--accent)] transition-all flex flex-col"
               >

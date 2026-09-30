@@ -77,9 +77,9 @@ export default function Projects({ lang }: ProjectsProps) {
                     />
 
                     <div className="flex items-start justify-between gap-4 mb-4">
-                      <h4 className="text-lg font-bold leading-snug" style={{ color: "var(--text-primary)" }}>
+                      <h3 className="text-lg font-bold leading-snug" style={{ color: "var(--text-primary)" }}>
                         {isFa ? proj.titleFa : proj.titleEn}
-                      </h4>
+                      </h3>
                       <span className="text-[10px] px-2.5 py-1 rounded-full font-mono whitespace-nowrap border"
                         style={{
                           backgroundColor: "var(--accent-subtle)",

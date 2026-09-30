@@ -181,6 +181,7 @@ export default function Services({ lang }: ServicesProps) {
                   {demoUrlMap[service.id] && (
                     <Link
                       href={demoUrlMap[service.id].href}
+                      prefetch={false}
                       className="px-2.5 py-1 rounded-xl text-[11px] font-bold border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-all flex items-center gap-1.5"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
