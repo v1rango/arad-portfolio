@@ -1,5 +1,3 @@
-"use client";
-
 interface PixelHeroTitleProps {
   className?: string;
 }
@@ -19,7 +17,7 @@ export default function PixelHeroTitle({ className = "" }: PixelHeroTitleProps) 
         viewBox="0 0 1024 357"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto drop-shadow-lg transition-transform duration-300 gpu-accelerated"
+        className="w-full h-auto drop-shadow-md transition-transform duration-300 gpu-accelerated"
         role="img"
         aria-label="طراحی و توسعه وب‌سایت اختصاصی، افزایش سرعت سایت و سئو نوین — فقط اراده کن"
         aria-labelledby="hero-title-svg"
@@ -33,6 +31,11 @@ export default function PixelHeroTitle({ className = "" }: PixelHeroTitleProps) 
             <stop offset="75%" stopColor="#06b6d4" />
             <stop offset="100%" stopColor="#38bdf8" />
           </linearGradient>
+          {/* فیلتر نئونی سخت‌افزاری پایدار و سبک */}
+          <filter id="aradeh-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="0" stdDeviation="5" floodColor="#06b6d4" floodOpacity="0.8" />
+            <feDropShadow dx="0" dy="0" stdDeviation="12" floodColor="#10b981" floodOpacity="0.5" />
+          </filter>
         </defs>
 
         {/* متن اصلی هماهنگ با تم (سفید در دارک، تیره در لایت): اینجا هرچی بخوای میشه + فقط + کن */}
@@ -46,9 +49,7 @@ export default function PixelHeroTitle({ className = "" }: PixelHeroTitleProps) 
         <path
           d="M529 216h18v1h-18Z M491 238h5v3h-5Z M490 241h9v1h-9Z M489 242h10v2h-10Z M488 244h14v1h-14Z M487 245h15v2h-15Z M485 247h20v3h-20Z M559 249h19v1h-19Z M421 243h33v10h-33Z M483 250h24v3h-24Z M485 253h25v3h-25Z M485 256h27v1h-27Z M412 253h51v6h-51Z M489 257h23v3h-23Z M492 260h20v1h-20Z M413 259h50v3h-50Z M492 261h23v1h-23Z M432 262h31v1h-31Z M494 262h21v3h-21Z M496 265h19v1h-19Z M497 266h18v2h-18Z M560 250h18v21h-18Z M413 262h18v12h-18Z M559 271h19v4h-19Z M412 274h19v1h-19Z M445 263h18v13h-18Z M499 268h19v8h-19Z M413 275h17v1h-17Z M412 276h51v1h-51Z M472 276h46v10h-46Z M413 277h50v9h-50Z M423 286h31v8h-31Z M589 216h18v79h-18Z M528 217h19v78h-19Z M560 275h18v20h-18Z M472 286h37v9h-37Z M422 294h32v1h-32Z M505 295h1v1h-1Z M508 295h1v1h-1Z M546 295h1v1h-1Z M589 295h1v1h-1Z M601 295h1v1h-1Z M606 295h1v1h-1Z M559 295h19v7h-19Z M542 302h36v8h-36Z M542 310h27v11h-27Z"
           fill="url(#aradeh-gradient)"
-          style={{
-            filter: "drop-shadow(0 0 10px rgba(6, 182, 212, 0.9)) drop-shadow(0 0 24px rgba(16, 185, 129, 0.6))",
-          }}
+          filter="url(#aradeh-glow)"
         />
       </svg>
     </div>

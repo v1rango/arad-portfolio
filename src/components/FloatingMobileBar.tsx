@@ -34,16 +34,12 @@ export default function FloatingMobileBar({ lang = "fa" }: FloatingMobileBarProp
       className="md:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] inset-x-3 z-40 transition-all duration-300 animate-in fade-in slide-in-from-bottom-5"
     >
       <div
-        className="flex items-center justify-between p-1.5 rounded-2xl border shadow-2xl backdrop-blur-xl"
-        style={{
-          backgroundColor: "rgba(17, 20, 31, 0.92)",
-          borderColor: "var(--border)",
-        }}
+        className="glass-panel flex items-center justify-between p-1.5 rounded-2xl"
       >
         {/* تماس مستقیم */}
         <a
           href={`tel:${PERSONAL_DATA.socials.phone}`}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold text-gray-200 hover:text-white active:scale-95 transition-all"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold text-[var(--text-primary)] hover:text-emerald-400 active:scale-95 transition-all"
         >
           <FiPhone className="w-4 h-4 text-emerald-400" />
           <span>{isFa ? "تماس" : "Call"}</span>
@@ -56,7 +52,7 @@ export default function FloatingMobileBar({ lang = "fa" }: FloatingMobileBarProp
           href={PERSONAL_DATA.socials.telegram}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold text-gray-200 hover:text-white active:scale-95 transition-all"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold text-[var(--text-primary)] hover:text-cyan-400 active:scale-95 transition-all"
         >
           <FiSend className="w-4 h-4 text-cyan-400" />
           <span>{isFa ? "تلگرام" : "Telegram"}</span>
@@ -65,12 +61,9 @@ export default function FloatingMobileBar({ lang = "fa" }: FloatingMobileBarProp
         {/* دکمه اصلی شروع پروژه / استعلام */}
         <a
           href="#contact"
-          className="flex-[1.4] flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-black shadow-lg shadow-emerald-500/20 active:scale-95 transition-all"
-          style={{
-            backgroundColor: "var(--accent)",
-            color: "var(--accent-contrast)",
-          }}
+          className="flex-[1.4] flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-black shadow-lg shadow-emerald-500/20 active:scale-95 transition-all bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-sans"
         >
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-950 animate-ping" />
           <FiZap className="w-4 h-4" />
           <span>{isFa ? "شروع پروژه" : "Start Now"}</span>
         </a>

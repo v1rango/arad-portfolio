@@ -14,6 +14,26 @@ interface HeroProps {
 export default function Hero({ lang }: HeroProps) {
   const isFa = lang === "fa";
   const [isShowreelOpen, setIsShowreelOpen] = useState(false);
+  const [rangoIndex, setRangoIndex] = useState(0);
+
+  const rangoQuotes = isFa
+    ? [
+        "سایت معمولی نمی‌خوای که؟ 🤠",
+        "لود زیر ۰.۸ ثانیه تضمینی! ⚡",
+        "گوگل و هوش مصنوعی رو فتح کنیم! 🏆",
+        "کلیک کن رفیق، پروژه رو ببندیم! 🤝",
+      ]
+    : [
+        "No generic websites here! 🤠",
+        "Sub-0.8s load guaranteed! ⚡",
+        "Let's conquer Google & AI! 🏆",
+        "Click here, let's build it! 🤝",
+      ];
+
+  const handleRangoClick = () => {
+    // چرخش دیالوگ با کلیک
+    setRangoIndex((prev) => (prev + 1) % rangoQuotes.length);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -55,11 +75,11 @@ export default function Hero({ lang }: HeroProps) {
             <span className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[var(--bg-primary)] shadow-sm animate-pulse"></span>
           </div>
 
-          {/* کاراکتر زنده رانگو بغل لوگو با فاصله بهینه و ایمن در موبایل */}
-          <a
-            href="#contact"
-            title="کاراکتر رانگو — شروع همکاری"
-            className="absolute -right-10 sm:-right-20 md:-right-24 bottom-0 w-12 sm:w-18 md:w-22 z-20 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-2 cursor-pointer group"
+          {/* کاراکتر زنده رانگو بغل لوگو با دیالوگ‌های تعاملی */}
+          <div
+            onClick={handleRangoClick}
+            title="کاراکتر رانگو — برای تغییر پیام کلیک کن!"
+            className="absolute -right-10 sm:-right-20 md:-right-24 bottom-0 w-12 sm:w-18 md:w-22 z-20 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-3 cursor-pointer group select-none"
           >
             <Image
               src="/mascot-rango.webp"
@@ -70,11 +90,11 @@ export default function Hero({ lang }: HeroProps) {
               loading="lazy"
               className="w-full h-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
             />
-            {/* پیام تعاملی در هاور */}
-            <span className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500 text-black shadow-lg shadow-emerald-500/30">
-              کلیک کن رفیق! 🤠
+            {/* حباب پیام تعاملی هوشمند با انیمیشن ورود */}
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap px-3 py-1 rounded-lg text-[11px] font-bold bg-emerald-400 text-emerald-950 shadow-xl shadow-emerald-500/30 border border-emerald-300">
+              {rangoQuotes[rangoIndex]}
             </span>
-          </a>
+          </div>
         </div>
 
         {/* نشان رتبه ۱ و آماده به همکاری */}
@@ -126,45 +146,40 @@ export default function Hero({ lang }: HeroProps) {
           )}
         </p>
 
-        {/* دکمه‌های اقدام سریع CTA */}
+        {/* دکمه‌های اقدام سریع CTA لوکس و بازطراحی‌شده */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-12 flex-wrap">
           <a
             href="#contact"
-            className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2"
-            style={{
-              backgroundColor: "var(--accent)",
-              color: "var(--accent-contrast)",
-            }}
+            className="btn-border-beam w-full sm:w-auto px-8 py-3.5 font-bold text-sm flex items-center justify-center gap-2.5 group cursor-pointer text-emerald-950 font-sans select-none"
           >
-            <span>{isFa ? "مشاوره و شروع پروژه" : "Book Consultation"}</span>
+            <span className="relative z-10 font-black tracking-tight">{isFa ? "مشاوره و شروع پروژه" : "Book Consultation"}</span>
+            <span className="relative z-10 w-2 h-2 rounded-full bg-emerald-950/40 group-hover:scale-125 transition-transform" />
           </a>
 
-          {/* دکمه تماشای شو‌ریل ۱۵ ثانیه‌ای */}
+          {/* دکمه تماشای شو‌ریل ۱۵ ثانیه‌ای با رادار سونار سایبری */}
           <button
             onClick={() => setIsShowreelOpen(true)}
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-bold text-sm transition-all hover:border-[var(--accent)] hover:shadow-lg hover:shadow-emerald-500/10 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-bold text-sm transition-all hover:border-[var(--accent)] hover:shadow-lg hover:shadow-emerald-500/10 active:scale-95 flex items-center justify-center gap-2.5 group cursor-pointer bg-[var(--bg-surface)] text-[var(--text-primary)]"
             style={{
-              backgroundColor: "var(--bg-surface)",
               borderColor: "var(--border)",
-              color: "var(--text-primary)",
             }}
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 group-hover:animate-ping" />
-            <FiPlay className="w-4 h-4 text-emerald-400 fill-emerald-400" />
+            <span className="sonar-pulse-ring">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 group-hover:bg-emerald-300 transition-colors" />
+            </span>
+            <FiPlay className="w-4 h-4 text-emerald-400 fill-emerald-400 group-hover:scale-110 transition-transform" />
             <span>{isFa ? "مشاهده تریلر" : "Watch Trailer"}</span>
           </button>
 
           <a
             href="#services"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-semibold text-sm transition-all hover:border-[var(--accent)] active:scale-95 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-semibold text-sm transition-all hover:border-[var(--accent)] active:scale-95 flex items-center justify-center gap-2 group bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             style={{
-              backgroundColor: "var(--bg-surface)",
               borderColor: "var(--border)",
-              color: "var(--text-secondary)",
             }}
           >
             <span>{isFa ? "مشاهده خدمات و دموها" : "Services & Demos"}</span>
-            <FiArrowDown className="w-4 h-4 text-[var(--accent)]" />
+            <FiArrowDown className="w-4 h-4 text-[var(--accent)] group-hover:translate-y-0.5 transition-transform" />
           </a>
         </div>
 

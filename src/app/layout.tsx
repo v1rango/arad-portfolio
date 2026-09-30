@@ -4,9 +4,9 @@ import "./globals.css";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-vazirmatn",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

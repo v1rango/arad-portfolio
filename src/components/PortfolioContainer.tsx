@@ -45,12 +45,24 @@ export default function PortfolioContainer() {
         <Services lang={lang} />
         <WhyCustom lang={lang} />
         <Process lang={lang} />
-        <Projects lang={lang} />
-        <Skills lang={lang} />
-        <ProjectEstimator lang={lang} />
-        <Testimonials lang={lang} />
-        <FAQ lang={lang} />
-        <Contact lang={lang} />
+        <div className="section-deferred">
+          <Projects lang={lang} />
+        </div>
+        <div className="section-deferred">
+          <Skills lang={lang} />
+        </div>
+        <div className="section-deferred">
+          <ProjectEstimator lang={lang} />
+        </div>
+        <div className="section-deferred">
+          <Testimonials lang={lang} />
+        </div>
+        <div className="section-deferred">
+          <FAQ lang={lang} />
+        </div>
+        <div className="section-deferred">
+          <Contact lang={lang} />
+        </div>
       </main>
 
       <Footer lang={lang} />

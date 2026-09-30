@@ -118,12 +118,12 @@ export default function Projects({ lang }: ProjectsProps) {
                       </div>
                     </div>
 
-                    {/* تگ‌های استک */}
+                    {/* تگ‌های استک با هاور اختصاصی */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {proj.techStack.map((tech) => (
                         <span
                           key={tech}
-                          className="text-[11px] px-2.5 py-1 rounded-md bg-[var(--bg-surface)] border border-[var(--border)]/40 text-gray-300"
+                          className="text-[11px] px-2.5 py-1 rounded-md bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-white hover:border-emerald-500/40 transition-colors"
                         >
                           {tech}
                         </span>
@@ -131,28 +131,31 @@ export default function Projects({ lang }: ProjectsProps) {
                     </div>
                   </div>
 
-                  {/* لینک‌های پروژه */}
+                  {/* لینک‌های پروژه با دکمه‌های کپسولی مدرن */}
                   <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]/30 text-xs">
-                    {proj.githubUrl && (
+                    {proj.githubUrl ? (
                       <a
                         href={proj.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-white hover:border-[var(--border-hover)] transition-all text-xs active:scale-95"
                       >
                         <span>GitHub</span>
-                        <span>↗</span>
+                        <span className="text-[10px]">↗</span>
                       </a>
+                    ) : (
+                      <span />
                     )}
                     {proj.demoUrl && (
                       <a
                         href={proj.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[var(--accent)] font-bold hover:underline flex items-center gap-1.5"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-xs hover:bg-emerald-500/25 active:scale-95 transition-all shadow-sm shadow-emerald-500/10"
                       >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span>{isFa ? "مشاهده آنلاین" : "Live Demo"}</span>
-                        <span>↗</span>
+                        <span className="text-[10px]">↗</span>
                       </a>
                     )}
                   </div>
