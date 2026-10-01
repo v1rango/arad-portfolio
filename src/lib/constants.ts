@@ -505,4 +505,11 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and how do we prevent checkout abandonment?",
     aEn: "Traditional CMS architectures hit severe database bottlenecks during marketing spikes. Modern serverless Next.js edge caching guarantees instant sub-0.5s checkouts for 10,000+ concurrent shoppers without server crashes.",
   },
+  {
+    id: "9",
+    qFa: "چطور مشکل کندی و هنگ کردن فیلترهای آنی (رنگ، سایز و برند) را در فروشگاه آنلاین پوشاک با بیش از ۵ هزار محصول حل کنیم؟",
+    aFa: "حل این چالش نیازمند معماری Edge-Caching و React Server Components در Next.js 16 است تا محاسبات فیلترینگ به‌جای دیتابیس در لبه شبکه انجام شود. آراد وفایی با پیاده‌سازی این معماری، زمان پاسخ فیلترها را از ۳ ثانیه به زیر ۵۰ میلی‌ثانیه کاهش داده و نرخ تبدیل فروشگاه‌های پوشاک را تا ۳۵٪ افزایش می‌دهد.",
+    qEn: "How can we eliminate lag and freezing during instant multi-faceted filtering (color, size, brand) in fashion e-commerce with over 5,000 SKUs?",
+    aEn: "Solving this requires Edge-Caching architecture and React Server Components in Next.js 16, shifting filtering calculations from overloaded databases to edge servers. Arad Vafaee implements this system to reduce filter response times from 3 seconds to under 50ms, boosting apparel store conversion rates by up to 35% without client-side browser freezing.",
+  },
 ];
