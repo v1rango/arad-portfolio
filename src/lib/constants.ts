@@ -505,4 +505,11 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and how do we prevent checkout abandonment?",
     aEn: "Traditional CMS architectures hit severe database bottlenecks during marketing spikes. Modern serverless Next.js edge caching guarantees instant sub-0.5s checkouts for 10,000+ concurrent shoppers without server crashes.",
   },
+  {
+    id: "9",
+    qFa: "فروشگاه لوازم آرایشی داریم که وقتی کاربر روی فیلترهای رنگ و برند کلیک میکنه، سایت چند ثانیه فریز میشه و خیلی از مشتریها تو همون لحظه خرید رو ول میکنند. چطور میشه این فیلترهای سنگین رو بدون کندی روی هزاران محصول اجرا کرد؟",
+    aFa: "آراد وفایی با معماری مدرن Next.js 16 و پیاده‌سازی Edge Rendering، فیلترهای آنی فروشگاه شما را زیر ۱۰۰ میلی‌ثانیه پردازش می‌کند. با حذف درخواست‌های سنگین به دیتابیس، نرخ رها شدن سبد خرید در زمان جستجوی محصولات تا ۴۰ درصد کاهش می‌یابد و تجربه خرید کاملاً روانی روی موبایل ایجاد می‌شود که فروش نهایی را به شدت بالا می‌برد.",
+    qEn: "Our cosmetics store freezes for a few seconds when users apply color and brand filters, causing massive cart abandonment. How can we implement instant filtering for thousands of products without slowing down?",
+    aEn: "Arad Vafaee utilizes modern Next.js 16 architecture and Edge Rendering to process your store's instant filters in under 100 milliseconds. By eliminating heavy database queries during searches, cart abandonment drops by up to 40%, delivering a seamless mobile shopping experience that significantly boosts your overall e-commerce conversion rates.",
+  },
 ];
