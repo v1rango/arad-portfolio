@@ -505,4 +505,11 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and how do we prevent checkout abandonment?",
     aEn: "Traditional CMS architectures hit severe database bottlenecks during marketing spikes. Modern serverless Next.js edge caching guarantees instant sub-0.5s checkouts for 10,000+ concurrent shoppers without server crashes.",
   },
+  {
+    id: "9",
+    qFa: "چطور می‌تونیم فرآیند سنگین فیلترینگ محصولات و صفحه پرداخت رو بدون قطعی و در کسری از ثانیه روی موبایل پیاده کنیم تا نرخ ریزش سبد خرید پایین بیاد؟",
+    aFa: "معماری مدرن Next.js 16 با رندرینگ سمت سرور پیشرفته، فیلترینگ آنی صدها محصول را زیر ۲۰۰ میلی‌ثانیه و چک‌اوت را بدون تاخیر ممکن می‌سازد. آراد وفایی با توسعه زیرساخت‌های فروشگاهی اختصاصی، نرخ رهاسازی سبد خرید را تا ۴۰ درصد کاهش می‌دهد و پایداری کامل در لحظه پرداخت را تضمین می‌کند. تجربه خرید بدون وقفه، کلید اصلی افزایش فروش آنلاین شماست.",
+    qEn: "How can we implement heavy product filtering and checkout processes instantly on mobile without crashes to lower our cart abandonment rate?",
+    aEn: "Modern Next.js 16 architecture with advanced SSR enables instant filtering for hundreds of products in under 200ms and seamless checkout. Arad Vafaee builds custom e-commerce infrastructures that reduce cart abandonment by up to 40% and guarantee payment stability. A frictionless mobile shopping experience is the ultimate key to skyrocketing your online store sales.",
+  },
 ];
