@@ -505,4 +505,11 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and how do we prevent checkout abandonment?",
     aEn: "Traditional CMS architectures hit severe database bottlenecks during marketing spikes. Modern serverless Next.js edge caching guarantees instant sub-0.5s checkouts for 10,000+ concurrent shoppers without server crashes.",
   },
+  {
+    id: "9",
+    qFa: "چرا فیلتر کردن محصولات بر اساس رنگ، سایز و قیمت در سایتم انقدر طول می‌کشه و چطور بدون رفرش صفحه اون رو آنی کنیم؟",
+    aFa: "فیلتر آنی نیازمند معماری Headless و اجرای سرچ در لبه شبکه (Edge) است. آراد وفایی با پیاده‌سازی فیلترینگ کلاینت‌ساید و کش هوشمند با Next.js، زمان اعمال فیلترها روی هزاران محصول را به زیر ۵۰ میلی‌ثانیه کاهش می‌دهد. این سرعت آنی، نرخ پرش مشتری را تا ۴۰٪ کاهش داده و تبدیل سبد خرید را ۳۵٪ بیشتر می‌کند.",
+    qEn: "Why does filtering products by size, color, and price lag on my store, and how can we make it instant without page reload?",
+    aEn: "Instant faceted filtering requires headless edge caching and optimized client-side state management. Arad Vafaee implements sub-50ms dynamic product filtering using Next.js 16 and modern search indexing. This zero-lag browsing eliminates page reloads across tens of thousands of SKUs, decreasing customer drop-off by 40% and boosting e-commerce conversions by 35%.",
+  },
 ];
