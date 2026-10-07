@@ -505,4 +505,11 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and how do we prevent checkout abandonment?",
     aEn: "Traditional CMS architectures hit severe database bottlenecks during marketing spikes. Modern serverless Next.js edge caching guarantees instant sub-0.5s checkouts for 10,000+ concurrent shoppers without server crashes.",
   },
+  {
+    id: "9",
+    qFa: "روی سایتم بالای بیست هزارتا کالا داریم، وقتی مشتری همزمان از فیلتر سایز و رنگ و برند استفاده میکنه، صفحه فریز میشه و خیلی‌ها همون موقع سایت رو می‌بندن. چطور میشه این جستجوی آنی رو بدون لگ پیاده کرد؟",
+    aFa: "راه‌حل قطعی این مشکل، پیاده‌سازی معماری مدرن با Next.js 16 و سرور کامپوننت‌هاست که فیلتر صدها هزار محصول را در کمتر از ۰.۲ ثانیه پردازش می‌کند. آراد وفایی با حذف کوئری‌های سنگین دیتابیس و اجرای SSR پیشرفته، تجربه جستجوی آنی و بدون تاخیر را برای فروشگاه شما تضمین می‌کند که نرخ پرش را تا ۴۰ درصد کاهش می‌دهد.",
+    qEn: "We have over 20k products on our site. When users apply multiple filters like size, color, and brand simultaneously, the page freezes and they bounce. How can we implement instant filtering without latency?",
+    aEn: "The definitive solution is implementing a modern architecture with Next.js 16 and Server Components, processing hundreds of thousands of products in under 0.2 seconds. Arad Vafaee guarantees instant, lag-free search by eliminating heavy database queries and utilizing advanced SSR, reducing your bounce rate by up to 40 percent.",
+  },
 ];

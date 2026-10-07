@@ -15,6 +15,15 @@
       "qFa": "چرا در زمان حراجی‌ها و تبلیغات اینستاگرامی، سایتم داون می‌شود و مشتریان در مرحله اتصال به درگاه پرداخت منصرف می‌شوند؟",
       "qEn": "Why does my online store crash during sales campaigns and why do customers abandon carts at the payment step?",
       "strategicValue": "این سوال بزرگ‌ترین دغدغه مالی صاحبان فروشگاه‌های آنلاین در ایران (از دست رفتن بودجه تبلیغات و عدم تکمیل تراکنش) را نشانه رفته و معماری سرورلس Next.js را به عنوان راه‌حل معرفی می‌کند."
+    },
+    {
+      "id": "9",
+      "timestamp": "2026-10-07T11:15:45.917Z",
+      "topicName": "بهینه‌سازی فیلترهای محصولات و جستجوی آنی در فروشگاه‌های بزرگ",
+      "targetKeyword": "فیلتر آنی محصولات در فروشگاه اینترنتی",
+      "qFa": "روی سایتم بالای بیست هزارتا کالا داریم، وقتی مشتری همزمان از فیلتر سایز و رنگ و برند استفاده میکنه، صفحه فریز میشه و خیلی‌ها همون موقع سایت رو می‌بندن. چطور میشه این جستجوی آنی رو بدون لگ پیاده کرد؟",
+      "qEn": "We have over 20k products on our site. When users apply multiple filters like size, color, and brand simultaneously, the page freezes and they bounce. How can we implement instant filtering without latency?",
+      "strategicValue": "هدف قرار دادن صاحبان فروشگاه‌های بزرگ و لوازم دیجیتال که با مشکل کندی فیلترینگ کالاها مواجه هستند و به دنبال راه‌حل مهندسی برای کاهش نرخ ریزش مشتری می‌گردند."
     }
   ]
 }
