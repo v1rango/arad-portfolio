@@ -505,4 +505,11 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and how do we prevent checkout abandonment?",
     aEn: "Traditional CMS architectures hit severe database bottlenecks during marketing spikes. Modern serverless Next.js edge caching guarantees instant sub-0.5s checkouts for 10,000+ concurrent shoppers without server crashes.",
   },
+  {
+    id: "9",
+    qFa: "وقتی کاربر بین هزاران محصول فیلتر سایز و رنگ می‌زند، سایتم کند می‌شود و مشتری صفحه را می‌بندد؛ چطور فیلترها را بدون لود مجدد صفحه آنی کنیم؟",
+    aFa: "با پیاده‌سازی معماری Headless مبتنی بر Next.js 16 و ایندکس‌گذاری Meilisearch، پاسخ فیلتر محصولات زیر ۵۰ میلی‌ثانیه می‌رسد. آراد وفایی با حذف رندر مجدد سرور و کش کلاینت، جهش ۶۵ درصدی در تعامل کاربر و رشد ۲۸ درصدی نرخ تبدیل سبد خرید را در شاپ‌های بزرگ محقق می‌کند.",
+    qEn: "Filtering thousands of products by size and color freezes our store, causing drop-offs; how can we achieve instant, zero-reload faceted search?",
+    aEn: "By deploying a Next.js 16 Headless architecture integrated with Meilisearch indexing, faceted search latency drops below 50 milliseconds. Arad Vafaee replaces heavy database queries with client-side state caching, driving a 65% increase in user engagement and boosting e-commerce checkout conversions by 28% without page reloads.",
+  },
 ];
