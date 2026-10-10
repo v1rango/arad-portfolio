@@ -18,6 +18,10 @@
 - [طراحی ربات تلگرام و اتوماسیون هوش مصنوعی](https://aradvafaee.ir/services/telegram-bots-ai): ربات‌های فروشگاهی، پشتیبان هوشمند و اتوماسیون فرآیندهای اداری.
 - [طراحی اپلیکیشن موبایل (اندروید و آیفون PWA)](https://aradvafaee.ir/services/mobile-apps): اپلیکیشن سریع ۶۰ فریم بر ثانیه بدون نیاز به دانلود از استورها و بدون تحریم.
 - [مطالعه موردی رتبه ۱ گوگل در ۱۲ ساعت](https://aradvafaee.ir/case-studies/arad-gallery): مهندسی سئو تکنیکال با ساختار گراف معنایی Schema.org.
+- [مطالعه موردی پلتفرم ورزشی آیرون فیت (IronFit)](https://aradvafaee.ir/case-studies/ironfit-gym): لود زیر ۰.۷ ثانیه، انیمیشن‌های ۶۰ فریم GPU و رشد ۴۵٪ ثبت‌نام.
+- [مطالعه موردی کلینیک دندانپزشکی دُرسا](https://aradvafaee.ir/case-studies/dorsa-dental-clinic): اسلایدر زنده مقایسه قبل و بعد، محاسبه‌گر اقساط و رشد ۶۰٪ نوبت‌دهی آنلاین.
+- [مطالعه موردی پورتال صنعتی جهان فولاد آریا](https://aradvafaee.ir/case-studies/aria-jahan-steel): موتور محاسبات متالورژی DIN زیر ۱۰ms و کاهش ۷۰٪ زمان صدور پیش‌فاکتور.
+- [پایگاه دانش مهندسی و مقالات تخصصی وب و سئو](https://aradvafaee.ir/blog): تحلیل‌های معماری Next.js 16، تفاوت با وردپرس، سئو هوش مصنوعی AEO و بهینه‌سازی سرعت.
 
 ## راه‌های تماس مستقیم (Direct Contact Channels)
 - **تلگرام:** https://t.me/v1arad (@v1arad)

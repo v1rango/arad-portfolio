@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const vazirmatn = Vazirmatn({
-  subsets: ["arabic", "latin"],
+const vazirmatn = localFont({
+  src: "../../public/fonts/Vazirmatn.woff2",
   variable: "--font-vazirmatn",
   display: "swap",
-  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -32,8 +31,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" data-theme="dark" className={`${vazirmatn.variable}`}>
       <head>
-        {/* رفع کامل مشکل flash تم: خواندن فقط تم ذخیره‌شده صریح کاربر */}
-        <script
+                <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -47,8 +45,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased selection:bg-[var(--accent)] selection:text-white">
-        {/* لینک رفتن به محتوای اصلی — برای کاربران کیبورد و screen reader */}
-        <a
+                <a
           href="#hero"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:right-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-emerald-500 focus:text-white focus:rounded-lg focus:font-bold"
         >

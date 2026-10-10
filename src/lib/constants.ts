@@ -11,6 +11,7 @@ export interface Testimonial {
   rating: number;
 }
 
+
 export interface FeaturedProject {
   id: string;
   titleFa: string;
@@ -27,6 +28,7 @@ export interface FeaturedProject {
   category: "nextjs" | "ai-seo" | "fullstack";
   githubUrl?: string;
   demoUrl?: string;
+  caseStudyUrl?: string;
   image?: string;
 }
 
@@ -312,6 +314,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     techStack: ["NestJS", "TypeScript", "PostgreSQL", "Tailwind CSS"],
     category: "fullstack",
     demoUrl: "https://arad-gallery.ir",
+    caseStudyUrl: "/case-studies/arad-gallery",
     image: "/projects/arad-gallery.webp",
   },
   {
@@ -330,6 +333,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     category: "ai-seo",
     githubUrl: "https://github.com/v1rango/arad-portfolio",
     demoUrl: SITE_URL,
+    caseStudyUrl: "/case-studies/arad-gallery",
     image: "/projects/geo-portfolio.webp",
   },
   {
@@ -347,6 +351,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS"],
     category: "nextjs",
     demoUrl: "https://v1rango.github.io/ironfit-gym/",
+    caseStudyUrl: "/case-studies/ironfit-gym",
     image: "/projects/ironfit-gym.webp",
   },
   {
@@ -364,6 +369,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     techStack: ["Next.js 16", "TypeScript", "Tailwind CSS", "JSON-LD"],
     category: "nextjs",
     demoUrl: "https://v1rango.github.io/dorsa-dental-clinic/",
+    caseStudyUrl: "/case-studies/dorsa-dental-clinic",
     image: "/projects/dorsa-dental-clinic.webp",
   },
   {
@@ -381,6 +387,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     techStack: ["Next.js 16", "TypeScript", "Tailwind CSS", "Server Actions"],
     category: "fullstack",
     demoUrl: "https://v1rango.github.io/aria-jahan-steel/",
+    caseStudyUrl: "/case-studies/aria-jahan-steel",
     image: "/projects/aria-jahan-steel.webp",
   },
 ];
@@ -505,4 +512,4 @@ export const FAQ_LIST = [
     qEn: "Why does my online store crash during sales campaigns and how do we prevent checkout abandonment?",
     aEn: "Traditional CMS architectures hit severe database bottlenecks during marketing spikes. Modern serverless Next.js edge caching guarantees instant sub-0.5s checkouts for 10,000+ concurrent shoppers without server crashes.",
   },
-];
+];

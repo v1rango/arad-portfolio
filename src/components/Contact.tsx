@@ -71,13 +71,13 @@ export default function Contact({ lang }: ContactProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
-          {/* ستون کانال‌های ارتباط مستقیم */}
+          
           <div className="space-y-4">
             <h3 className="text-lg font-bold mb-4" style={{ color: "var(--text-primary)" }}>
               {isFa ? "راه‌های دسترسی مستقیم و فوری" : "Direct & Fast Communication"}
             </h3>
 
-            {/* کارت تلگرام */}
+            
             <div className="bento-card p-5 flex items-center justify-between gap-4">
               <a
                 href={PERSONAL_DATA.socials.telegram}
@@ -111,7 +111,7 @@ export default function Contact({ lang }: ContactProps) {
               </button>
             </div>
 
-            {/* کارت واتس‌اپ و تماس */}
+            
             <div className="bento-card p-5 flex items-center justify-between gap-4">
               <a
                 href={PERSONAL_DATA.socials.whatsapp}
@@ -145,7 +145,7 @@ export default function Contact({ lang }: ContactProps) {
               </button>
             </div>
 
-            {/* کارت اینستاگرام */}
+            
             <div className="bento-card p-5 flex items-center justify-between gap-4">
               <a
                 href={PERSONAL_DATA.socials.instagram}
@@ -182,7 +182,7 @@ export default function Contact({ lang }: ContactProps) {
             </div>
           </div>
 
-          {/* فرم ارسال پیام */}
+          
           <div className="bento-card p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>

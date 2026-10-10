@@ -7,7 +7,7 @@ export interface ThemeOption {
   id: string;
   nameFa: string;
   nameEn: string;
-  colors: string[]; // 2-3 color hexes for preview circles
+  colors: string[]; 
   descriptionFa?: string;
   descriptionEn?: string;
 }
@@ -62,8 +62,7 @@ export default function ThemeSwitcher({
               }}
               title={isFa ? theme.descriptionFa : theme.descriptionEn}
             >
-              {/* Color dots preview */}
-              <div className="flex items-center -space-x-1 rtl:space-x-reverse">
+                            <div className="flex items-center -space-x-1 rtl:space-x-reverse">
                 {theme.colors.map((c, i) => (
                   <span
                     key={i}

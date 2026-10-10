@@ -96,8 +96,7 @@ export default function TelegramBotsPage() {
         <Header />
 
         <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-xs font-bold text-[var(--accent)] hover:underline"
@@ -110,8 +109,7 @@ export default function TelegramBotsPage() {
             </span>
           </div>
 
-          {/* Hero */}
-          <div className="text-center space-y-6 max-w-4xl mx-auto">
+                    <div className="text-center space-y-6 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-bold">
               <FaRobot className="w-4 h-4" />
               <span>ساخت ربات تلگرام اختصاصی و ایجنت‌های هوش مصنوعی</span>
@@ -148,8 +146,7 @@ export default function TelegramBotsPage() {
             </div>
           </div>
 
-          {/* Interactive Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {botFeatures.map((feat, idx) => {
               const IconComp = feat.icon;
               return (
@@ -171,8 +168,7 @@ export default function TelegramBotsPage() {
             })}
           </div>
 
-          {/* Architecture Tech Stack */}
-          <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
+                    <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
             <div className="text-center space-y-2">
               <h2 className="text-xl sm:text-2xl font-black text-[var(--text-primary)]">
                 تکنولوژی‌های استاندارد ساخت ربات
@@ -202,8 +198,7 @@ export default function TelegramBotsPage() {
             </div>
           </div>
 
-          {/* AEO FAQ */}
-          <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
+                    <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
             <h2 className="text-lg sm:text-2xl font-black text-[var(--text-primary)] text-center">
               پرسش‌های متداول ربات تلگرام و اتوماسیون (AEO)
             </h2>

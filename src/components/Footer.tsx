@@ -25,13 +25,13 @@ export default function Footer({ lang = "fa" }: FooterProps) {
         color: "var(--text-secondary)",
       }}
     >
-      {/* هاله نور پس‌زمینه */}
+      
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 blur-3xl pointer-events-none rounded-full"
         style={{ backgroundColor: "var(--accent-subtle)" }}
       />
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b" style={{ borderColor: "var(--border)" }}>
-        {/* ستون اول: معرفی و برند */}
+        
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/20">
@@ -51,7 +51,7 @@ export default function Footer({ lang = "fa" }: FooterProps) {
           </p>
         </div>
 
-        {/* ستون دوم: دسترسی سریع */}
+        
         <div className="space-y-3">
           <p className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "دسترسی سریع" : "Quick Links"}
@@ -73,6 +73,11 @@ export default function Footer({ lang = "fa" }: FooterProps) {
               </Link>
             </li>
             <li>
+              <Link href="/blog" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
+                {isFa ? "وبلاگ و مقالات تخصصی" : "Engineering Blog"}
+              </Link>
+            </li>
+            <li>
               <Link href="/case-studies/arad-gallery" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
                 {isFa ? "مطالعه موردی رتبه ۱ گوگل" : "Case Study #1 Google"}
               </Link>
@@ -90,7 +95,7 @@ export default function Footer({ lang = "fa" }: FooterProps) {
           </ul>
         </div>
 
-        {/* ستون سوم: خدمات و دموهای زنده */}
+        
         <div className="space-y-3">
           <p className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "دموهای زنده (۳ تم)" : "Live Showcases"}
@@ -114,7 +119,7 @@ export default function Footer({ lang = "fa" }: FooterProps) {
           </ul>
         </div>
 
-        {/* ستون سوم: شبکه‌های اجتماعی و ارتباط */}
+        
         <div className="space-y-3">
           <p className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
             {isFa ? "شبکه‌های اجتماعی" : "Social Links"}
@@ -197,7 +202,7 @@ export default function Footer({ lang = "fa" }: FooterProps) {
         </div>
       </div>
 
-      {/* بخش پایانی حق کپی‌رایت + دکمه بازگشت به بالا */}
+      
       <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs" style={{ color: "var(--text-muted)" }}>
         <p>
           © {currentYear} {PERSONAL_DATA.nameEn}. All rights reserved. Designed & Built with Next.js 16.

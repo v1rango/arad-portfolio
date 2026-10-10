@@ -30,8 +30,7 @@ export default function ShowcaseGuide({
         borderColor: "var(--border)",
       }}
     >
-      {/* Header bar of the guide */}
-      <div
+            <div
         className="px-4 py-3 sm:px-6 flex items-center justify-between cursor-pointer select-none border-b transition-colors hover:bg-[var(--bg-elevated)]"
         style={{ borderColor: "var(--border)" }}
         onClick={() => setIsExpanded(!isExpanded)}
@@ -69,8 +68,7 @@ export default function ShowcaseGuide({
         </div>
       </div>
 
-      {/* Expanded body content */}
-      {isExpanded && (
+            {isExpanded && (
         <div className="p-4 sm:p-6 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <p className="text-xs sm:text-sm leading-relaxed max-w-2xl" style={{ color: "var(--text-secondary)" }}>
@@ -107,8 +105,7 @@ export default function ShowcaseGuide({
             </div>
           </div>
 
-          {/* Quick bullet points */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t" style={{ borderColor: "var(--border)" }}>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t" style={{ borderColor: "var(--border)" }}>
             {(isFa ? keyFeaturesFa : keyFeaturesEn).map((feat, idx) => (
               <div
                 key={idx}

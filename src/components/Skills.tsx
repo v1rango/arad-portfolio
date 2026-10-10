@@ -48,10 +48,10 @@ export default function Skills({ lang }: SkillsProps) {
         </p>
       </div>
 
-      {/* شبکه Bento Grid مدرن */}
+      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        {/* جعبه اول (بزرگ): استک اصلی توسعه وب */}
+        
         <div className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]">
           <div>
             <div className="flex items-center justify-between mb-6">
@@ -116,7 +116,7 @@ export default function Skills({ lang }: SkillsProps) {
           </div>
         </div>
 
-        {/* جعبه دوم: تخصص ویژه هوش مصنوعی (AEO & GEO) */}
+        
         <div
           className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent)]"
           style={{
@@ -163,7 +163,7 @@ export default function Skills({ lang }: SkillsProps) {
           </div>
         </div>
 
-        {/* جعبه سوم: بهینه‌سازی سرعت و فریم‌ریت موبایل */}
+        
         <div
           className="bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
         >
@@ -199,7 +199,7 @@ export default function Skills({ lang }: SkillsProps) {
           </div>
         </div>
 
-        {/* جعبه چهارم (بزرگ): سایر تکنولوژی‌ها و ابزارهای بک‌اند */}
+        
         <div
           className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
         >

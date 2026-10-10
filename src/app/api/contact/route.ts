@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-// Rate limiting ساده بر اساس IP — در production از Redis یا Upstash استفاده کنید
+
 const requestLog = new Map<string, { count: number; resetAt: number }>();
 
 function escapeHtml(text: string): string {
@@ -14,7 +14,6 @@ function escapeHtml(text: string): string {
 }
 
 export async function POST(req: NextRequest) {
-  // بررسی Rate Limit: حداکثر ۳ درخواست در ۶۰ ثانیه per IP
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   const now = Date.now();
@@ -53,7 +52,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Escape کردن همه ورودی‌ها قبل از درج در HTML
     const safeName = escapeHtml(name.trim());
     const safeEmail = escapeHtml(email.trim());
     const safePhone = escapeHtml((phone ?? "").trim() || "ثبت نشده");

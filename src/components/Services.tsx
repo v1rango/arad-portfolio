@@ -48,8 +48,7 @@ export default function Services({ lang }: ServicesProps) {
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-6xl mx-auto">
         
-        {/* هدر بخش همراه با سوئیچ هوشمند دیدگاه کاربر */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
               <FiLayers className="w-3.5 h-3.5" />
@@ -65,8 +64,7 @@ export default function Services({ lang }: ServicesProps) {
             </p>
           </div>
 
-          {/* سوئیچ دیدگاه ساده (بیزینسی) / دیدگاه فنی (CTO) */}
-          <div className="flex items-center gap-2 p-1.5 rounded-xl border self-start md:self-auto"
+                    <div className="flex items-center gap-2 p-1.5 rounded-xl border self-start md:self-auto"
             style={{
               backgroundColor: "var(--bg-elevated)",
               borderColor: "var(--border)",
@@ -101,8 +99,7 @@ export default function Services({ lang }: ServicesProps) {
           </div>
         </div>
 
-        {/* کارت‌های Bento با افکت موس نورانی (Spotlight) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {SERVICES_DATA.map((service) => {
             const IconComponent = iconMap[service.icon];
 
@@ -140,8 +137,7 @@ export default function Services({ lang }: ServicesProps) {
                     {isFa ? service.titleFa : service.titleEn}
                   </h3>
 
-                  {/* نمایش بر اساس حالت انتخابی کاربر */}
-                  {viewMode === "client" ? (
+                                    {viewMode === "client" ? (
                     <p className="text-xs sm:text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
                       {isFa ? service.simpleDescFa : service.simpleDescEn}
                     </p>
@@ -158,8 +154,7 @@ export default function Services({ lang }: ServicesProps) {
                     </div>
                   )}
 
-                  {/* چک‌لیست مزایای ملموس */}
-                  <ul className="space-y-2.5 mb-8">
+                                    <ul className="space-y-2.5 mb-8">
                     {(isFa ? service.benefitsFa : service.benefitsEn).map((benefit, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-xs sm:text-[13px]" style={{ color: "var(--text-secondary)" }}>
                         <FiCheckCircle className="w-4 h-4 text-[var(--accent)] flex-shrink-0 mt-0.5" />

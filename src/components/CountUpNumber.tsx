@@ -21,7 +21,7 @@ export default function CountUpNumber({
     const element = elementRef.current;
     if (!element) return;
 
-    // استخراج عدد و علائم پیشوند/پسوند (مانند "< 0.8s" یا "100" یا "60 FPS")
+    
     const match = value.match(/([^\d.]*)([\d.]+)(.*)/);
     if (!match) {
       return;
@@ -44,7 +44,7 @@ export default function CountUpNumber({
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
             
-            // تابع نرم‌کننده Ease-Out Cubic
+            
             const easeOut = 1 - Math.pow(1 - progress, 3);
             const currentNum = easeOut * targetNumber;
 

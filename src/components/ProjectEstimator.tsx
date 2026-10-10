@@ -27,7 +27,7 @@ interface ProjectCategory {
   descFa: string;
   descEn: string;
   icon: typeof FiBriefcase;
-  baseMin: number; // میلیون تومان
+  baseMin: number; 
   baseMax: number;
   timelineFa: string;
   timelineEn: string;
@@ -160,12 +160,12 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
     );
   };
 
-  // محاسبه بازه قیمت کل
+  
   const { minTotal, maxTotal, timelineText } = useMemo(() => {
     let min = selectedCategory.baseMin;
     let max = selectedCategory.baseMax;
 
-    // اضافه کردن مقادیر افزودنی‌ها
+    
     selectedAddons.forEach((addonId) => {
       const addon = ADDONS.find((a) => a.id === addonId);
       if (addon) {
@@ -193,7 +193,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
     };
   }, [selectedCategory, selectedAddons, isExpress, isFa]);
 
-  // ساخت لینک تلگرام با پیام آماده
+  
   const telegramUrl = useMemo(() => {
     const addonsList = selectedAddons
       .map((id) => {
@@ -214,8 +214,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
     <section id="estimator" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-5xl mx-auto">
         
-        {/* هدر ماشین‌حساب */}
-        <div className="text-center mb-14 animate-fade-in-up">
+                <div className="text-center mb-14 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-bold text-[var(--accent)] mb-3">
             <FiDollarSign className="w-4 h-4" />
             <span>{isFa ? "محاسبه‌گر شفاف و هوشمند پروژه" : "Transparent Project Estimator"}</span>
@@ -230,14 +229,11 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
           </p>
         </div>
 
-        {/* جعبه اصلی محاسبه‌گر */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* ستون انتخاب‌ها (سمت راست در RTL) */}
-          <div className="lg:col-span-7 space-y-6">
+                    <div className="lg:col-span-7 space-y-6">
             
-            {/* گام ۱: انتخاب نوع پروژه */}
-            <div>
+                        <div>
               <span className="block text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-3">
                 {isFa ? "۱. انتخاب نوع پروژه:" : "1. Select Project Scope:"}
               </span>
@@ -281,8 +277,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
               </div>
             </div>
 
-            {/* گام ۲: امکانات تخصصی تکمیلی */}
-            <div>
+                        <div>
               <span className="block text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-3">
                 {isFa ? "۲. امکانات و ماژول‌های تکمیلی (دلخواه):" : "2. Optional Technical Add-ons:"}
               </span>
@@ -320,8 +315,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
               </div>
             </div>
 
-            {/* گام ۳: گزینه تحویل اکسپرس */}
-            <div className="pt-2">
+                        <div className="pt-2">
               <label
                 onClick={() => setIsExpress(!isExpress)}
                 className={`p-3.5 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-all ${
@@ -350,8 +344,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
 
           </div>
 
-          {/* ستون کارت نمایش خروجی برآورد (Sticky در دسکتاپ) */}
-          <div className="lg:col-span-5 sticky top-28">
+                    <div className="lg:col-span-5 sticky top-28">
             <div
               className="p-6 sm:p-7 rounded-3xl border shadow-2xl relative overflow-hidden bento-card transition-all duration-300"
               style={{
@@ -359,8 +352,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
                 borderColor: "var(--border)",
               }}
             >
-              {/* هاله نور بالای کارت خروجی */}
-              <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-20 bg-[var(--accent-subtle)] blur-3xl pointer-events-none" />
+                            <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-20 bg-[var(--accent-subtle)] blur-3xl pointer-events-none" />
 
               <div className="flex items-center justify-between pb-4 border-b border-[var(--border)] mb-5">
                 <span className="text-xs font-bold text-[var(--accent)] uppercase tracking-wider">
@@ -371,8 +363,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
                 </span>
               </div>
 
-              {/* بازه قیمت کل */}
-              <div className="space-y-1.5 mb-6 text-center sm:text-right rtl:sm:text-right ltr:sm:text-left">
+                            <div className="space-y-1.5 mb-6 text-center sm:text-right rtl:sm:text-right ltr:sm:text-left">
                 <span className="text-xs text-[var(--text-secondary)] font-medium">
                   {isFa ? "بازه هزینه تقریبی پروژه:" : "Estimated Investment Range:"}
                 </span>
@@ -386,8 +377,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
                 </div>
               </div>
 
-              {/* زمان تخمینی تحویل */}
-              <div className="p-3.5 rounded-2xl border bg-[var(--bg-elevated)] border-[var(--border)] flex items-center gap-3 mb-6">
+                            <div className="p-3.5 rounded-2xl border bg-[var(--bg-elevated)] border-[var(--border)] flex items-center gap-3 mb-6">
                 <div className="w-8 h-8 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center flex-shrink-0">
                   <FiClock className="w-4 h-4" />
                 </div>
@@ -401,8 +391,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
                 </div>
               </div>
 
-              {/* دیسکلیمر و یادداشت شفافیت */}
-              <div className="p-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] text-[11px] leading-relaxed text-[var(--text-muted)] flex items-start gap-2 mb-6">
+                            <div className="p-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] text-[11px] leading-relaxed text-[var(--text-muted)] flex items-start gap-2 mb-6">
                 <FiHelpCircle className="w-4 h-4 text-[var(--accent)] flex-shrink-0 mt-0.5" />
                 <span>
                   {isFa
@@ -411,10 +400,8 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
                 </span>
               </div>
 
-              {/* دو دکمه اصلی اقدام (CTA) */}
-              <div className="space-y-3">
-                {/* ارسال برآورد به تلگرام */}
-                <a
+                            <div className="space-y-3">
+                                <a
                   href={telegramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -428,8 +415,7 @@ export default function ProjectEstimator({ lang = "fa" }: ProjectEstimatorProps)
                   <span>{isFa ? "ارسال این برآورد به تلگرام آراد" : "Send Estimate to Telegram"}</span>
                 </a>
 
-                {/* درخواست مشاوره اختصاصی */}
-                <a
+                                <a
                   href="#contact"
                   className="w-full py-3 px-4 rounded-xl border border-[var(--border)] text-xs font-bold text-[var(--text-primary)] hover:border-[var(--accent)] hover:bg-[var(--bg-elevated)] flex items-center justify-center gap-2 transition-all active:scale-95"
                 >

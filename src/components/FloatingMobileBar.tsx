@@ -14,7 +14,7 @@ export default function FloatingMobileBar({ lang = "fa" }: FloatingMobileBarProp
 
   useEffect(() => {
     const handleScroll = () => {
-      // فقط بعد از اسکرول به اندازه ۲۵۰ پیکسل ظاهر شود
+      
       if (window.scrollY > 250) {
         setIsVisible(true);
       } else {
@@ -36,8 +36,7 @@ export default function FloatingMobileBar({ lang = "fa" }: FloatingMobileBarProp
       <div
         className="glass-panel flex items-center justify-between p-1.5 rounded-2xl"
       >
-        {/* تماس مستقیم */}
-        <a
+                <a
           href={`tel:${PERSONAL_DATA.socials.phone}`}
           className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold text-[var(--text-primary)] hover:text-emerald-400 active:scale-95 transition-all"
         >
@@ -47,8 +46,7 @@ export default function FloatingMobileBar({ lang = "fa" }: FloatingMobileBarProp
 
         <div className="w-[1px] h-6 bg-white/10" />
 
-        {/* چت تلگرام */}
-        <a
+                <a
           href={PERSONAL_DATA.socials.telegram}
           target="_blank"
           rel="noopener noreferrer"
@@ -58,8 +56,7 @@ export default function FloatingMobileBar({ lang = "fa" }: FloatingMobileBarProp
           <span>{isFa ? "تلگرام" : "Telegram"}</span>
         </a>
 
-        {/* دکمه اصلی شروع پروژه / استعلام */}
-        <a
+                <a
           href="#contact"
           className="flex-[1.4] flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-black shadow-lg shadow-emerald-500/20 active:scale-95 transition-all bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-sans"
         >

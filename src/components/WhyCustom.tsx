@@ -37,12 +37,10 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
           </p>
         </div>
 
-        {/* ویجت تعاملی دوئل زنده سرعت (Speed Duel Simulator) */}
-        <div className="mb-14 p-5 sm:p-7 rounded-2xl border bg-[var(--bg-surface)] shadow-2xl relative overflow-hidden"
+                <div className="mb-14 p-5 sm:p-7 rounded-2xl border bg-[var(--bg-surface)] shadow-2xl relative overflow-hidden"
           style={{ borderColor: "var(--border)" }}
         >
-          {/* هاله نور پس‌زمینه ویجت */}
-          <div className="absolute top-0 right-1/4 w-72 h-36 bg-emerald-500/10 blur-[80px] pointer-events-none rounded-full" />
+                    <div className="absolute top-0 right-1/4 w-72 h-36 bg-emerald-500/10 blur-[80px] pointer-events-none rounded-full" />
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-2.5">
@@ -78,8 +76,7 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
           </div>
 
           <div key={simulationKey} className="space-y-5">
-            {/* لاین اول: Next.js 16 اختصاصی آراد */}
-            <div className="space-y-2 p-3.5 sm:p-4 rounded-xl bg-[var(--bg-elevated)] border border-emerald-500/30">
+                        <div className="space-y-2 p-3.5 sm:p-4 rounded-xl bg-[var(--bg-elevated)] border border-emerald-500/30">
               <div className="flex items-center justify-between text-xs font-bold">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -104,8 +101,7 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
               </div>
             </div>
 
-            {/* لاین دوم: قالب‌های آماده و وردپرس سنگین */}
-            <div className="space-y-2 p-3.5 sm:p-4 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)]">
+                        <div className="space-y-2 p-3.5 sm:p-4 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)]">
               <div className="flex items-center justify-between text-xs font-bold">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
@@ -134,10 +130,8 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
           </div>
         </div>
 
-        {/* جدول و کارت‌های مقایسه */}
-        <div className="bento-card overflow-hidden shadow-xl">
-          {/* هدر جدول */}
-          <div className="grid grid-cols-12 p-4 sm:p-6 border-b text-xs sm:text-sm font-bold items-center"
+                <div className="bento-card overflow-hidden shadow-xl">
+                    <div className="grid grid-cols-12 p-4 sm:p-6 border-b text-xs sm:text-sm font-bold items-center"
             style={{
               backgroundColor: "var(--bg-elevated)",
               borderColor: "var(--border)",
@@ -155,8 +149,7 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
             </div>
           </div>
 
-          {/* ردیف‌های مقایسه */}
-          <div className="divide-y" style={{ borderColor: "var(--border)" }}>
+                    <div className="divide-y" style={{ borderColor: "var(--border)" }}>
             {COMPARISON_DATA.map((item, idx) => (
               <div
                 key={idx}
@@ -185,8 +178,7 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
             ))}
           </div>
 
-          {/* نوار پایین جدول */}
-          <div className="p-4 sm:p-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4"
+                    <div className="p-4 sm:p-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4"
             style={{
               backgroundColor: "var(--bg-elevated)",
               borderColor: "var(--border)",

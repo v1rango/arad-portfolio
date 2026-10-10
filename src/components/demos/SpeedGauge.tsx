@@ -18,8 +18,7 @@ export default function SpeedGauge({ lang }: SpeedGaugeProps) {
         borderColor: "var(--border)",
       }}
     >
-      {/* Decorative gradient glow */}
-      <div
+            <div
         className="absolute -top-24 -right-24 w-60 h-60 rounded-full blur-3xl pointer-events-none opacity-20"
         style={{ backgroundColor: "var(--accent)" }}
       />
@@ -55,10 +54,8 @@ export default function SpeedGauge({ lang }: SpeedGaugeProps) {
         </div>
       </div>
 
-      {/* Comparison visual cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Next.js 16 Card */}
-        <div
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
           className="p-5 rounded-2xl border relative overflow-hidden transition-transform hover:scale-[1.01]"
           style={{
             backgroundColor: "var(--bg-elevated)",
@@ -101,8 +98,7 @@ export default function SpeedGauge({ lang }: SpeedGaugeProps) {
           </div>
         </div>
 
-        {/* Heavy WordPress Card */}
-        <div
+                <div
           className="p-5 rounded-2xl border relative overflow-hidden opacity-80 transition-opacity hover:opacity-100"
           style={{
             backgroundColor: "var(--bg-elevated)",

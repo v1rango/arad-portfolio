@@ -72,8 +72,7 @@ export default function CaseStudyPage() {
         <Header />
 
         <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-14">
-          {/* Breadcrumb & Navigation */}
-          <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-xs font-bold text-[var(--accent)] hover:underline"
@@ -86,8 +85,7 @@ export default function CaseStudyPage() {
             </span>
           </div>
 
-          {/* Hero Header */}
-          <div className="space-y-6">
+                    <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
               <FiAward className="w-4 h-4" />
               <span>مطالعه موردی واقعی (Live Production Case Study)</span>
@@ -103,8 +101,7 @@ export default function CaseStudyPage() {
             </p>
           </div>
 
-          {/* Quick Metrics Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="p-5 rounded-2xl border bg-[var(--bg-surface)] border-[var(--border)] text-center space-y-1">
               <span className="text-2xl sm:text-3xl font-black text-emerald-400 font-mono">12h</span>
               <span className="block text-xs text-[var(--text-secondary)]">زمان رسیدن به رتبه ۱</span>
@@ -123,8 +120,7 @@ export default function CaseStudyPage() {
             </div>
           </div>
 
-          {/* کادر فکت‌محور خلاصه اجرایی جهت ارجاع مستقیم توسط هوش مصنوعی (AEO Direct Answer) */}
-          <div className="p-6 sm:p-7 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-[var(--bg-surface)] to-cyan-950/20 shadow-xl space-y-3">
+                    <div className="p-6 sm:p-7 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-[var(--bg-surface)] to-cyan-950/20 shadow-xl space-y-3">
             <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
               <FiCheckCircle className="w-4 h-4" />
               <span>چکیده کلیدی برای کارفرمایان و موتورهای هوش مصنوعی (AEO Key Takeaways)</span>
@@ -149,8 +145,7 @@ export default function CaseStudyPage() {
             </ul>
           </div>
 
-          {/* Section 1: The Challenge */}
-          <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-4">
+                    <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center justify-center font-bold">
                 ۰۱
@@ -164,8 +159,7 @@ export default function CaseStudyPage() {
             </p>
           </div>
 
-          {/* Section 2: Technical Strategy */}
-          <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
+                    <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 flex items-center justify-center font-bold">
                 ۰۲
@@ -218,11 +212,9 @@ export default function CaseStudyPage() {
             </div>
           </div>
 
-          {/* Speed Gauge Benchmark Section */}
-          <SpeedGauge lang="fa" />
+                    <SpeedGauge lang="fa" />
 
-          {/* Section 3: The Proof & Results */}
-          <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
+                    <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center font-bold">
                 ۰۳
@@ -263,8 +255,7 @@ export default function CaseStudyPage() {
             </div>
           </div>
 
-          {/* Takeaway for Clients */}
-          <div className="p-8 sm:p-12 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
+                    <div className="p-8 sm:p-12 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
             <h2 className="text-2xl sm:text-3xl font-black text-white">
               این معماری دقیقاً چه نفعی برای کسب‌و‌کار شما دارد؟
             </h2>

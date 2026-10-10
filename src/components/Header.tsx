@@ -48,7 +48,7 @@ export default function Header({
   const [isDemosOpen, setIsDemosOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // بستن دراپ‌داون دمو با کلیک خارج
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -63,7 +63,7 @@ export default function Header({
     };
   }, [isDemosOpen]);
 
-  // بستن منوی موبایل با کلید Escape یا تغییر ابعاد صفحه
+  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -85,7 +85,7 @@ export default function Header({
     };
   }, []);
 
-  // جلوگیری از اسکرول صفحه وقتی منوی موبایل باز است
+  
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -100,8 +100,8 @@ export default function Header({
   const navLinks = [
     { href: "/#hero", labelFa: "خانه", labelEn: "Home" },
     { href: "/#services", labelFa: "خدمات", labelEn: "Services" },
-    { href: "/#process", labelFa: "مراحل کار", labelEn: "Process" },
     { href: "/#projects", labelFa: "پروژه‌ها", labelEn: "Projects" },
+    { href: "/blog", labelFa: "وبلاگ", labelEn: "Blog" },
     { href: "/#estimator", labelFa: "برآورد هزینه", labelEn: "Estimator" },
     { href: "/case-studies/arad-gallery", labelFa: "روش کار", labelEn: "Workflow" },
     { href: "/#contact", labelFa: "تماس", labelEn: "Contact" },
@@ -109,8 +109,7 @@ export default function Header({
 
   return (
     <>
-      {/* نوار پیشرفت مطالعه اسکرول */}
-      <ScrollProgress />
+            <ScrollProgress />
 
       <header
         className="sticky top-0 z-50 w-full backdrop-blur-xl border-b transition-colors duration-300"
@@ -121,8 +120,7 @@ export default function Header({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
-          {/* لوگو و نام برند */}
-          <Link
+                    <Link
             href="/"
             className="flex items-center gap-3 group"
             aria-label={lang === "fa" ? `${PERSONAL_DATA.nameFa} — توسعه‌دهنده وب & سئو نوین` : `${PERSONAL_DATA.nameEn} — Full-Stack & Modern SEO`}
@@ -151,8 +149,7 @@ export default function Header({
             </div>
           </Link>
 
-          {/* ناوبری دسکتاپ */}
-          <nav className="hidden md:flex items-center gap-6">
+                    <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -165,8 +162,7 @@ export default function Header({
               </Link>
             ))}
 
-            {/* دراپ‌داون دموهای زنده */}
-            <div className="relative" ref={dropdownRef}>
+                        <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDemosOpen((prev) => !prev)}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 active:scale-95 transition-all select-none cursor-pointer"
@@ -278,8 +274,7 @@ export default function Header({
             </div>
           </nav>
 
-          {/* اکشن‌های دسکتاپ (تم، زبان، شروع پروژه) */}
-          <div className="hidden md:flex items-center gap-3">
+                    <div className="hidden md:flex items-center gap-3">
             <button
               onClick={handleToggleTheme}
               className="p-2.5 rounded-xl border transition-all hover:border-[var(--accent)] hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer"
@@ -323,8 +318,7 @@ export default function Header({
             </Link>
           </div>
 
-          {/* اکشن‌های موبایل */}
-          <div className="flex md:hidden items-center gap-2">
+                    <div className="flex md:hidden items-center gap-2">
             <button
               onClick={handleToggleTheme}
               className="p-2.5 rounded-xl border cursor-pointer active:scale-90 transition-transform"
@@ -372,8 +366,7 @@ export default function Header({
         </div>
       </header>
 
-      {/* منوی مدرن کشویی موبایل همراه با بک‌دراپ بلور تاریک */}
-      {isOpen && (
+            {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/60 backdrop-blur-md md:hidden animate-in fade-in duration-200"
           onClick={() => setIsOpen(false)}
@@ -410,8 +403,7 @@ export default function Header({
             </Link>
           ))}
 
-          {/* بخش دموهای زنده در موبایل */}
-          <div className="pt-2 flex flex-col gap-2">
+                    <div className="pt-2 flex flex-col gap-2">
             <span className="text-xs font-bold text-[var(--accent)] flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               {lang === "fa" ? "دموهای زنده با ۳ تم اختصاصی:" : "Live Demos (3 Switchable Themes):"}

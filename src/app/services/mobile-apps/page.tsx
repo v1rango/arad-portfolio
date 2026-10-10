@@ -98,8 +98,7 @@ export default function MobileAppsPage() {
         <Header />
 
         <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-xs font-bold text-[var(--accent)] hover:underline"
@@ -112,8 +111,7 @@ export default function MobileAppsPage() {
             </span>
           </div>
 
-          {/* Hero */}
-          <div className="text-center space-y-6 max-w-4xl mx-auto">
+                    <div className="text-center space-y-6 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-500/10 text-violet-400 border border-violet-500/20 text-xs font-bold">
               <FiSmartphone className="w-4 h-4" />
               <span>طراحی اپلیکیشن موبایل اندروید و آیفون (iOS)</span>
@@ -150,8 +148,7 @@ export default function MobileAppsPage() {
             </div>
           </div>
 
-          {/* Supported Platforms badges */}
-          <div className="flex items-center justify-center gap-4 sm:gap-8 flex-wrap">
+                    <div className="flex items-center justify-center gap-4 sm:gap-8 flex-wrap">
             <div className="flex items-center gap-2.5 px-4 py-2 rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)]">
               <FaApple className="w-5 h-5 text-[var(--text-primary)]" />
               <span className="text-xs font-bold">سازگار کامل با iOS و آیفون</span>
@@ -166,8 +163,7 @@ export default function MobileAppsPage() {
             </div>
           </div>
 
-          {/* App Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {appFeatures.map((feat, idx) => {
               const IconComp = feat.icon;
               return (
@@ -189,8 +185,7 @@ export default function MobileAppsPage() {
             })}
           </div>
 
-          {/* AEO FAQ */}
-          <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
+                    <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
             <h2 className="text-lg sm:text-2xl font-black text-[var(--text-primary)] text-center">
               پرسش‌های متداول طراحی اپلیکیشن موبایل (AEO)
             </h2>

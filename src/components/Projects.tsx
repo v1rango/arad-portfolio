@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FEATURED_PROJECTS } from "@/lib/constants";
 
 interface ProjectsProps {
@@ -60,80 +61,85 @@ export default function Projects({ lang }: ProjectsProps) {
           </p>
         </div>
 
-        {/* بخش پروژه‌های شاخص همراه با مطالعه موردی (AEO/GEO Citation Friendly) */}
         <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {FEATURED_PROJECTS.map((proj) => (
+              <div
+                key={proj.id}
+                className="bento-card p-6 sm:p-8 flex flex-col justify-between"
+              >
+                <div>
+                  <ProjectPreview
+                    src={proj.image}
+                    alt={isFa ? proj.titleFa : proj.titleEn}
+                    url={proj.demoUrl || proj.githubUrl}
+                  />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {FEATURED_PROJECTS.map((proj) => (
-                <div
-                  key={proj.id}
-                  className="bento-card p-6 sm:p-8 flex flex-col justify-between"
-                >
-                  <div>
-                    <ProjectPreview
-                      src={proj.image}
-                      alt={isFa ? proj.titleFa : proj.titleEn}
-                      url={proj.demoUrl || proj.githubUrl}
-                    />
-
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <h3 className="text-lg font-bold leading-snug" style={{ color: "var(--text-primary)" }}>
-                        {isFa ? proj.titleFa : proj.titleEn}
-                      </h3>
-                      <span className="text-[10px] px-2.5 py-1 rounded-full font-mono whitespace-nowrap border"
-                        style={{
-                          backgroundColor: "var(--accent-subtle)",
-                          color: "var(--accent)",
-                          borderColor: "var(--border-hover)",
-                        }}
-                      >
-                        {proj.category.toUpperCase()}
-                      </span>
-                    </div>
-
-                    <p className="text-xs leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-                      {isFa ? proj.descriptionFa : proj.descriptionEn}
-                    </p>
-
-                    {/* جعبه چالش و راه‌حل (مورد علاقه موتورهای هوش مصنوعی و کارفرمایان) */}
-                    <div className="space-y-3 mb-6 p-4 rounded-xl border text-xs"
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <h3 className="text-lg font-bold leading-snug" style={{ color: "var(--text-primary)" }}>
+                      {isFa ? proj.titleFa : proj.titleEn}
+                    </h3>
+                    <span className="text-[10px] px-2.5 py-1 rounded-full font-mono whitespace-nowrap border"
                       style={{
-                        backgroundColor: "var(--bg-elevated)",
-                        borderColor: "var(--border)",
+                        backgroundColor: "var(--accent-subtle)",
+                        color: "var(--accent)",
+                        borderColor: "var(--border-hover)",
                       }}
                     >
-                      <div>
-                        <span className="text-amber-500 font-bold">{isFa ? "چالش کارفرما: " : "Client Challenge: "}</span>
-                        <span style={{ color: "var(--text-secondary)" }}>{isFa ? proj.challengeFa : proj.challengeEn}</span>
-                      </div>
-                      <div>
-                        <span className="text-[var(--accent)] font-bold">{isFa ? "راه‌حل اختصاصی ما: " : "Our Solution: "}</span>
-                        <span style={{ color: "var(--text-secondary)" }}>{isFa ? proj.solutionFa : proj.solutionEn}</span>
-                      </div>
-                      <div className="pt-2 border-t font-mono text-[11px] text-[var(--accent)] font-semibold flex items-center gap-1.5"
-                        style={{ borderColor: "var(--border)" }}
-                      >
-                        <span>★</span>
-                        <span>{isFa ? `دستاورد: ${proj.metricsFa}` : `Result: ${proj.metricsEn}`}</span>
-                      </div>
-                    </div>
+                      {proj.category.toUpperCase()}
+                    </span>
+                  </div>
 
-                    {/* تگ‌های استک با هاور اختصاصی */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {proj.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[11px] px-2.5 py-1 rounded-md bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-white hover:border-emerald-500/40 transition-colors"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                  <p className="text-xs leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
+                    {isFa ? proj.descriptionFa : proj.descriptionEn}
+                  </p>
+
+                  <div className="space-y-3 mb-6 p-4 rounded-xl border text-xs"
+                    style={{
+                      backgroundColor: "var(--bg-elevated)",
+                      borderColor: "var(--border)",
+                    }}
+                  >
+                    <div>
+                      <span className="text-amber-500 font-bold">{isFa ? "چالش کارفرما: " : "Client Challenge: "}</span>
+                      <span style={{ color: "var(--text-secondary)" }}>{isFa ? proj.challengeFa : proj.challengeEn}</span>
+                    </div>
+                    <div>
+                      <span className="text-[var(--accent)] font-bold">{isFa ? "راه‌حل اختصاصی ما: " : "Our Solution: "}</span>
+                      <span style={{ color: "var(--text-secondary)" }}>{isFa ? proj.solutionFa : proj.solutionEn}</span>
+                    </div>
+                    <div className="pt-2 border-t font-mono text-[11px] text-[var(--accent)] font-semibold flex items-center gap-1.5"
+                      style={{ borderColor: "var(--border)" }}
+                    >
+                      <span>★</span>
+                      <span>{isFa ? `دستاورد: ${proj.metricsFa}` : `Result: ${proj.metricsEn}`}</span>
                     </div>
                   </div>
 
-                  {/* لینک‌های پروژه با دکمه‌های کپسولی مدرن */}
-                  <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]/30 text-xs">
-                    {proj.githubUrl ? (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {proj.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[11px] px-2.5 py-1 rounded-md bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-white hover:border-emerald-500/40 transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]/30 text-xs flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    {proj.caseStudyUrl && (
+                      <Link
+                        href={proj.caseStudyUrl}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all font-semibold text-xs active:scale-95"
+                      >
+                        <span>{isFa ? "مطالعه موردی" : "Case Study"}</span>
+                        <span className="text-[11px] rtl:rotate-180">←</span>
+                      </Link>
+                    )}
+                    {proj.githubUrl && (
                       <a
                         href={proj.githubUrl}
                         target="_blank"
@@ -143,27 +149,26 @@ export default function Projects({ lang }: ProjectsProps) {
                         <span>GitHub</span>
                         <span className="text-[10px]">↗</span>
                       </a>
-                    ) : (
-                      <span />
-                    )}
-                    {proj.demoUrl && (
-                      <a
-                        href={proj.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-xs hover:bg-emerald-500/25 active:scale-95 transition-all shadow-sm shadow-emerald-500/10"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>{isFa ? "مشاهده آنلاین" : "Live Demo"}</span>
-                        <span className="text-[10px]">↗</span>
-                      </a>
                     )}
                   </div>
+                  {proj.demoUrl && (
+                    <a
+                      href={proj.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-xs hover:bg-emerald-500/25 active:scale-95 transition-all shadow-sm shadow-emerald-500/10"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>{isFa ? "مشاهده آنلاین" : "Live Demo"}</span>
+                      <span className="text-[10px]">↗</span>
+                    </a>
+                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+}

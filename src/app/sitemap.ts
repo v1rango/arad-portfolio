@@ -1,58 +1,56 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
+import { BLOG_POSTS } from "@/lib/blog-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // تاریخ ثابت بازبینی فنی جهت استانداردسازی رفتار کراولرهای گوگل
-  const lastUpdate = new Date("2026-03-30T00:00:00.000Z");
+  const now = new Date();
+
+  const services = [
+    "corporate",
+    "ecommerce",
+    "web-app",
+    "speed-optimization",
+    "telegram-bots-ai",
+    "mobile-apps",
+  ];
+
+  const caseStudies = [
+    "arad-gallery",
+    "ironfit-gym",
+    "dorsa-dental-clinic",
+    "aria-jahan-steel",
+  ];
 
   return [
     {
       url: SITE_URL,
-      lastModified: lastUpdate,
-      changeFrequency: "weekly",
+      lastModified: now,
+      changeFrequency: "daily",
       priority: 1.0,
     },
-    {
-      url: `${SITE_URL}/services/corporate`,
-      lastModified: lastUpdate,
-      changeFrequency: "weekly",
+    ...services.map((slug) => ({
+      url: `${SITE_URL}/services/${slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
       priority: 0.9,
-    },
+    })),
+    ...caseStudies.map((slug) => ({
+      url: `${SITE_URL}/case-studies/${slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
     {
-      url: `${SITE_URL}/services/ecommerce`,
-      lastModified: lastUpdate,
-      changeFrequency: "weekly",
-      priority: 0.9,
+      url: `${SITE_URL}/blog`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.85,
     },
-    {
-      url: `${SITE_URL}/services/web-app`,
-      lastModified: lastUpdate,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/services/speed-optimization`,
-      lastModified: lastUpdate,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/services/telegram-bots-ai`,
-      lastModified: lastUpdate,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/services/mobile-apps`,
-      lastModified: lastUpdate,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/case-studies/arad-gallery`,
-      lastModified: lastUpdate,
-      changeFrequency: "monthly",
+    ...BLOG_POSTS.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.publishedAt),
+      changeFrequency: "weekly" as const,
       priority: 0.8,
-    },
+    })),
   ];
 }

@@ -74,14 +74,12 @@
   }
 }
 
-/* بهینه‌سازی شتاب سخت‌افزاری برای دستگاه‌های میان‌رده */
 .gpu-accelerated {
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform, opacity;
 }
 
-/* استایل کارت‌های Bento مدرن با بار پردازشی حداقل */
 .bento-card {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -97,7 +95,6 @@
   }
 }
 
-/* افکت فوق‌العاده مدرن Spotlight Card هم‌تراز با استانداردهای Linear و Vercel */
 .spotlight-card {
   position: relative;
   overflow: hidden;
@@ -131,7 +128,6 @@
   }
 }
 
-/* هاله متنی براق (Shimmer Gradient Text) */
 .text-gradient-emerald {
   background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #06b6d4 100%);
   -webkit-background-clip: text;
@@ -144,7 +140,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* اسکرول‌بار شیک و سبک */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -160,7 +155,6 @@
   background: var(--accent);
 }
 
-/* انیمیشن شناور نرم و ۶۰fps هیرو با شتاب سخت‌افزاری کارت گرافیک */
 @keyframes hero-float {
   0%, 100% {
     transform: translate3d(0, -4px, 0);
@@ -177,7 +171,6 @@
   backface-visibility: hidden;
 }
 
-/* انیمیشن‌های سبک و بدون جاوااسکریپت با شتاب GPU برای بهبود امتیاز لایت‌هاوس و حذف TBT */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -212,7 +205,6 @@
   backface-visibility: hidden;
 }
 
-/* نوار اسکرول مدرن بر پایه انیمیشن CSS با شتاب GPU و صفر میلی‌ثانیه کار Main Thread */
 @keyframes scrollProgressAnim {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
@@ -227,7 +219,6 @@
   transform-origin: 100% 50%;
 }
 
-/* احترام به تنظیمات کاهش حرکت کاربر — مهم برای دسترسی‌پذیری */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -239,13 +230,11 @@
   }
 }
 
-/* تعویق هوشمند رندر سکشن‌های زیر خط دید برای رساندن لود به زیر ۰.۸ ثانیه */
 .section-deferred {
   content-visibility: auto;
   contain-intrinsic-size: 1px 700px;
 }
 
-/* افکت Border-Beam نئونی و فوق مدرن دکمه‌های اکشن لوکس (Linear/Vercel Style) */
 .btn-border-beam {
   position: relative;
   z-index: 0;
@@ -298,7 +287,6 @@
   transform: scale(0.97) translateY(0);
 }
 
-/* افکت رادار سونار سایبری برای نشانگر دکمه تماشای شو‌ریل */
 .sonar-pulse-ring {
   position: relative;
   display: inline-flex;
@@ -325,7 +313,6 @@
   }
 }
 
-/* پنل شیشه‌ای مات و مینیمال با انعکاس ملایم لبه */
 .glass-panel {
   background: rgba(17, 20, 31, 0.8);
   backdrop-filter: blur(16px);

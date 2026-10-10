@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import FloatingMobileBar from "@/components/FloatingMobileBar";
 import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 
-// Lazy-load below-the-fold components with SSR enabled for maximum SEO and sub-100ms TBT
 const WhyCustom = dynamic(() => import("@/components/WhyCustom"));
 const Process = dynamic(() => import("@/components/Process"));
 const Projects = dynamic(() => import("@/components/Projects"));

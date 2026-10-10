@@ -31,7 +31,7 @@ export default function Hero({ lang }: HeroProps) {
       ];
 
   const handleRangoClick = () => {
-    // چرخش دیالوگ با کلیک
+    
     setRangoIndex((prev) => (prev + 1) % rangoQuotes.length);
   };
 
@@ -53,12 +53,12 @@ export default function Hero({ lang }: HeroProps) {
 
   return (
     <section id="hero" className="relative pt-10 sm:pt-14 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* هاله نور متمرکز پس‌زمینه */}
+      
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-[var(--accent-subtle)] blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center z-10">
         
-        {/* آواتار رسمی با نشان وضعیت فعال و کاراکتر رانگو در کنار آن */}
+        
         <div className="relative mb-6">
           <div className="relative w-24 h-24 sm:w-28 sm:h-28">
             <div className="w-full h-full rounded-full p-1 border-2 border-[var(--accent)] bg-[var(--bg-surface)] shadow-2xl shadow-emerald-500/20 overflow-hidden group">
@@ -75,7 +75,7 @@ export default function Hero({ lang }: HeroProps) {
             <span className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[var(--bg-primary)] shadow-sm animate-pulse"></span>
           </div>
 
-          {/* کاراکتر زنده رانگو بغل لوگو با دیالوگ‌های تعاملی */}
+          
           <div
             onClick={handleRangoClick}
             title="کاراکتر رانگو — برای تغییر پیام کلیک کن!"
@@ -90,14 +90,14 @@ export default function Hero({ lang }: HeroProps) {
               loading="lazy"
               className="w-full h-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
             />
-            {/* حباب پیام تعاملی هوشمند با انیمیشن ورود */}
+            
             <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap px-3 py-1 rounded-lg text-[11px] font-bold bg-emerald-400 text-emerald-950 shadow-xl shadow-emerald-500/30 border border-emerald-300">
               {rangoQuotes[rangoIndex]}
             </span>
           </div>
         </div>
 
-        {/* نشان رتبه ۱ و آماده به همکاری */}
+        
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm">
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -112,7 +112,7 @@ export default function Hero({ lang }: HeroProps) {
           </span>
         </div>
 
-        {/* تیتر پیکسلی هیرو با انیمیشن شناور نرم و شتاب سخت‌افزاری */}
+        
         <div className="w-full flex justify-center mb-6">
           {isFa ? (
             <div className="w-full flex justify-center animate-hero-float">
@@ -130,7 +130,7 @@ export default function Hero({ lang }: HeroProps) {
           )}
         </div>
 
-        {/* توضیح شفاف، عامیانه و قانع‌کننده برای کارفرما */}
+        
         <p
           className="text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed mb-8"
           style={{ color: "var(--text-secondary)" }}
@@ -146,7 +146,7 @@ export default function Hero({ lang }: HeroProps) {
           )}
         </p>
 
-        {/* دکمه‌های اقدام سریع CTA لوکس و بازطراحی‌شده */}
+        
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-12 flex-wrap">
           <a
             href="#contact"
@@ -156,7 +156,7 @@ export default function Hero({ lang }: HeroProps) {
             <span className="relative z-10 w-2 h-2 rounded-full bg-emerald-950/40 group-hover:scale-125 transition-transform" />
           </a>
 
-          {/* دکمه تماشای شو‌ریل ۱۵ ثانیه‌ای با رادار سونار سایبری */}
+          
           <button
             onClick={() => setIsShowreelOpen(true)}
             className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-bold text-sm transition-all hover:border-[var(--accent)] hover:shadow-lg hover:shadow-emerald-500/10 active:scale-95 flex items-center justify-center gap-2.5 group cursor-pointer bg-[var(--bg-surface)] text-[var(--text-primary)]"
@@ -183,7 +183,7 @@ export default function Hero({ lang }: HeroProps) {
           </a>
         </div>
 
-        {/* شاخص‌های عملکردی لایت‌هاوس گوگل */}
+        
         <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mb-12">
           {PERSONAL_DATA.metrics.map((metric, i) => (
             <div
@@ -201,7 +201,7 @@ export default function Hero({ lang }: HeroProps) {
           ))}
         </div>
 
-        {/* گواهی ۳ گانه اعتبار در قالب بج‌های مدرن */}
+        
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[var(--text-secondary)] font-medium">
           <div className="flex items-center gap-1.5">
             <FiCheckCircle className="w-4 h-4 text-[var(--accent)]" />
@@ -219,7 +219,7 @@ export default function Hero({ lang }: HeroProps) {
 
       </div>
 
-      {/* پاپ‌آپ سینمایی پخش شو‌ریل ۱۵ ثانیه‌ای (Lazy-loaded Modal) */}
+      
       {isShowreelOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-2xl animate-in fade-in duration-200"
@@ -229,7 +229,7 @@ export default function Hero({ lang }: HeroProps) {
             className="relative w-full max-w-4xl rounded-3xl border border-emerald-500/30 bg-[#06070a] shadow-2xl overflow-hidden p-3 sm:p-5 space-y-3"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
+            
             <div className="flex items-center justify-between pb-2 border-b border-white/10 px-2">
               <div className="flex items-center gap-2.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -249,7 +249,7 @@ export default function Hero({ lang }: HeroProps) {
               </button>
             </div>
 
-            {/* Video Player Container */}
+            
             <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-inner">
               <video
                 src="/showreel.mp4"
@@ -261,7 +261,7 @@ export default function Hero({ lang }: HeroProps) {
               />
             </div>
 
-            {/* Modal Footer Note */}
+            
             <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-2 text-[11px] text-gray-400 font-sans">
               <span>
                 💡 این شو‌ریل ۱۰۰٪ با کدهای ریاضی، فرمول‌های پرسپکتیو WebGL و سنتز فرکانس صوتی در Node.js رندر شده است.

@@ -7,7 +7,7 @@ export default function ScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    // اگر مرورگر از انیمیشن مدرن و بدون هزینه CSS پشتیبانی کند، نیازی به لیسنر JS نیست
+    
     if (typeof CSS !== "undefined" && CSS.supports && CSS.supports("animation-timeline", "scroll()")) {
       return;
     }
@@ -30,7 +30,7 @@ export default function ScrollProgress() {
       }
     };
 
-    // فعال‌سازی لیسنر پس از لود اولیه جهت عدم ایجاد Forced Reflow در بدو ورود
+    
     const timer = setTimeout(() => {
       setUseJsFallback(true);
       window.addEventListener("scroll", handleScroll, { passive: true });

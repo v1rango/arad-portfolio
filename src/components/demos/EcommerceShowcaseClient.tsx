@@ -110,7 +110,7 @@ export default function EcommerceShowcaseClient() {
   });
   const [checkoutSimulated, setCheckoutSimulated] = useState(false);
 
-  // Dynamic theme colors
+  
   const themeStyles = {
     streetwear: {
       bg: "bg-[#090a0f]",
@@ -188,8 +188,7 @@ export default function EcommerceShowcaseClient() {
 
   return (
     <div className="space-y-16">
-      {/* Top Floating Control Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
         <div className="flex items-center gap-3">
           <Link
             href="/"
@@ -211,8 +210,7 @@ export default function EcommerceShowcaseClient() {
         />
       </div>
 
-      {/* Showcase Onboarding Guide */}
-      <ShowcaseGuide
+            <ShowcaseGuide
         nicheTitleFa="طراحی فروشگاه آنلاین پرسرعت (Headless Commerce & Fast Checkout)"
         nicheTitleEn="Modern High-Speed Headless E-Commerce"
         lang="fa"
@@ -228,8 +226,7 @@ export default function EcommerceShowcaseClient() {
         ]}
       />
 
-      {/* LIVE INTERACTIVE DEMO CONTAINER */}
-      <div id="demo-section" className="space-y-6">
+            <div id="demo-section" className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
@@ -242,12 +239,10 @@ export default function EcommerceShowcaseClient() {
           </span>
         </div>
 
-        {/* Demo Window */}
-        <div
+                <div
           className={`rounded-3xl border ${themeStyles.border} ${themeStyles.bg} transition-all duration-500 overflow-hidden shadow-2xl relative`}
         >
-          {/* Mock Browser Header */}
-          <div className="px-5 py-3 border-b border-white/10 flex items-center justify-between bg-black/40 backdrop-blur-md">
+                    <div className="px-5 py-3 border-b border-white/10 flex items-center justify-between bg-black/40 backdrop-blur-md">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
@@ -262,8 +257,7 @@ export default function EcommerceShowcaseClient() {
             </div>
           </div>
 
-          {/* Demo Store Navigation Bar */}
-          <div className="p-6 border-b border-white/10 flex items-center justify-between text-white">
+                    <div className="p-6 border-b border-white/10 flex items-center justify-between text-white">
             <div className="flex items-center gap-3">
               <span className={`text-xl font-black tracking-tighter ${themeStyles.accent}`}>
                 V1-STORE
@@ -273,8 +267,7 @@ export default function EcommerceShowcaseClient() {
               </span>
             </div>
 
-            {/* Category filter pills */}
-            <div className="hidden sm:flex items-center gap-2">
+                        <div className="hidden sm:flex items-center gap-2">
               {["همه", "پوشاک", "کفش", "اکسسوری"].map((cat) => (
                 <button
                   key={cat}
@@ -290,8 +283,7 @@ export default function EcommerceShowcaseClient() {
               ))}
             </div>
 
-            {/* Cart Trigger */}
-            <button
+                        <button
               onClick={() => setIsCartOpen(!isCartOpen)}
               className="relative p-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:border-white/30 transition-all flex items-center gap-2"
             >
@@ -307,8 +299,7 @@ export default function EcommerceShowcaseClient() {
             </button>
           </div>
 
-          {/* Demo Products Grid */}
-          <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+                    <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
             {filteredProducts.map((product) => {
               const currentOpts = selectedProductOptions[product.id] || {
                 size: product.sizes[0],
@@ -321,8 +312,7 @@ export default function EcommerceShowcaseClient() {
                   className={`p-5 rounded-3xl border ${themeStyles.border} ${themeStyles.cardBg} flex flex-col justify-between space-y-4 group transition-all hover:scale-[1.02] shadow-xl`}
                 >
                   <div>
-                    {/* Badge */}
-                    <div className="flex items-center justify-between mb-3">
+                                        <div className="flex items-center justify-between mb-3">
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-gray-400">
                         {product.category}
                       </span>
@@ -331,8 +321,7 @@ export default function EcommerceShowcaseClient() {
                       </span>
                     </div>
 
-                    {/* Product Mock Visual Box */}
-                    <div className="w-full h-44 rounded-2xl bg-black/40 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden mb-4 p-4 text-center">
+                                        <div className="w-full h-44 rounded-2xl bg-black/40 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden mb-4 p-4 text-center">
                       <div
                         className="w-16 h-16 rounded-2xl flex items-center justify-center mb-2 shadow-2xl transition-transform group-hover:scale-110"
                         style={{
@@ -353,8 +342,7 @@ export default function EcommerceShowcaseClient() {
                       {product.nameFa}
                     </h4>
 
-                    {/* Color selection buttons */}
-                    <div className="space-y-1.5 mb-3">
+                                        <div className="space-y-1.5 mb-3">
                       <span className="text-[10px] text-gray-400 block">انتخاب رنگ:</span>
                       <div className="flex items-center gap-2">
                         {product.colors.map((c) => (
@@ -378,8 +366,7 @@ export default function EcommerceShowcaseClient() {
                       </div>
                     </div>
 
-                    {/* Size selection */}
-                    <div className="space-y-1.5 mb-4">
+                                        <div className="space-y-1.5 mb-4">
                       <span className="text-[10px] text-gray-400 block">انتخاب سایز:</span>
                       <div className="flex items-center gap-1.5 flex-wrap">
                         {product.sizes.map((sz) => (
@@ -404,8 +391,7 @@ export default function EcommerceShowcaseClient() {
                     </div>
                   </div>
 
-                  {/* Price & Add to Cart button */}
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                                    <div className="pt-3 border-t border-white/10 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] text-gray-400 block">قیمت محصول:</span>
                       <span className="text-sm font-black font-mono text-white">
@@ -426,8 +412,7 @@ export default function EcommerceShowcaseClient() {
             })}
           </div>
 
-          {/* Slide-over Cart Drawer */}
-          {isCartOpen && (
+                    {isCartOpen && (
             <div className="absolute inset-y-0 left-0 w-full sm:w-96 bg-black/95 backdrop-blur-xl border-r border-white/10 z-30 p-6 flex flex-col justify-between text-white shadow-2xl animate-in slide-in-from-left duration-300">
               <div>
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
@@ -443,8 +428,7 @@ export default function EcommerceShowcaseClient() {
                   </button>
                 </div>
 
-                {/* Items List */}
-                <div className="py-4 space-y-3 max-h-[350px] overflow-y-auto">
+                                <div className="py-4 space-y-3 max-h-[350px] overflow-y-auto">
                   {cart.length === 0 ? (
                     <div className="py-12 text-center text-gray-400 text-xs">
                       سبد خرید شما در حال حاضر خالی است.
@@ -478,8 +462,7 @@ export default function EcommerceShowcaseClient() {
                 </div>
               </div>
 
-              {/* Checkout Footer */}
-              {cart.length > 0 && (
+                            {cart.length > 0 && (
                 <div className="pt-4 border-t border-white/10 space-y-3">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-gray-400">مجموع قابل پرداخت:</span>
@@ -514,11 +497,9 @@ export default function EcommerceShowcaseClient() {
         </div>
       </div>
 
-      {/* Speed & ROI Benchmark Widget */}
-      <SpeedGauge lang="fa" />
+            <SpeedGauge lang="fa" />
 
-      {/* Why Custom Next.js Beats WooCommerce */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-3">
           <div className="w-10 h-10 rounded-2xl bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center justify-center">
             <FiZap className="w-5 h-5" />
@@ -556,8 +537,7 @@ export default function EcommerceShowcaseClient() {
         </div>
       </div>
 
-      {/* CTA Box for E-Commerce Clients */}
-      <div className="p-8 sm:p-12 rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
+            <div className="p-8 sm:p-12 rounded-3xl border border-rose-500/30 bg-gradient-to-br from-rose-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
         <h2 className="text-2xl sm:text-3xl font-black text-white">
           می‌خواهید فروشگاه آنلاین شما سریع‌ترین شاپ در حوزه کاری‌تان باشد؟
         </h2>

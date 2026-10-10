@@ -65,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // ساختار گراف غنی Schema.org چندلایه برای درک فوق‌سریع توسط چت‌بات‌های AI و گوگل
+  
   const structuredDataGraph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -244,8 +244,7 @@ export default function Home() {
 
   return (
     <>
-      {/* تزریق سروری اسکیماها جهت درک آنی توسط ربات‌های سبک و مدل‌های هوش مصنوعی */}
-      <script
+            <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredDataGraph) }}
       />

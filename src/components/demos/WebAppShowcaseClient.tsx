@@ -75,7 +75,7 @@ export default function WebAppShowcaseClient() {
   const [isAutomating, setIsAutomating] = useState(false);
   const [automationStep, setAutomationStep] = useState(0);
 
-  // Dynamic theme colors
+  
   const themeStyles = {
     glass: {
       bg: "bg-[#090e17]/80 backdrop-blur-2xl",
@@ -138,8 +138,7 @@ export default function WebAppShowcaseClient() {
 
   return (
     <div className="space-y-16">
-      {/* Top Floating Control Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
         <div className="flex items-center gap-3">
           <Link
             href="/"
@@ -161,8 +160,7 @@ export default function WebAppShowcaseClient() {
         />
       </div>
 
-      {/* Showcase Onboarding Guide */}
-      <ShowcaseGuide
+            <ShowcaseGuide
         nicheTitleFa="طراحی وب‌اپلیکیشن اختصاصی، داشبورد مدیریت و اتوماسیون (Next.js + NestJS)"
         nicheTitleEn="Custom Web Applications, High-Performance Dashboards & Automation"
         lang="fa"
@@ -178,8 +176,7 @@ export default function WebAppShowcaseClient() {
         ]}
       />
 
-      {/* LIVE INTERACTIVE DEMO CONTAINER */}
-      <div id="demo-section" className="space-y-6">
+            <div id="demo-section" className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
@@ -192,12 +189,10 @@ export default function WebAppShowcaseClient() {
           </span>
         </div>
 
-        {/* Demo Window */}
-        <div
+                <div
           className={`rounded-3xl border ${themeStyles.border} ${themeStyles.bg} transition-all duration-500 overflow-hidden shadow-2xl relative`}
         >
-          {/* Mock Browser Header */}
-          <div className="px-5 py-3 border-b border-white/10 flex items-center justify-between bg-black/40 backdrop-blur-md">
+                    <div className="px-5 py-3 border-b border-white/10 flex items-center justify-between bg-black/40 backdrop-blur-md">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
@@ -212,10 +207,8 @@ export default function WebAppShowcaseClient() {
             </div>
           </div>
 
-          {/* Interior Dashboard */}
-          <div className="p-6 sm:p-8 space-y-8 text-white">
-            {/* Top Dashboard Nav */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+                    <div className="p-6 sm:p-8 space-y-8 text-white">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
               <div>
                 <h3 className="text-xl font-black text-white flex items-center gap-2">
                   <FiLayers className={`w-5 h-5 ${themeStyles.accent}`} />
@@ -226,8 +219,7 @@ export default function WebAppShowcaseClient() {
                 </p>
               </div>
 
-              {/* Time Period Selector */}
-              <div className="flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10 self-start sm:self-auto">
+                            <div className="flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10 self-start sm:self-auto">
                 <button
                   onClick={() => setActivePeriod("day")}
                   className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
@@ -261,8 +253,7 @@ export default function WebAppShowcaseClient() {
               </div>
             </div>
 
-            {/* Live KPI Metric Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className={`p-5 rounded-2xl border ${themeStyles.border} ${themeStyles.cardBg} space-y-2`}>
                 <div className="flex items-center justify-between text-xs text-gray-400">
                   <span>درآمد پردازش‌شده</span>
@@ -316,8 +307,7 @@ export default function WebAppShowcaseClient() {
               </div>
             </div>
 
-            {/* Interactive Live Automation Visualizer Box */}
-            <div className={`p-6 rounded-3xl border ${themeStyles.border} ${themeStyles.cardBg} space-y-4`}>
+                        <div className={`p-6 rounded-3xl border ${themeStyles.border} ${themeStyles.cardBg} space-y-4`}>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h4 className="font-bold text-sm text-white flex items-center gap-2">
@@ -343,8 +333,7 @@ export default function WebAppShowcaseClient() {
                 </button>
               </div>
 
-              {/* Steps Flow Bar */}
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-2">
+                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-2">
                 {[
                   { step: 1, title: "۱. دریافت وب‌هوک سفارش", desc: "اعتبارسنجی امن توکن" },
                   { step: 2, title: "۲. ثبت در دیتابیس پستگرس", desc: "ذخیره در ۴ میلی‌ثانیه" },
@@ -380,8 +369,7 @@ export default function WebAppShowcaseClient() {
               </div>
             </div>
 
-            {/* Filterable Live Data Table */}
-            <div className={`rounded-2xl border ${themeStyles.border} overflow-hidden bg-black/40`}>
+                        <div className={`rounded-2xl border ${themeStyles.border} overflow-hidden bg-black/40`}>
               <div className="p-4 border-b border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2 w-full sm:w-80 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs">
                   <FiSearch className="text-gray-400 w-4 h-4" />
@@ -398,8 +386,7 @@ export default function WebAppShowcaseClient() {
                 </span>
               </div>
 
-              {/* Table */}
-              <div className="overflow-x-auto">
+                            <div className="overflow-x-auto">
                 <table className="w-full text-right text-xs">
                   <thead className="bg-white/5 text-gray-400 border-b border-white/10 font-mono">
                     <tr>
@@ -444,11 +431,9 @@ export default function WebAppShowcaseClient() {
         </div>
       </div>
 
-      {/* Speed & ROI Benchmark Widget */}
-      <SpeedGauge lang="fa" />
+            <SpeedGauge lang="fa" />
 
-      {/* Why Custom Next.js + NestJS for Web Apps */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-3">
           <div className="w-10 h-10 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center">
             <FiServer className="w-5 h-5" />
@@ -486,8 +471,7 @@ export default function WebAppShowcaseClient() {
         </div>
       </div>
 
-      {/* CTA Box for Web App Clients */}
-      <div className="p-8 sm:p-12 rounded-3xl border border-cyan-500/30 bg-gradient-to-br from-cyan-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
+            <div className="p-8 sm:p-12 rounded-3xl border border-cyan-500/30 bg-gradient-to-br from-cyan-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
         <h2 className="text-2xl sm:text-3xl font-black text-white">
           به یک وب‌اپلیکیشن اختصاصی، پنل مدیریت یا سیستم اتوماسیون نیاز دارید؟
         </h2>

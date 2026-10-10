@@ -95,8 +95,7 @@ export default function SpeedOptimizationPage() {
         <Header />
 
         <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-xs font-bold text-[var(--accent)] hover:underline"
@@ -109,8 +108,7 @@ export default function SpeedOptimizationPage() {
             </span>
           </div>
 
-          {/* Hero Header */}
-          <div className="text-center space-y-6 max-w-4xl mx-auto">
+                    <div className="text-center space-y-6 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
               <FiZap className="w-4 h-4 animate-pulse" />
               <span>افزایش سرعت سایت و رهایی از کندی لود</span>
@@ -147,13 +145,11 @@ export default function SpeedOptimizationPage() {
             </div>
           </div>
 
-          {/* Speed Gauge Interactive Component */}
-          <div className="w-full">
+                    <div className="w-full">
             <SpeedGauge lang="fa" />
           </div>
 
-          {/* Benchmark Metrics Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="p-6 rounded-2xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-2">
               <span className="text-xs font-mono text-[var(--text-muted)]">CORE WEB VITALS</span>
               <h3 className="text-xl font-bold text-emerald-400">LCP &lt; ۰.۸s</h3>
@@ -177,8 +173,7 @@ export default function SpeedOptimizationPage() {
             </div>
           </div>
 
-          {/* 4 Steps Process */}
-          <div className="space-y-8">
+                    <div className="space-y-8">
             <div className="text-center space-y-2">
               <h2 className="text-xl sm:text-3xl font-extrabold text-[var(--text-primary)]">
                 فرآیند ۴ مرحله‌ای جراحی و بهینه‌سازی سرعت
@@ -208,8 +203,7 @@ export default function SpeedOptimizationPage() {
             </div>
           </div>
 
-          {/* AEO FAQ Section for Speed */}
-          <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
+                    <div className="p-8 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-6">
             <h2 className="text-lg sm:text-2xl font-black text-[var(--text-primary)] text-center">
               پاسخ به سوالات کلیدی افزایش سرعت سایت (AEO)
             </h2>

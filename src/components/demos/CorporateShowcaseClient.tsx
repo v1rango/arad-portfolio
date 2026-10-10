@@ -55,7 +55,7 @@ export default function CorporateShowcaseClient() {
   const [clientPhone, setClientPhone] = useState("");
   const [bookingDate, setBookingDate] = useState("امروز - ساعت ۱۸:۳۰");
 
-  // Dynamic theme colors
+  
   const themeStyles = {
     slate: {
       bg: "bg-slate-950",
@@ -106,8 +106,7 @@ export default function CorporateShowcaseClient() {
 
   return (
     <div className="space-y-16">
-      {/* Top Floating Control Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
         <div className="flex items-center gap-3">
           <Link
             href="/"
@@ -129,8 +128,7 @@ export default function CorporateShowcaseClient() {
         />
       </div>
 
-      {/* Showcase Onboarding Guide */}
-      <ShowcaseGuide
+            <ShowcaseGuide
         nicheTitleFa="طراحی سایت شرکتی، هلدینگ‌ها و کلینیک‌های زیبایی"
         nicheTitleEn="Corporate, Law Firms & Medical Aesthetic Clinics"
         lang="fa"
@@ -146,8 +144,7 @@ export default function CorporateShowcaseClient() {
         ]}
       />
 
-      {/* LIVE INTERACTIVE DEMO CONTAINER */}
-      <div id="demo-section" className="space-y-6">
+            <div id="demo-section" className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
@@ -160,12 +157,10 @@ export default function CorporateShowcaseClient() {
           </span>
         </div>
 
-        {/* The Live Interactive Website Preview Window */}
-        <div
+                <div
           className={`rounded-3xl border ${themeStyles.border} ${themeStyles.bg} transition-all duration-500 overflow-hidden shadow-2xl relative`}
         >
-          {/* Mock Browser Header Bar */}
-          <div className="px-5 py-3 border-b border-white/10 flex items-center justify-between bg-black/40 backdrop-blur-md">
+                    <div className="px-5 py-3 border-b border-white/10 flex items-center justify-between bg-black/40 backdrop-blur-md">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
@@ -180,10 +175,8 @@ export default function CorporateShowcaseClient() {
             </div>
           </div>
 
-          {/* Demo Website Interior */}
-          <div className="p-6 sm:p-10 space-y-12 text-white">
-            {/* Demo Header */}
-            <div className="flex items-center justify-between pb-6 border-b border-white/10">
+                    <div className="p-6 sm:p-10 space-y-12 text-white">
+                        <div className="flex items-center justify-between pb-6 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <div
                   className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-lg ${themeStyles.accentBg} text-black shadow-lg`}
@@ -223,8 +216,7 @@ export default function CorporateShowcaseClient() {
               </a>
             </div>
 
-            {/* Demo Hero Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
               <div className="lg:col-span-7 space-y-6">
                 <div
                   className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border ${themeStyles.pillBg}`}
@@ -262,8 +254,7 @@ export default function CorporateShowcaseClient() {
                     : "پلتفرمی با قابلیت‌های انحصاری، سرعت باورنکردنی و امنیت سایبری در تراز شرکت‌های فورچون ۵۰۰."}
                 </p>
 
-                {/* Social Proof Stats */}
-                <div className="grid grid-cols-3 gap-3 pt-2">
+                                <div className="grid grid-cols-3 gap-3 pt-2">
                   <div className={`p-3 rounded-2xl border ${themeStyles.border} ${themeStyles.cardBg}`}>
                     <span className={`block text-xl font-black ${themeStyles.accent}`}>
                       ۱۵۰۰+
@@ -285,8 +276,7 @@ export default function CorporateShowcaseClient() {
                 </div>
               </div>
 
-              {/* Interactive Booking Module */}
-              <div
+                            <div
                 id="booking-box"
                 className={`lg:col-span-5 p-6 rounded-3xl border ${themeStyles.border} ${themeStyles.cardBg} backdrop-blur-md shadow-2xl relative`}
               >
@@ -387,11 +377,9 @@ export default function CorporateShowcaseClient() {
         </div>
       </div>
 
-      {/* Speed & ROI Benchmark Widget */}
-      <SpeedGauge lang="fa" />
+            <SpeedGauge lang="fa" />
 
-      {/* Why Choose Custom Next.js for Corporate */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-3">
           <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center">
             <FiShield className="w-5 h-5" />
@@ -429,8 +417,7 @@ export default function CorporateShowcaseClient() {
         </div>
       </div>
 
-      {/* CTA Box for Corporate Clients */}
-      <div className="p-8 sm:p-12 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
+            <div className="p-8 sm:p-12 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 to-[var(--bg-surface)] text-center space-y-6 shadow-2xl relative overflow-hidden">
         <h2 className="text-2xl sm:text-3xl font-black text-white">
           آماده‌اید وب‌سایت شرکتی یا کلینیک خود را به سطح اول بازار برسانید؟
         </h2>
