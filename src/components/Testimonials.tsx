@@ -44,14 +44,14 @@ export default function Testimonials({ lang }: TestimonialsProps) {
                 className="architectural-card p-6 flex flex-col justify-between group relative"
               >
                 {/* CAD Technical Marks */}
-                <span className="cad-corner-tl">+</span>
-                <span className="cad-corner-tr font-mono">{`REV//0${index + 1}`}</span>
+                <span className="cad-corner-tl" aria-hidden="true">+</span>
+                <span className="cad-corner-tr font-mono" aria-hidden="true">{`REV//0${index + 1}`}</span>
 
                 <div>
                   <div className="flex items-center justify-between mb-4 mt-2">
-                    <div className="flex items-center gap-1 text-zinc-300">
+                    <div className="flex items-center gap-1 text-zinc-300" aria-label={`Rating: ${item.rating} out of 5 stars`} role="img">
                       {Array.from({ length: item.rating }).map((_, i) => (
-                        <span key={i} className="text-xs">★</span>
+                        <span key={i} className="text-xs" aria-hidden="true">★</span>
                       ))}
                     </div>
                     <span

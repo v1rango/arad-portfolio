@@ -17,8 +17,8 @@
     --border: rgba(255, 255, 255, 0.10);
     --border-hover: rgba(255, 255, 255, 0.35);
     --text-primary: #fafafa;
-    --text-secondary: #a1a1aa;
-    --text-muted: #71717a;
+    --text-secondary: #d4d4d8;
+    --text-muted: #a1a1aa;
     --accent: #ffffff;
     --accent-contrast: #09090b;
     --accent-subtle: rgba(255, 255, 255, 0.08);
@@ -36,8 +36,8 @@
     --border: rgba(0, 0, 0, 0.09);
     --border-hover: rgba(0, 0, 0, 0.35);
     --text-primary: #09090b;
-    --text-secondary: #52525b;
-    --text-muted: #71717a;
+    --text-secondary: #3f3f46;
+    --text-muted: #52525b;
     --accent: #09090b;
     --accent-contrast: #ffffff;
     --accent-subtle: rgba(0, 0, 0, 0.04);
@@ -335,6 +335,9 @@
   width: max-content;
   animation: marqueeLeft 28s linear infinite;
   will-change: transform;
+  contain: layout paint;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 .animate-marquee:hover {
@@ -423,8 +426,7 @@
   font-family: monospace;
   font-size: 10px;
   line-height: 1;
-  color: var(--text-muted);
-  opacity: 0.45;
+  color: var(--text-secondary);
   pointer-events: none;
   user-select: none;
 }
@@ -435,8 +437,7 @@
   font-family: monospace;
   font-size: 10px;
   line-height: 1;
-  color: var(--text-muted);
-  opacity: 0.45;
+  color: var(--text-secondary);
   pointer-events: none;
   user-select: none;
 }
@@ -515,6 +516,6 @@
   font-family: monospace;
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-transform: uppercase;
 }

@@ -57,7 +57,7 @@ export default function FAQ({ lang }: FAQProps) {
                   id={`faq-question-${faq.id}`}
                   className="w-full text-right rtl:text-right ltr:text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base hover:text-[var(--accent)] transition-colors cursor-pointer text-[var(--text-primary)]"
                 >
-                  <span className="font-mono text-xs text-[var(--text-muted)] shrink-0">
+                  <span className="font-mono text-xs text-[var(--text-secondary)] shrink-0" aria-hidden="true">
                     {`0${index + 1}`}
                   </span>
                   <h3 className="font-bold text-sm sm:text-base text-inherit m-0 p-0 flex-1">

@@ -82,7 +82,7 @@ export default function Hero({ lang }: HeroProps) {
             {isFa ? "معمار وب مدرن & اتوماسیون هوش مصنوعی" : "MODERN WEB ARCHITECT & AI SPECIALIST"}
           </span>
           <span className="text-[var(--border)] opacity-60">•</span>
-          <span className="text-[11px] text-[var(--text-muted)]">
+          <span className="text-[11px] text-[var(--text-secondary)]">
             {isFa ? "آماده پذیرش پروژه‌های شاخص" : "STATUS: AVAILABLE"}
           </span>
         </div>
@@ -153,8 +153,7 @@ export default function Hero({ lang }: HeroProps) {
 
           <button
             onClick={() => setIsShowreelOpen(true)}
-            className="tactile-btn w-full sm:w-auto px-4 py-3.5 text-xs font-medium flex items-center justify-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer"
-            aria-label={isFa ? "مشاهده تریلر برنامه‌نویسی" : "Watch Code Showreel"}
+            className="tactile-btn w-full sm:w-auto px-4 py-3.5 text-xs font-medium flex items-center justify-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer"
           >
             <FiPlay className="w-3.5 h-3.5" />
             <span>{isFa ? "شو‌ریل کد (۱۵ ثانیه)" : "15s Showreel"}</span>
@@ -168,8 +167,8 @@ export default function Hero({ lang }: HeroProps) {
               key={i}
               className="architectural-card p-4 sm:p-5 flex flex-col items-center justify-center text-center group"
             >
-              <span className="cad-corner-tl">+</span>
-              <span className="cad-corner-tr">{`0${i + 1}`}</span>
+              <span className="cad-corner-tl" aria-hidden="true">+</span>
+              <span className="cad-corner-tr" aria-hidden="true">{`0${i + 1}`}</span>
               <CountUpNumber
                 value={metric.value}
                 className="text-xl sm:text-2xl font-black font-mono text-[var(--text-primary)]"

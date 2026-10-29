@@ -206,14 +206,13 @@ export default function Footer({ lang }: FooterProps) {
       </div>
 
       
-      <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs" style={{ color: "var(--text-muted)" }}>
+      <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs" style={{ color: "var(--text-secondary)" }}>
         <p>
           © {currentYear} {PERSONAL_DATA.nameEn}. All rights reserved. Designed & Built with Next.js 16.
         </p>
 
         <button
           onClick={scrollToTop}
-          aria-label={isFa ? "بازگشت به بالای صفحه" : "Back to top of page"}
           className="flex items-center gap-2 text-xs hover:text-[var(--accent)] transition-colors group cursor-pointer"
           style={{ color: "var(--text-secondary)" }}
         >

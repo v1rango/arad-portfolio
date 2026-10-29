@@ -101,11 +101,11 @@ export default function Services({ lang }: ServicesProps) {
                 className="architectural-card spotlight-card p-6 sm:p-8 flex flex-col justify-between group relative"
               >
                 {/* CAD Technical Corner Accents */}
-                <span className="cad-corner-tl">+</span>
-                <span className="cad-corner-tr font-mono">{`SYS//0${index + 1}`}</span>
+                <span className="cad-corner-tl" aria-hidden="true">+</span>
+                <span className="cad-corner-tr font-mono" aria-hidden="true">{`SYS//0${index + 1}`}</span>
 
                 {/* Subtle Watermark Index */}
-                <div className="absolute -bottom-6 -right-2 text-8xl font-mono font-black select-none pointer-events-none opacity-[0.03] text-[var(--text-primary)]">
+                <div className="absolute -bottom-6 -right-2 text-8xl font-mono font-black select-none pointer-events-none opacity-[0.03] text-[var(--text-primary)]" aria-hidden="true">
                   0{index + 1}
                 </div>
 
@@ -148,6 +148,7 @@ export default function Services({ lang }: ServicesProps) {
                   <Link
                     href="/contact"
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--accent)] hover:opacity-80 transition-opacity"
+                    aria-label={`${isFa ? "سفارش این خدمت" : "Inquire Scope"} — ${isFa ? service.titleFa : service.titleEn}`}
                   >
                     <span>{isFa ? "سفارش این خدمت" : "Inquire Scope"}</span>
                     <FiArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:group-hover:-translate-x-0.5" />

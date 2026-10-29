@@ -123,13 +123,12 @@ export default function Header({
                     <Link
             href="/"
             className="flex items-center gap-3 group"
-            aria-label={lang === "fa" ? `${PERSONAL_DATA.nameFa} — توسعه‌دهنده وب & سئو نوین` : `${PERSONAL_DATA.nameEn} — Full-Stack & Modern SEO`}
           >
             <div className="relative w-10 h-10 flex-shrink-0">
               <div className="w-full h-full rounded-full p-0.5 border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors overflow-hidden bg-transparent">
                 <Image
                   src="/avatar.webp"
-                  alt={`${PERSONAL_DATA.nameEn} — Full-Stack Developer`}
+                  alt=""
                   width={40}
                   height={40}
                   sizes="40px"
@@ -167,7 +166,6 @@ export default function Header({
                 onClick={() => setIsDemosOpen((prev) => !prev)}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)] text-xs font-bold hover:border-[var(--text-secondary)] active:scale-95 transition-all select-none cursor-pointer"
                 aria-expanded={isDemosOpen}
-                aria-label={lang === "fa" ? "مشاهده دموهای زنده" : "View Live Demos"}
               >
                 <span className="w-2 h-2 rounded-full bg-[var(--text-primary)] animate-pulse" />
                 <span>{lang === "fa" ? "خدمات و دموهای زنده" : "Live Demos & Services"}</span>
@@ -301,9 +299,9 @@ export default function Header({
                 backgroundColor: "var(--bg-surface)",
                 color: "var(--text-secondary)",
               }}
-              aria-label="تغییر زبان / Change Language"
+              aria-label={lang === "fa" ? "EN - Switch to English" : "FA - تغییر زبان به فارسی"}
             >
-              {lang === "fa" ? "EN" : "فا"}
+              {lang === "fa" ? "EN" : "FA"}
             </button>
             
             <Link
@@ -338,13 +336,13 @@ export default function Header({
 
             <button
               onClick={handleToggleLang}
-              className="px-2.5 py-1.5 text-xs font-bold rounded-xl border cursor-pointer active:scale-90 transition-transform"
+              className="px-2.5 py-1.5 text-xs font-bold rounded-xl border cursor-pointer active:scale-90 transition-transform font-mono"
               style={{
                 borderColor: "var(--border)",
                 backgroundColor: "var(--bg-surface)",
                 color: "var(--text-secondary)",
               }}
-              aria-label={lang === "fa" ? "Switch language to English" : "تغییر زبان به فارسی"}
+              aria-label={lang === "fa" ? "EN - Switch to English" : "FA - تغییر زبان به فارسی"}
             >
               {lang === "fa" ? "EN" : "FA"}
             </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface CountUpNumberProps {
   value: string;
@@ -10,10 +10,9 @@ interface CountUpNumberProps {
 
 export default function CountUpNumber({
   value,
-  duration = 1600,
+  duration = 1400,
   className = "",
 }: CountUpNumberProps) {
-  const [displayValue, setDisplayValue] = useState(value);
   const elementRef = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
@@ -21,17 +20,20 @@ export default function CountUpNumber({
     const element = elementRef.current;
     if (!element) return;
 
-    
     const match = value.match(/([^\d.]*)([\d.]+)(.*)/);
-    if (!match) {
-      return;
-    }
+    if (!match) return;
 
     const prefix = match[1] || "";
     const targetNumber = parseFloat(match[2]);
     const suffix = match[3] || "";
     const isDecimal = match[2].includes(".");
     const decimalPlaces = isDecimal ? match[2].split(".")[1].length : 0;
+
+    // Respect user's motion preferences
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      element.textContent = value;
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -43,8 +45,6 @@ export default function CountUpNumber({
           const step = (timestamp: number) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / duration, 1);
-            
-            
             const easeOut = 1 - Math.pow(1 - progress, 3);
             const currentNum = easeOut * targetNumber;
 
@@ -52,19 +52,21 @@ export default function CountUpNumber({
               ? currentNum.toFixed(decimalPlaces)
               : Math.floor(currentNum).toString();
 
-            setDisplayValue(`${prefix}${formattedNum}${suffix}`);
+            if (element) {
+              element.textContent = `${prefix}${formattedNum}${suffix}`;
+            }
 
             if (progress < 1) {
               window.requestAnimationFrame(step);
-            } else {
-              setDisplayValue(value);
+            } else if (element) {
+              element.textContent = value;
             }
           };
 
           window.requestAnimationFrame(step);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     observer.observe(element);
@@ -73,7 +75,7 @@ export default function CountUpNumber({
 
   return (
     <span ref={elementRef} className={`inline-block ${className}`} dir="ltr">
-      {displayValue}
+      {value}
     </span>
   );
 }

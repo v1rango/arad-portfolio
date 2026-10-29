@@ -81,11 +81,11 @@ export default function Projects({ lang }: ProjectsProps) {
               className="architectural-card p-6 sm:p-8 flex flex-col justify-between group relative"
             >
               {/* CAD Corner Accents */}
-              <span className="cad-corner-tl">+</span>
-              <span className="cad-corner-tr font-mono">{`PROJ//0${index + 1}`}</span>
+              <span className="cad-corner-tl" aria-hidden="true">+</span>
+              <span className="cad-corner-tr font-mono" aria-hidden="true">{`PROJ//0${index + 1}`}</span>
 
               {/* Watermark Index */}
-              <div className="absolute -bottom-6 -right-2 text-8xl font-mono font-black select-none pointer-events-none opacity-[0.03] text-[var(--text-primary)]">
+              <div className="absolute -bottom-6 -right-2 text-8xl font-mono font-black select-none pointer-events-none opacity-[0.03] text-[var(--text-primary)]" aria-hidden="true">
                 0{index + 1}
               </div>
 
@@ -153,6 +153,7 @@ export default function Projects({ lang }: ProjectsProps) {
                     <Link
                       href={proj.caseStudyUrl}
                       className="tactile-btn px-3 py-1.5 text-xs font-bold gap-1.5"
+                      aria-label={`${isFa ? "مطالعه موردی" : "Case Study"} — ${isFa ? proj.titleFa : proj.titleEn}`}
                     >
                       <span>{isFa ? "مطالعه موردی" : "Case Study"}</span>
                       {isFa ? <FiArrowLeft className="w-3.5 h-3.5" /> : <FiArrowRight className="w-3.5 h-3.5" />}
@@ -164,6 +165,7 @@ export default function Projects({ lang }: ProjectsProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="tactile-btn px-3 py-1.5 text-xs font-mono gap-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                      aria-label={`GitHub — ${isFa ? proj.titleFa : proj.titleEn}`}
                     >
                       <span>GitHub</span>
                       <span className="text-[10px]">↗</span>
@@ -177,6 +179,7 @@ export default function Projects({ lang }: ProjectsProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="tactile-btn px-3.5 py-1.5 font-bold text-xs gap-1.5 text-[var(--text-primary)]"
+                    aria-label={`${isFa ? "مشاهده آنلاین" : "Live Demo"} — ${isFa ? proj.titleFa : proj.titleEn}`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span>{isFa ? "مشاهده آنلاین" : "Live Demo"}</span>
