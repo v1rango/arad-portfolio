@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import ThemeSwitcher, { ThemeOption } from "@/components/demos/ThemeSwitcher";
 import ShowcaseGuide from "@/components/demos/ShowcaseGuide";
 import SpeedGauge from "@/components/demos/SpeedGauge";
@@ -99,6 +100,8 @@ const DEMO_PRODUCTS: DemoProduct[] = [
 ];
 
 export default function EcommerceShowcaseClient() {
+  const { lang } = useThemeLanguage();
+  const isFa = lang === "fa";
   const [activeTheme, setActiveTheme] = useState("streetwear");
   const [selectedCategory, setSelectedCategory] = useState<string>("همه");
   const [cart, setCart] = useState<{ product: DemoProduct; size: string; color: string; count: number }[]>([]);
@@ -195,10 +198,10 @@ export default function EcommerceShowcaseClient() {
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--border)] text-xs font-semibold hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
           >
             <FiArrowRight className="w-4 h-4 rtl:rotate-180" />
-            <span>بازگشت به سایت اصلی</span>
+            <span>{isFa ? "بازگشت به سایت اصلی" : "Back to Home"}</span>
           </Link>
           <span className="text-xs text-[var(--text-muted)] hidden md:inline">
-            طراحی فروشگاه آنلاین پرسرعت (Headless Commerce)
+            {isFa ? "طراحی فروشگاه آنلاین پرسرعت (Headless Commerce)" : "High-Speed Headless E-Commerce"}
           </span>
         </div>
 
@@ -206,14 +209,14 @@ export default function EcommerceShowcaseClient() {
           themes={ECOMMERCE_THEMES}
           activeTheme={activeTheme}
           onThemeChange={setActiveTheme}
-          lang="fa"
+          lang={lang}
         />
       </div>
 
-            <ShowcaseGuide
+      <ShowcaseGuide
         nicheTitleFa="طراحی فروشگاه آنلاین پرسرعت (Headless Commerce & Fast Checkout)"
         nicheTitleEn="Modern High-Speed Headless E-Commerce"
-        lang="fa"
+        lang={lang}
         keyFeaturesFa={[
           "سبد خرید اسلایدی آنی بدون رفرش صفحه",
           "تغییر لحظه‌ای رنگ و سایز محصولات",
@@ -497,7 +500,7 @@ export default function EcommerceShowcaseClient() {
         </div>
       </div>
 
-            <SpeedGauge lang="fa" />
+      <SpeedGauge lang={lang} />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-3">

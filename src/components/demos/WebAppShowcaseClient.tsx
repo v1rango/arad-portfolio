@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import ThemeSwitcher, { ThemeOption } from "@/components/demos/ThemeSwitcher";
 import ShowcaseGuide from "@/components/demos/ShowcaseGuide";
 import SpeedGauge from "@/components/demos/SpeedGauge";
@@ -53,22 +54,28 @@ const WEBAPP_THEMES: ThemeOption[] = [
 
 interface OrderRow {
   id: string;
-  customer: string;
-  type: string;
+  customerFa: string;
+  customerEn: string;
+  typeFa: string;
+  typeEn: string;
   amount: number;
-  status: "موفق" | "در صف" | "بررسی";
-  time: string;
+  statusFa: "موفق" | "در صف" | "بررسی";
+  statusEn: "Success" | "Queued" | "Review";
+  timeFa: string;
+  timeEn: string;
 }
 
 const DEMO_ROWS: OrderRow[] = [
-  { id: "ORD-9421", customer: "امیرحسین رضایی", type: "اشتراک سازمانی PRO", amount: 4800000, status: "موفق", time: "لحظاتی پیش" },
-  { id: "ORD-9420", customer: "دکتر نیلوفر پارسا", type: "پکیج نوبت‌دهی آنلاین", amount: 2600000, status: "موفق", time: "۴ دقیقه پیش" },
-  { id: "ORD-9419", customer: "شرکت بازرگانی آوید", type: "لایسنس اختصاصی API", amount: 8900000, status: "در صف", time: "۱۸ دقیقه پیش" },
-  { id: "ORD-9418", customer: "استودیو معماری هیراد", type: "فضای ابری اختصاصی", amount: 1500000, status: "موفق", time: "۴۵ دقیقه پیش" },
-  { id: "ORD-9417", customer: "برند پوشاک زروان", type: "افزونه پردازش بلک‌فرایدی", amount: 5200000, status: "بررسی", time: "۱ ساعت پیش" },
+  { id: "ORD-9421", customerFa: "امیرحسین رضایی", customerEn: "Amirhossein Rezaei", typeFa: "اشتراک سازمانی PRO", typeEn: "Enterprise PRO Plan", amount: 4800000, statusFa: "موفق", statusEn: "Success", timeFa: "لحظاتی پیش", timeEn: "Just now" },
+  { id: "ORD-9420", customerFa: "دکتر نیلوفر پارسا", customerEn: "Dr. Niloofar Parsa", typeFa: "پکیج نوبت‌دهی آنلاین", typeEn: "Online Booking Engine", amount: 2600000, statusFa: "موفق", statusEn: "Success", timeFa: "۴ دقیقه پیش", timeEn: "4m ago" },
+  { id: "ORD-9419", customerFa: "شرکت بازرگانی آوید", customerEn: "Avid Trading Co.", typeFa: "لایسنس اختصاصی API", typeEn: "Dedicated API License", amount: 8900000, statusFa: "در صف", statusEn: "Queued", timeFa: "۱۸ دقیقه پیش", timeEn: "18m ago" },
+  { id: "ORD-9418", customerFa: "استودیو معماری هیراد", customerEn: "Hirad Architecture Studio", typeFa: "فضای ابری اختصاصی", typeEn: "Dedicated Cloud Pod", amount: 1500000, statusFa: "موفق", statusEn: "Success", timeFa: "۴۵ دقیقه پیش", timeEn: "45m ago" },
+  { id: "ORD-9417", customerFa: "برند پوشاک زروان", customerEn: "Zarvan Fashion Brand", typeFa: "افزونه پردازش بلک‌فرایدی", typeEn: "High-Load Checkout Engine", amount: 5200000, statusFa: "بررسی", statusEn: "Review", timeFa: "۱ ساعت پیش", timeEn: "1h ago" },
 ];
 
 export default function WebAppShowcaseClient() {
+  const { lang } = useThemeLanguage();
+  const isFa = lang === "fa";
   const [activeTheme, setActiveTheme] = useState("saas");
   const [searchQuery, setSearchQuery] = useState("");
   const [activePeriod, setActivePeriod] = useState<"day" | "week" | "month">("month");
@@ -116,8 +123,10 @@ export default function WebAppShowcaseClient() {
 
   const filteredRows = DEMO_ROWS.filter(
     (r) =>
-      r.customer.includes(searchQuery) ||
-      r.type.includes(searchQuery) ||
+      r.customerFa.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.customerEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.typeFa.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.typeEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
       r.id.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -138,17 +147,17 @@ export default function WebAppShowcaseClient() {
 
   return (
     <div className="space-y-16">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] shadow-xl">
         <div className="flex items-center gap-3">
           <Link
             href="/"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--border)] text-xs font-semibold hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
           >
             <FiArrowRight className="w-4 h-4 rtl:rotate-180" />
-            <span>بازگشت به سایت اصلی</span>
+            <span>{isFa ? "بازگشت به سایت اصلی" : "Back to Home"}</span>
           </Link>
           <span className="text-xs text-[var(--text-muted)] hidden md:inline">
-            طراحی وب‌اپلیکیشن، پنل مدیریت و SaaS
+            {isFa ? "طراحی وب‌اپلیکیشن، پنل مدیریت و SaaS" : "Custom Web Apps, Dashboards & SaaS"}
           </span>
         </div>
 
@@ -156,14 +165,14 @@ export default function WebAppShowcaseClient() {
           themes={WEBAPP_THEMES}
           activeTheme={activeTheme}
           onThemeChange={setActiveTheme}
-          lang="fa"
+          lang={lang}
         />
       </div>
 
-            <ShowcaseGuide
+      <ShowcaseGuide
         nicheTitleFa="طراحی وب‌اپلیکیشن اختصاصی، داشبورد مدیریت و اتوماسیون (Next.js + NestJS)"
         nicheTitleEn="Custom Web Applications, High-Performance Dashboards & Automation"
-        lang="fa"
+        lang={lang}
         keyFeaturesFa={[
           "معماری فوق‌العاده سبک با زمان پاسخ سرور ۴۲ میلی‌ثانیه",
           "جداول داده تعاملی با فیلتر آنی بدون رفرش",
@@ -382,45 +391,45 @@ export default function WebAppShowcaseClient() {
                   />
                 </div>
                 <span className="text-xs text-gray-400 font-mono self-end sm:self-auto">
-                  تعداد یافته‌ها: {filteredRows.length} رکورد
+                  {isFa ? `تعداد یافته‌ها: ${filteredRows.length} رکورد` : `Found: ${filteredRows.length} records`}
                 </span>
               </div>
 
-                            <div className="overflow-x-auto">
-                <table className="w-full text-right text-xs">
+              <div className="overflow-x-auto">
+                <table className={`w-full ${isFa ? "text-right" : "text-left"} text-xs`}>
                   <thead className="bg-white/5 text-gray-400 border-b border-white/10 font-mono">
                     <tr>
-                      <th className="p-3.5">شناسه</th>
-                      <th className="p-3.5">نام مشتری / سازمان</th>
-                      <th className="p-3.5">نوع پلتفرم / سرویس</th>
-                      <th className="p-3.5">مبلغ تراکنش</th>
-                      <th className="p-3.5">وضعیت</th>
-                      <th className="p-3.5">زمان</th>
+                      <th className="p-3.5">{isFa ? "شناسه" : "ID"}</th>
+                      <th className="p-3.5">{isFa ? "نام مشتری / سازمان" : "Client / Organization"}</th>
+                      <th className="p-3.5">{isFa ? "نوع پلتفرم / سرویس" : "Service / Product"}</th>
+                      <th className="p-3.5">{isFa ? "مبلغ تراکنش" : "Amount"}</th>
+                      <th className="p-3.5">{isFa ? "وضعیت" : "Status"}</th>
+                      <th className="p-3.5">{isFa ? "زمان" : "Timestamp"}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5">
                     {filteredRows.map((row) => (
                       <tr key={row.id} className="hover:bg-white/5 transition-colors">
                         <td className="p-3.5 font-mono text-gray-400">{row.id}</td>
-                        <td className="p-3.5 font-bold text-white">{row.customer}</td>
-                        <td className="p-3.5 text-gray-300">{row.type}</td>
+                        <td className="p-3.5 font-bold text-white">{isFa ? row.customerFa : row.customerEn}</td>
+                        <td className="p-3.5 text-gray-300">{isFa ? row.typeFa : row.typeEn}</td>
                         <td className="p-3.5 font-mono text-white font-bold">
-                          {row.amount.toLocaleString("fa-IR")} تومان
+                          {isFa ? `${row.amount.toLocaleString("fa-IR")} تومان` : `${row.amount.toLocaleString()} IRR`}
                         </td>
                         <td className="p-3.5">
                           <span
                             className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                              row.status === "موفق"
+                              row.statusFa === "موفق"
                                 ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"
-                                : row.status === "در صف"
+                                : row.statusFa === "در صف"
                                 ? "bg-amber-500/10 text-amber-400 border border-amber-500/30"
                                 : "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30"
                             }`}
                           >
-                            {row.status}
+                            {isFa ? row.statusFa : row.statusEn}
                           </span>
                         </td>
-                        <td className="p-3.5 text-gray-400 text-[11px]">{row.time}</td>
+                        <td className="p-3.5 text-gray-400 text-[11px] font-mono">{isFa ? row.timeFa : row.timeEn}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -431,7 +440,7 @@ export default function WebAppShowcaseClient() {
         </div>
       </div>
 
-            <SpeedGauge lang="fa" />
+      <SpeedGauge lang={lang} />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-3">

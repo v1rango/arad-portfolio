@@ -13,6 +13,7 @@ import {
   SiBootstrap,
   SiPython,
 } from "react-icons/si";
+import { FiCpu, FiCheck } from "react-icons/fi";
 import { IconType } from "react-icons";
 
 interface SkillsProps {
@@ -20,62 +21,67 @@ interface SkillsProps {
 }
 
 const skillIcons: Record<string, { icon: IconType; color: string }> = {
-  "Next.js": { icon: SiNextdotjs, color: "group-hover:text-white" },
-  TypeScript: { icon: SiTypescript, color: "group-hover:text-[#3178C6]" },
-  MongoDB: { icon: SiMongodb, color: "group-hover:text-[#47A248]" },
-  "Tailwind CSS": { icon: SiTailwindcss, color: "group-hover:text-[#06B6D4]" },
-  "Framer Motion": { icon: SiFramer, color: "group-hover:text-[#0055FF]" },
-  Django: { icon: SiDjango, color: "group-hover:text-[#092E20]" },
-  "Node.js": { icon: SiNodedotjs, color: "group-hover:text-[#5FA04E]" },
-  JavaScript: { icon: SiJavascript, color: "group-hover:text-[#F7DF1E]" },
-  Bootstrap: { icon: SiBootstrap, color: "group-hover:text-[#7952B3]" },
-  Python: { icon: SiPython, color: "group-hover:text-[#3776AB]" },
+  "Next.js": { icon: SiNextdotjs, color: "text-[var(--text-primary)]" },
+  TypeScript: { icon: SiTypescript, color: "text-[var(--text-primary)]" },
+  MongoDB: { icon: SiMongodb, color: "text-[var(--text-primary)]" },
+  "Tailwind CSS": { icon: SiTailwindcss, color: "text-[var(--text-primary)]" },
+  "Framer Motion": { icon: SiFramer, color: "text-[var(--text-primary)]" },
+  Django: { icon: SiDjango, color: "text-[var(--text-primary)]" },
+  "Node.js": { icon: SiNodedotjs, color: "text-[var(--text-primary)]" },
+  JavaScript: { icon: SiJavascript, color: "text-[var(--text-primary)]" },
+  Bootstrap: { icon: SiBootstrap, color: "text-[var(--text-primary)]" },
+  Python: { icon: SiPython, color: "text-[var(--text-primary)]" },
 };
 
 export default function Skills({ lang }: SkillsProps) {
   const isFa = lang === "fa";
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <div className="text-center mb-14">
-        <h2 className="text-2xl sm:text-4xl font-extrabold mb-3" style={{ color: "var(--text-primary)" }}>
-          {isFa ? "ماتریس مهارت‌ها و معماری ارزش‌آفرینی" : "Skill Matrix & Core Architecture"}
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-12 border-t border-[var(--border)]">
+      {/* Header */}
+      <div className="text-center space-y-3">
+        <div className="telemetry-pill">
+          <span className="telemetry-pill-dot" />
+          <FiCpu className="w-3.5 h-3.5 text-[var(--text-secondary)]" />
+          <span>{isFa ? "ماتریس فناوری و زیرساخت" : "Architecture & Tech Stack Matrix"}</span>
+        </div>
+
+        <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[var(--text-primary)]">
+          {isFa ? "مهندسی سیستم‌ها با استاندارد مقیاس‌پذیر جهانی" : "Production-Tested Engineering Stack"}
         </h2>
-        <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto">
+
+        <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
           {isFa
-            ? "ترکیبی دقیق از ابزارهای سطح اول جهانی برای خلق وب‌سایت‌هایی که هرگز قطع نمی‌شوند و در ثانیه‌ای لود می‌شوند."
-            : "An engineered combination of high-speed full-stack development and search/AI generative optimization."}
+            ? "ترکیبی دقیق از مدرن‌ترین فریمورک‌ها برای خلق پلتفرم‌هایی بدون قطعی، با لود زیر ۰.۸ ثانیه و بیشترین بازدهی اقتصادی."
+            : "Precision full-stack stack built for fault tolerance, sub-0.8s execution, and native AI engine discoverability."}
         </p>
       </div>
 
-      
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        
-        <div className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]">
+        {/* Core Stack Card */}
+        <div className="md:col-span-2 architectural-card p-6 sm:p-8 flex flex-col justify-between group rounded-2xl relative">
+          <div className="cad-corner-tl" />
+          <div className="cad-corner-tr">STACK // CORE_RUNTIME</div>
+
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
-                <h3 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
-                  {isFa ? "هسته اصلی توسعه نرم‌افزار و سرعت (Core Stack)" : "Core Development Stack"}
+                <span className="w-2 h-2 rounded-full bg-[var(--text-primary)] animate-pulse" />
+                <h3 className="text-lg font-bold text-[var(--text-primary)]">
+                  {isFa ? "هسته اصلی توسعه نرم‌افزار (Core Runtime)" : "Core Runtime Engine"}
                 </h3>
               </div>
-              <span className="text-xs px-2.5 py-1 rounded-full font-mono border"
-                style={{
-                  backgroundColor: "var(--accent-subtle)",
-                  color: "var(--accent)",
-                  borderColor: "var(--border-hover)",
-                }}
-              >
+              <span className="text-xs px-2.5 py-1 rounded-full font-mono border border-[var(--border)] bg-[var(--bg-elevated)] text-[var(--text-primary)] font-bold">
                 Next.js 16 + React 19
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-xs sm:text-sm leading-relaxed mb-6 text-[var(--text-secondary)]">
               {isFa
                 ? "توسعه وب‌اپلیکیشن‌های ماژولار و سئو-محور با تمرکز بر رندر ترکیبی سرور (RSC)، کشینگ بهینه در حافظه لبه و بدون باگ‌های رایج حافظه."
-                : "Building modular, SEO-first web applications using React Server Components, efficient edge caching, and zero memory leaks."}
+                : "Modular, SEO-first architecture powered by React Server Components, aggressive edge caching, and zero memory leaks."}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -85,23 +91,19 @@ export default function Skills({ lang }: SkillsProps) {
                 return (
                   <div
                     key={skill.name}
-                    className="group p-3 rounded-xl border flex items-center gap-3 transition-all hover:border-[var(--accent)]"
-                    style={{
-                      backgroundColor: "var(--bg-elevated)",
-                      borderColor: "var(--border)",
-                    }}
+                    className="p-3 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] flex items-center gap-3 transition-all hover:border-[var(--text-primary)]"
                   >
                     {Icon && (
                       <Icon
-                        className={`w-6 h-6 text-gray-400 transition-colors ${config.color}`}
+                        className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors flex-shrink-0"
                         title={skill.name}
                         aria-label={skill.name}
                       />
                     )}
-                    <div className="text-left rtl:text-right overflow-hidden">
-                      <div className="text-xs font-semibold flex items-center justify-between gap-1" style={{ color: "var(--text-primary)" }}>
+                    <div className="text-left rtl:text-right overflow-hidden flex-1">
+                      <div className="text-xs font-bold flex items-center justify-between gap-1 text-[var(--text-primary)]">
                         <span>{skill.name}</span>
-                        <span className="text-[10px] font-mono text-[var(--accent)]">{skill.level}</span>
+                        <span className="text-[10px] font-mono text-[var(--text-muted)]">{skill.level}</span>
                       </div>
                       {isFa && skill.simpleFa && (
                         <div className="text-[10px] text-[var(--text-secondary)] mt-0.5 truncate">
@@ -116,105 +118,94 @@ export default function Skills({ lang }: SkillsProps) {
           </div>
         </div>
 
-        
-        <div
-          className="bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent)]"
-          style={{
-            background: "linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-surface) 60%)",
-          }}
-        >
+        {/* AI & AEO Card */}
+        <div className="architectural-card p-6 sm:p-8 flex flex-col justify-between relative rounded-2xl">
+          <div className="cad-corner-tl" />
+          <div className="cad-corner-tr">AEO // KNOWLEDGE_GRAPH</div>
+
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
-              <h3 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
-                {isFa ? "سئو برای موتورهای هوش مصنوعی (AEO & GEO)" : "AI Search Engine Readiness"}
+              <span className="w-2 h-2 rounded-full bg-[var(--text-primary)]" />
+              <h3 className="text-base font-bold text-[var(--text-primary)]">
+                {isFa ? "سئو برای موتورهای هوش مصنوعی (AEO & GEO)" : "Generative Engine Optimization"}
               </h3>
             </div>
-            <p className="text-xs leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-xs leading-relaxed mb-6 text-[var(--text-secondary)]">
               {isFa
-                ? "کدنویسی ساختاریافته به نحوی که وقتی کاربران در ChatGPT، Perplexity یا کلود سوالی می‌پرسند، وب‌سایت شما به عنوان پاسخ مستقیم معرفی شود."
-                : "Tailoring semantic structures for ChatGPT, Perplexity, and Claude using entity graphs and llms.txt standard."}
+                ? "کدنویسی ساختاریافته به نحوی که مدل‌های زبانی ChatGPT، Perplexity و Claude داده‌های شما را به عنوان پاسخ مستقیم نقل کنند."
+                : "Semantic JSON-LD graphs and llms.txt endpoints engineered for citation authority in ChatGPT, Perplexity, and Claude."}
             </p>
 
-            <ul className="space-y-2 text-xs" style={{ color: "var(--text-secondary)" }}>
+            <ul className="space-y-2.5 text-xs text-[var(--text-secondary)] font-mono">
               <li className="flex items-center gap-2">
-                <span className="text-[var(--accent)] font-bold">✓</span>
-                {isFa ? "اسکیماهای چندلایه برای درک ربات‌های هوش مصنوعی" : "Schema.org Multi-Entity Graph"}
+                <FiCheck className="w-3.5 h-3.5 text-[var(--text-primary)] flex-shrink-0" />
+                <span>{isFa ? "اسکیماهای چندلایه Schema.org" : "Schema.org Multi-Entity Graph"}</span>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-[var(--accent)] font-bold">✓</span>
-                {isFa ? "استاندارد رسمی بین‌المللی llms.txt" : "Official llms.txt Compliance"}
+                <FiCheck className="w-3.5 h-3.5 text-[var(--text-primary)] flex-shrink-0" />
+                <span>{isFa ? "استاندارد رسمی llms.txt و llms-full.txt" : "Standard llms.txt & llms-full.txt"}</span>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-[var(--accent)] font-bold">✓</span>
-                {isFa ? "پاسخ مستقیم و نقل‌قول منبع (Featured Snippets)" : "Direct Citation Architecture"}
+                <FiCheck className="w-3.5 h-3.5 text-[var(--text-primary)] flex-shrink-0" />
+                <span>{isFa ? "کپسول‌های پاسخ مستقیم Featured Snippets" : "Direct Citation Answer Capsules"}</span>
               </li>
             </ul>
           </div>
 
-          <div className="mt-6 pt-4 border-t flex items-center justify-between text-[11px] font-mono"
-            style={{
-              borderColor: "var(--border)",
-              color: "var(--accent)",
-            }}
-          >
-            <span>LLM Crawlers Allowed</span>
-            <span>100% Verified</span>
+          <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center justify-between text-[11px] font-mono text-[var(--text-primary)] font-bold">
+            <span>LLM CRAWLERS PERMITTED</span>
+            <span>100% COMPLIANT</span>
           </div>
         </div>
 
-        
-        <div
-          className="bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
-        >
+        {/* 60 FPS Mobile UX Card */}
+        <div className="architectural-card p-6 sm:p-8 flex flex-col justify-between rounded-2xl relative">
+          <div className="cad-corner-tl" />
+          <div className="cad-corner-tr">GPU // 60FPS_UX</div>
+
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <h3 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
-                {isFa ? "اجرای بی‌نهایت روان ۶۰FPS در موبایل" : "60 FPS Mobile UX"}
+              <span className="w-2 h-2 rounded-full bg-[var(--text-primary)]" />
+              <h3 className="text-base font-bold text-[var(--text-primary)]">
+                {isFa ? "رندر ۶۰FPS با شتاب سخت‌افزاری GPU" : "60 FPS GPU-Accelerated UX"}
               </h3>
             </div>
-            <p className="text-xs leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-xs leading-relaxed mb-4 text-[var(--text-secondary)]">
               {isFa
-                ? "حذف هرگونه کُندی، پرش صفحه یا لگ، تا کاربر حتی با گوشی‌های معمولی و ارزان‌قیمت حسی مثل کار با اپلیکیشن‌های آیفون را تجربه کند."
-                : "Zero layout thrashing and pure GPU composited transforms, ensuring smooth 60fps on mid-tier devices."}
+                ? "حذف کامل کدهای مسدودکننده (Render-blocking) و انیمیشن‌های سنگین جاوااسکریپتی برای اجرای بی‌نقص حتی روی گوشی‌های میان‌رده."
+                : "Zero JS runtime overhead for animations; hardware-composited GPU transforms deliver fluid 60fps across mobile browsers."}
             </p>
           </div>
 
-          <div className="p-3 rounded-lg border text-xs font-mono space-y-1"
-            style={{
-              backgroundColor: "var(--bg-elevated)",
-              borderColor: "var(--border)",
-              color: "var(--text-secondary)",
-            }}
-          >
+          <div className="p-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] text-xs font-mono space-y-1.5 text-[var(--text-secondary)]">
             <div className="flex justify-between">
-              <span>{isFa ? "سرعت لود اولیه محتوا (LCP):" : "LCP (Largest Contentful Paint):"}</span>
-              <span className="text-[var(--accent)] font-bold">&lt; 0.8s</span>
+              <span>{isFa ? "سرعت لود اولیه (LCP):" : "LCP Target:"}</span>
+              <span className="text-[var(--text-primary)] font-bold">&lt; 0.8s</span>
             </div>
             <div className="flex justify-between">
-              <span>{isFa ? "ثبات صفحه بدون پرش (CLS):" : "CLS (Cumulative Layout Shift):"}</span>
-              <span className="text-[var(--accent)] font-bold">0.00</span>
+              <span>{isFa ? "ثبات صفحه بدون پرش (CLS):" : "CLS Score:"}</span>
+              <span className="text-[var(--text-primary)] font-bold">0.00</span>
             </div>
           </div>
         </div>
 
-        
-        <div
-          className="md:col-span-2 bento-card p-6 sm:p-8 flex flex-col justify-between group hover:border-[var(--accent)]"
-        >
+        {/* Backend & Data Integrity Card */}
+        <div className="md:col-span-2 architectural-card p-6 sm:p-8 flex flex-col justify-between rounded-2xl relative">
+          <div className="cad-corner-tl" />
+          <div className="cad-corner-tr">BACKEND // CLOUD_RESILIENCE</div>
+
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="w-2.5 h-2.5 rounded-full bg-teal-400"></span>
-              <h3 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
-                {isFa ? "اکوسیستم پایداری داده‌ها و زیرساخت بک‌اند" : "Ecosystem & Backend Infrastructure"}
+              <span className="w-2 h-2 rounded-full bg-[var(--text-primary)]" />
+              <h3 className="text-base font-bold text-[var(--text-primary)]">
+                {isFa ? "اکوسیستم پایداری داده‌ها و زیرساخت بک‌اند" : "Backend Resilience & Scale"}
               </h3>
             </div>
 
-            <p className="text-xs mb-6" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-xs mb-6 text-[var(--text-secondary)] leading-relaxed">
               {isFa
-                ? "بانک‌های اطلاعاتی امن و زیرساخت‌های سروری که در زمان کمپین‌ها و حراجی‌های پربازدید، سایت شما هرگز کرش نکرده یا قطع نشود."
-                : "Proficiency in complementary frameworks and tools for scalable APIs and rock-solid database uptime."}
+                ? "بانک‌های اطلاعاتی امن، مدیریت اتصالات و زیرساخت‌های سروری که در زمان کمپین‌ها و حراجی‌های سنگین هرگز متوقف نمی‌شوند."
+                : "High-throughput APIs, connection pooling, and resilient microservices capable of sustaining traffic surges without degradation."}
             </p>
 
             <div className="flex flex-wrap gap-2.5">
@@ -224,20 +215,16 @@ export default function Skills({ lang }: SkillsProps) {
                 return (
                   <div
                     key={skillName}
-                    className="group flex items-center gap-2 px-3.5 py-2 rounded-lg border transition-all hover:border-[var(--accent)]"
-                    style={{
-                      backgroundColor: "var(--bg-elevated)",
-                      borderColor: "var(--border)",
-                    }}
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] transition-all hover:border-[var(--text-primary)]"
                   >
                     {Icon && (
                       <Icon
-                        className={`w-4 h-4 text-gray-400 transition-colors ${config?.color || ""}`}
+                        className="w-4 h-4 text-[var(--text-secondary)]"
                         title={skillName}
                         aria-label={skillName}
                       />
                     )}
-                    <span className="text-xs font-medium" style={{ color: "var(--text-primary)" }}>
+                    <span className="text-xs font-mono font-medium text-[var(--text-primary)]">
                       {skillName}
                     </span>
                   </div>
@@ -246,15 +233,10 @@ export default function Skills({ lang }: SkillsProps) {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t text-xs"
-            style={{
-              borderColor: "var(--border)",
-              color: "var(--text-muted)",
-            }}
-          >
+          <div className="mt-6 pt-4 border-t border-[var(--border)] text-xs font-mono text-[var(--text-muted)]">
             {isFa
-              ? "امنیت اتصال به درگاه پرداخت بانکی، حفظ اطلاعات کاربران و احراز هویت پیامکی بدون قطعی."
-              : "Complete RESTful APIs architecture, secure DB pooling, and payment gateway integrations."}
+              ? "پشتیبانی از درگاه‌های پرداخت شتاب، وب‌هوک‌های بلادرنگ و احراز هویت دوعاملی سازمانی."
+              : "Direct banking gateway integrations, webhook validation, and enterprise role-based security."}
           </div>
         </div>
 

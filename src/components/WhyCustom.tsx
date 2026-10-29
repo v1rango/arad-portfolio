@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { COMPARISON_DATA } from "@/lib/constants";
-import { FiCheck, FiX, FiAward, FiShield, FiZap, FiPlay, FiRotateCw } from "react-icons/fi";
+import { FiCheck, FiX, FiAward, FiShield, FiZap, FiPlay, FiRotateCw, FiActivity } from "react-icons/fi";
 
 interface WhyCustomProps {
   lang: "fa" | "en";
@@ -19,47 +19,51 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)] relative">
+      <div className="max-w-5xl mx-auto space-y-12">
         
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-subtle)] border border-[var(--border-hover)] text-xs font-semibold text-[var(--accent)] mb-3">
-            <FiShield className="w-3.5 h-3.5" />
-            <span>{isFa ? "مقایسه هوشمندانه قبل از تصمیم‌گیری" : "Informed Decision Making"}</span>
+        {/* Section Header */}
+        <div className="text-center space-y-3">
+          <div className="telemetry-pill">
+            <span className="telemetry-pill-dot" />
+            <FiShield className="w-3.5 h-3.5 text-[var(--text-secondary)]" />
+            <span>{isFa ? "مقایسه هوشمندانه قبل از تصمیم‌گیری" : "Informed Decision Matrix"}</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3" style={{ color: "var(--text-primary)" }}>
+
+          <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-[var(--text-primary)]">
             {isFa ? "چرا وب‌سایت اختصاصی به جای قالب‌های آماده و وردپرس؟" : "Why Custom Next.js Beats Generic WordPress"}
           </h2>
-          <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto">
+
+          <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
             {isFa
-              ? "اگر برای اعتبار برند، فروش مداوم و عدم قطعی ارزش قائلید، تفاوت کیفیت در کدهای زیرساخت نهفته است."
-              : "When brand reputation and sales conversions matter, the technical foundation makes all the difference."}
+              ? "اگر برای اعتبار برند، فروش مداوم و رتبه موتورهای هوش مصنوعی ارزش قائلید، تفاوت اصلی در کدهای زیرساخت نهفته است."
+              : "When brand authority, conversions, and generative AI indexing matter, the architectural foundation makes all the difference."}
           </p>
         </div>
 
-                <div className="mb-14 p-5 sm:p-7 rounded-2xl border bg-[var(--bg-surface)] shadow-2xl relative overflow-hidden"
-          style={{ borderColor: "var(--border)" }}
-        >
-                    <div className="absolute top-0 right-1/4 w-72 h-36 bg-emerald-500/10 blur-[80px] pointer-events-none rounded-full" />
+        {/* Live Speed Duel Benchmark Card */}
+        <div className="architectural-card p-6 sm:p-8 rounded-2xl relative overflow-hidden space-y-6">
+          <div className="cad-corner-tl" />
+          <div className="cad-corner-tr">BENCHMARK // 4G_SIM</div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <div className="flex items-center gap-2.5">
-              <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <FiZap className="w-5 h-5" />
-              </span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] flex items-center justify-center text-[var(--text-primary)]">
+                <FiActivity className="w-5 h-5" />
+              </div>
               <div>
                 <h3 className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                   {isFa ? "شبیه‌ساز زنده سرعت: Next.js اختصاصی در برابر وردپرس" : "Live Speed Duel: Custom Next.js vs Generic WP"}
                 </h3>
-                <p className="text-xs text-[var(--text-secondary)] mt-0.5">
-                  {isFa ? "تست شبیه‌سازی لود واقعی بر روی شبکه موبایل 4G" : "Real-world mobile 4G network simulation benchmark"}
+                <p className="text-xs text-[var(--text-secondary)] font-mono">
+                  {isFa ? "تست شبیه‌سازی لود واقعی بر روی شبکه موبایل 4G" : "Real-world mobile 4G latency benchmark"}
                 </p>
               </div>
             </div>
 
             <button
               onClick={startSimulation}
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-emerald-950 transition-all shadow-lg shadow-emerald-500/20 active:scale-95 cursor-pointer whitespace-nowrap self-start sm:self-auto"
+              className="tactile-btn inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-[var(--text-primary)] text-[var(--bg-primary)] transition-all cursor-pointer whitespace-nowrap self-start sm:self-auto"
             >
               {isSimulating ? (
                 <>
@@ -68,137 +72,131 @@ export default function WhyCustom({ lang }: WhyCustomProps) {
                 </>
               ) : (
                 <>
-                  <FiPlay className="w-3.5 h-3.5 fill-emerald-950" />
-                  <span>{isFa ? "شروع مسابقه سرعت ⚡" : "Start Speed Race ⚡"}</span>
+                  <FiPlay className="w-3.5 h-3.5 fill-current" />
+                  <span>{isFa ? "شروع بنچ‌مارک سرعت" : "Run Speed Test"}</span>
                 </>
               )}
             </button>
           </div>
 
-          <div key={simulationKey} className="space-y-5">
-                        <div className="space-y-2 p-3.5 sm:p-4 rounded-xl bg-[var(--bg-elevated)] border border-emerald-500/30">
+          <div key={simulationKey} className="space-y-4 pt-2">
+            {/* Custom Next.js Platform */}
+            <div className="space-y-2 p-4 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)]">
               <div className="flex items-center justify-between text-xs font-bold">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-emerald-400">{isFa ? "سایت اختصاصی آراد (Next.js 16)" : "Arad Custom Platform (Next.js 16)"}</span>
+                  <span className="w-2 h-2 rounded-full bg-[var(--text-primary)] animate-pulse" />
+                  <span className="text-[var(--text-primary)]">
+                    {isFa ? "سایت اختصاصی آراد وفایی (Next.js 16)" : "Arad Custom Platform (Next.js 16)"}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 font-mono">
-                  <span className="text-[11px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                    Lighthouse: 100/100
+                  <span className="text-[11px] px-2 py-0.5 rounded border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-bold">
+                    LIGHTHOUSE: 100/100
                   </span>
-                  <span className="text-sm font-black text-emerald-400">۰.۵ ثانیه</span>
+                  <span className="text-sm font-black text-[var(--text-primary)]">0.48s</span>
                 </div>
               </div>
-              <div className="w-full h-3 rounded-full bg-black/40 overflow-hidden p-0.5 border border-white/5">
+
+              <div className="w-full h-2.5 rounded-full bg-[var(--bg-surface)] overflow-hidden p-0.5 border border-[var(--border)]">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-300 shadow-[0_0_12px_rgba(16,185,129,0.8)] transition-all duration-500 ease-out"
+                  className="h-full rounded-full bg-[var(--text-primary)] transition-all duration-500 ease-out shadow-[0_0_12px_rgba(255,255,255,0.4)]"
                   style={{ width: "100%" }}
                 />
               </div>
+
               <div className="flex justify-between items-center text-[11px] text-[var(--text-muted)] pt-0.5">
-                <span>Core Web Vitals: تمام شاخص‌ها سبز (Good)</span>
-                <span className="text-emerald-400 font-semibold">لود لحظه‌ای بدون معطلی</span>
+                <span className="font-mono">CORE WEB VITALS: 100% GREEN METRICS</span>
+                <span className="text-[var(--text-primary)] font-semibold font-mono">SUB-0.5s INSTANT</span>
               </div>
             </div>
 
-                        <div className="space-y-2 p-3.5 sm:p-4 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)]">
+            {/* Generic WordPress */}
+            <div className="space-y-2 p-4 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)] opacity-85">
               <div className="flex items-center justify-between text-xs font-bold">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
-                  <span className="text-[var(--text-secondary)]">{isFa ? "قالب‌های آماده وردپرس + المنتور" : "Generic WordPress + Heavy Plugins"}</span>
+                  <span className="w-2 h-2 rounded-full bg-red-400" />
+                  <span className="text-[var(--text-secondary)]">
+                    {isFa ? "قالب‌های آماده وردپرس + المنتور و افزونه‌ها" : "Generic WordPress + Heavy Plugins"}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 font-mono">
-                  <span className="text-[11px] px-2 py-0.5 rounded bg-rose-500/15 text-rose-400 border border-rose-500/30">
-                    Lighthouse: 42/100
+                  <span className="text-[11px] px-2 py-0.5 rounded border border-red-500/20 bg-red-500/10 text-red-400 font-bold">
+                    LIGHTHOUSE: 42/100
                   </span>
-                  <span className="text-sm font-black text-rose-400">۴.۲ ثانیه</span>
+                  <span className="text-sm font-black text-red-400">4.20s</span>
                 </div>
               </div>
-              <div className="w-full h-3 rounded-full bg-black/40 overflow-hidden p-0.5 border border-white/5">
+
+              <div className="w-full h-2.5 rounded-full bg-[var(--bg-surface)] overflow-hidden p-0.5 border border-[var(--border)]">
                 <div
-                  className={`h-full rounded-full bg-gradient-to-r from-rose-500 to-amber-500 transition-all ${
+                  className={`h-full rounded-full bg-red-500/70 transition-all ${
                     isSimulating ? "duration-[3500ms] ease-linear" : "duration-700 ease-out"
                   }`}
                   style={{ width: isSimulating ? "100%" : "25%" }}
                 />
               </div>
+
               <div className="flex justify-between items-center text-[11px] text-[var(--text-muted)] pt-0.5">
-                <span className="text-rose-400/90">۳.۷ ثانیه اتلاف وقت کاربر = از دست رفتن ۵۳٪ مشتریان</span>
-                <span className="text-rose-400 font-mono">۷.۸× کندتر</span>
+                <span className="text-red-400/80">3.7s delay = ~53% mobile visitor drop-off</span>
+                <span className="text-red-400 font-mono font-bold">8.7× SLOWER</span>
               </div>
             </div>
           </div>
         </div>
 
-                <div className="bento-card overflow-hidden shadow-xl">
-                    <div className="grid grid-cols-12 p-4 sm:p-6 border-b text-xs sm:text-sm font-bold items-center"
-            style={{
-              backgroundColor: "var(--bg-elevated)",
-              borderColor: "var(--border)",
-            }}
-          >
-            <div className="col-span-5 sm:col-span-4" style={{ color: "var(--text-secondary)" }}>
-              {isFa ? "شاخص‌های حیاتی" : "Core Factor"}
+        {/* Detailed Comparison Matrix Card */}
+        <div className="architectural-card rounded-2xl overflow-hidden relative">
+          <div className="cad-corner-tl" />
+          <div className="cad-corner-tr">SPEC // COMPARISON</div>
+
+          <div className="grid grid-cols-12 p-4 sm:p-5 border-b border-[var(--border)] bg-[var(--bg-elevated)] text-xs font-mono font-bold items-center">
+            <div className="col-span-5 sm:col-span-4 text-[var(--text-muted)]">
+              {isFa ? "شاخص مهندسی" : "ENGINEERING CRITERION"}
             </div>
-            <div className="col-span-7 sm:col-span-4 flex items-center gap-1.5 text-[var(--accent)] font-extrabold">
+            <div className="col-span-7 sm:col-span-4 flex items-center gap-1.5 text-[var(--text-primary)] font-black">
               <FiAward className="w-4 h-4 flex-shrink-0" />
-              <span>{isFa ? "وب‌سایت اختصاصی (Next.js 16)" : "Custom Next.js 16"}</span>
+              <span>{isFa ? "معماری اختصاصی (NEXT.JS 16)" : "CUSTOM ARCHITECTURE"}</span>
             </div>
-            <div className="hidden sm:block sm:col-span-4 text-[var(--text-muted)] font-medium">
-              {isFa ? "قالب‌های آماده و وردپرس سنتی" : "Generic WordPress / Templates"}
+            <div className="hidden sm:block sm:col-span-4 text-[var(--text-muted)]">
+              {isFa ? "سایت‌های معمولی و وردپرس" : "GENERIC WORDPRESS"}
             </div>
           </div>
 
-                    <div className="divide-y" style={{ borderColor: "var(--border)" }}>
+          <div className="divide-y divide-[var(--border)]">
             {COMPARISON_DATA.map((item, idx) => (
               <div
                 key={idx}
-                className="grid grid-cols-12 p-4 sm:p-5 text-xs sm:text-sm items-center hover:bg-[var(--accent-subtle)]/30 transition-colors"
+                className="grid grid-cols-12 p-4 sm:p-5 text-xs items-center hover:bg-[var(--bg-elevated)] transition-colors"
               >
-                <div className="col-span-12 sm:col-span-4 font-semibold mb-2 sm:mb-0" style={{ color: "var(--text-primary)" }}>
+                <div className="col-span-12 sm:col-span-4 font-bold mb-2 sm:mb-0 text-[var(--text-primary)]">
                   {isFa ? item.featureFa : item.featureEn}
                 </div>
 
-                <div className="col-span-12 sm:col-span-4 flex items-center gap-2 text-[var(--accent)] font-medium mb-1.5 sm:mb-0">
-                  <span className="sm:hidden text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 font-bold border border-emerald-500/30 whitespace-nowrap">
-                    {isFa ? "اختصاصی" : "Next.js"}
-                  </span>
-                  <FiCheck className="w-4 h-4 flex-shrink-0 text-[var(--accent)]" />
+                <div className="col-span-12 sm:col-span-4 flex items-center gap-2 text-[var(--text-primary)] font-semibold mb-1.5 sm:mb-0">
+                  <FiCheck className="w-4 h-4 flex-shrink-0 text-[var(--text-primary)]" />
                   <span>{isFa ? item.customFa : item.customEn}</span>
                 </div>
 
                 <div className="col-span-12 sm:col-span-4 flex items-center gap-2 text-[var(--text-muted)] text-[11px] sm:text-xs">
-                  <span className="sm:hidden text-[10px] px-2 py-0.5 rounded-md bg-rose-500/15 text-rose-400 font-bold border border-rose-500/30 whitespace-nowrap">
-                    {isFa ? "وردپرس" : "WP"}
-                  </span>
-                  <FiX className="w-4 h-4 flex-shrink-0 text-rose-500/70" />
+                  <FiX className="w-4 h-4 flex-shrink-0 text-red-400/80" />
                   <span>{isFa ? item.standardFa : item.standardEn}</span>
                 </div>
               </div>
             ))}
           </div>
 
-                    <div className="p-4 sm:p-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4"
-            style={{
-              backgroundColor: "var(--bg-elevated)",
-              borderColor: "var(--border)",
-            }}
-          >
-            <div className="text-xs text-center sm:text-right" style={{ color: "var(--text-secondary)" }}>
+          <div className="p-5 sm:p-6 border-t border-[var(--border)] bg-[var(--bg-elevated)] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-xs text-center sm:text-right rtl:sm:text-right ltr:sm:text-left text-[var(--text-secondary)]">
               {isFa
-                ? "💡 یک ثانیه کاهش زمان لود سایت، نرخ تبدیل و فروش شما را تا ۷٪ افزایش می‌دهد."
-                : "💡 Every 1-second improvement in load time increases conversion rates by up to 7%."}
+                ? "کاهش ۱ ثانیه زمان لود، نرخ تبدیل و رضایت مشتریان را به صورت مستقیم تا ۷٪ افزایش می‌دهد."
+                : "Every 1-second improvement in response time drives direct conversion increases by up to 7%."}
             </div>
 
             <a
-              href="#contact"
-              className="px-6 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 whitespace-nowrap"
-              style={{
-                backgroundColor: "var(--accent)",
-                color: "var(--accent-contrast)",
-              }}
+              href="/contact"
+              className="tactile-btn px-6 py-2.5 rounded-xl text-xs font-bold bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-all whitespace-nowrap"
             >
-              {isFa ? "سفارش سایت اختصاصی پرسرعت" : "Build Your Custom Platform"}
+              {isFa ? "درخواست پیاده‌سازی اختصاصی" : "Engineer Your Custom Platform"}
             </a>
           </div>
         </div>

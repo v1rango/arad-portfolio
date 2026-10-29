@@ -9,8 +9,8 @@ const vazirmatn = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "آراد وفایی | پورتفولیو توسعه‌دهنده فول‌استک & متخصص سئو نوین",
-  description: "پورتفولیو رسمی آراد وفایی - توسعه‌دهنده فول‌استک Next.js 16، NestJS و معمار سئوی نوین (AEO/GEO)",
+  title: "Arad Vafaee | Full-Stack Engineer & Modern Web Architect",
+  description: "Official portfolio of Arad Vafaee — Next.js 16 Full-Stack Engineer, AI Automation, Sub-0.8s Performance & Modern AEO/GEO SEO Architect",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
@@ -30,15 +30,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" data-theme="dark" className={`${vazirmatn.variable}`}>
+    <html lang="en" dir="ltr" data-theme="dark" className={`${vazirmatn.variable}`}>
       <head>
-                <script
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
                 var t = localStorage.getItem('portfolio-theme');
                 if (t === 'light' || t === 'dark') {
                   document.documentElement.setAttribute('data-theme', t);
+                } else if (window.matchMedia) {
+                  var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                }
+                var l = localStorage.getItem('portfolio-lang');
+                if (l === 'fa' || l === 'en') {
+                  document.documentElement.setAttribute('lang', l);
+                  document.documentElement.setAttribute('dir', l === 'fa' ? 'rtl' : 'ltr');
+                } else {
+                  document.documentElement.setAttribute('lang', 'en');
+                  document.documentElement.setAttribute('dir', 'ltr');
                 }
               } catch(e) {}
             `,
@@ -46,11 +57,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased selection:bg-[var(--accent)] selection:text-white">
-                <a
+        <a
           href="#hero"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:right-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-emerald-500 focus:text-white focus:rounded-lg focus:font-bold"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:right-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--text-primary)] focus:text-[var(--bg-primary)] focus:rounded-lg focus:font-bold"
         >
-          رفتن به محتوای اصلی
+          Skip to main content
         </a>
         <ThemeLanguageProvider>
           {children}

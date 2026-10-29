@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FAQ_LIST } from "@/lib/constants";
+import { FiHelpCircle } from "react-icons/fi";
 
 interface FAQProps {
   lang: "fa" | "en";
@@ -21,44 +22,48 @@ export default function FAQ({ lang }: FAQProps) {
   const hiddenCount = FAQ_LIST.length - INITIAL_VISIBLE_COUNT;
 
   return (
-    <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20">
+    <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]/20 relative">
       <div className="max-w-4xl mx-auto">
+        
+        {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-4" style={{ color: "var(--text-primary)" }}>
-            {isFa ? "پرسش‌های پرتکرار (AEO Direct Answers)" : "Frequently Asked Questions"}
+          <div className="telemetry-pill mb-3">
+            <FiHelpCircle className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span>{isFa ? "پاسخ مستقیم AEO به پرسش‌های کلیدی" : "DIRECT_KNOWLEDGE // AEO_CAPSULES"}</span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
+            {isFa ? "پرسش‌های پرتکرار فنی و پروژه‌ای" : "Frequently Asked Questions & Technical FAQ"}
           </h2>
-          <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: "var(--text-secondary)" }}>
+          <p className="text-xs sm:text-sm max-w-2xl mx-auto mt-2 text-[var(--text-secondary)]">
             {isFa
               ? "پاسخ‌های شفاف و مستقیم به پرسش‌های کلیدی درباره خدمات، تکنولوژی‌ها و بهینه‌سازی AI."
-              : "Direct answers to key questions regarding services, tech stack, and AI optimization."}
+              : "Clear answers to essential architecture, pricing, delivery timelines, and AI optimization inquiries."}
           </p>
         </div>
 
+        {/* Accordion List */}
         <div className="space-y-4">
-          {visibleFaqs.map((faq) => {
+          {visibleFaqs.map((faq, index) => {
             const isOpen = openId === faq.id;
             return (
               <div
                 key={faq.id}
-                className="bento-card overflow-hidden transition-colors"
+                className="architectural-card transition-all relative overflow-hidden"
               >
                 <button
                   onClick={() => toggleItem(faq.id)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
                   id={`faq-question-${faq.id}`}
-                  className="w-full text-right rtl:text-right ltr:text-left p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base hover:text-[var(--accent)] transition-colors cursor-pointer"
-                  style={{ color: "var(--text-primary)" }}
+                  className="w-full text-right rtl:text-right ltr:text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base hover:text-[var(--accent)] transition-colors cursor-pointer text-[var(--text-primary)]"
                 >
+                  <span className="font-mono text-xs text-[var(--text-muted)] shrink-0">
+                    {`0${index + 1}`}
+                  </span>
                   <h3 className="font-bold text-sm sm:text-base text-inherit m-0 p-0 flex-1">
                     {isFa ? faq.qFa : faq.qEn}
                   </h3>
-                  <span className="text-lg text-[var(--accent)] font-mono w-6 h-6 flex items-center justify-center rounded-md border transition-transform duration-200"
-                    style={{
-                      backgroundColor: "var(--bg-elevated)",
-                      borderColor: "var(--border)",
-                    }}
-                  >
+                  <span className="text-base text-[var(--accent)] font-mono w-7 h-7 flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] transition-transform duration-200 shrink-0">
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
@@ -74,12 +79,7 @@ export default function FAQ({ lang }: FAQProps) {
                   }}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-6 pb-6 text-xs sm:text-sm leading-relaxed border-t pt-4"
-                      style={{
-                        borderColor: "var(--border)",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
+                    <div className="px-6 pb-6 text-xs sm:text-sm leading-relaxed border-t border-[var(--border)] pt-4 text-[var(--text-secondary)]">
                       {isFa ? faq.aFa : faq.aEn}
                     </div>
                   </div>
@@ -89,16 +89,12 @@ export default function FAQ({ lang }: FAQProps) {
           })}
         </div>
 
+        {/* Show More Button */}
         {hiddenCount > 0 && (
           <div className="mt-8 text-center">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 rounded-xl border text-xs sm:text-sm font-semibold transition-all duration-200 hover:border-[var(--accent)] hover:text-[var(--accent)] cursor-pointer inline-flex items-center gap-2"
-              style={{
-                borderColor: "var(--border)",
-                backgroundColor: "var(--bg-elevated)",
-                color: "var(--text-primary)",
-              }}
+              className="tactile-btn px-6 py-3 text-xs sm:text-sm font-semibold gap-2 cursor-pointer shadow-sm"
             >
               {showAll ? (
                 <span>{isFa ? "بستن پرسش‌های اضافه ↑" : "Show Less ↑"}</span>
@@ -112,7 +108,8 @@ export default function FAQ({ lang }: FAQProps) {
             </button>
           </div>
         )}
+
       </div>
     </section>
   );
-}
+}

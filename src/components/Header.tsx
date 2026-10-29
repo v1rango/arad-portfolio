@@ -98,13 +98,13 @@ export default function Header({
   }, [isOpen]);
 
   const navLinks = [
-    { href: "/#hero", labelFa: "خانه", labelEn: "Home" },
-    { href: "/#services", labelFa: "خدمات", labelEn: "Services" },
-    { href: "/#projects", labelFa: "پروژه‌ها", labelEn: "Projects" },
+    { href: "/", labelFa: "خانه", labelEn: "Home" },
+    { href: "/services", labelFa: "خدمات", labelEn: "Services" },
+    { href: "/case-studies", labelFa: "پروژه‌ها", labelEn: "Case Studies" },
+    { href: "/about", labelFa: "درباره و روش کار", labelEn: "About" },
+    { href: "/estimator", labelFa: "برآورد هزینه", labelEn: "Estimator" },
     { href: "/blog", labelFa: "وبلاگ", labelEn: "Blog" },
-    { href: "/#estimator", labelFa: "برآورد هزینه", labelEn: "Estimator" },
-    { href: "/case-studies/arad-gallery", labelFa: "روش کار", labelEn: "Workflow" },
-    { href: "/#contact", labelFa: "تماس", labelEn: "Contact" },
+    { href: "/contact", labelFa: "تماس", labelEn: "Contact" },
   ];
 
   return (
@@ -165,15 +165,15 @@ export default function Header({
                         <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDemosOpen((prev) => !prev)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 active:scale-95 transition-all select-none cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)] text-xs font-bold hover:border-[var(--text-secondary)] active:scale-95 transition-all select-none cursor-pointer"
                 aria-expanded={isDemosOpen}
                 aria-label={lang === "fa" ? "مشاهده دموهای زنده" : "View Live Demos"}
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[var(--text-primary)] animate-pulse" />
                 <span>{lang === "fa" ? "خدمات و دموهای زنده" : "Live Demos & Services"}</span>
                 <FiChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    isDemosOpen ? "rotate-180 text-emerald-300" : "text-emerald-400/70"
+                    isDemosOpen ? "rotate-180 text-[var(--text-primary)]" : "text-[var(--text-secondary)]"
                   }`}
                 />
               </button>
@@ -287,15 +287,15 @@ export default function Header({
               aria-label={theme === "dark" ? (lang === "fa" ? "سوییچ به حالت روشن" : "Switch to light theme") : (lang === "fa" ? "سوییچ به حالت تاریک" : "Switch to dark theme")}
             >
               {theme === "dark" ? (
-                <FiSun className="w-4 h-4 text-amber-400" />
+                <FiSun className="w-4 h-4 text-amber-300" />
               ) : (
-                <FiMoon className="w-4 h-4 text-emerald-600" />
+                <FiMoon className="w-4 h-4 text-zinc-800" />
               )}
             </button>
 
             <button
               onClick={handleToggleLang}
-              className="px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all hover:border-[var(--accent)] hover:scale-105 active:scale-95 cursor-pointer"
+              className="px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all hover:border-[var(--accent)] hover:scale-105 active:scale-95 cursor-pointer font-mono"
               style={{
                 borderColor: "var(--border)",
                 backgroundColor: "var(--bg-surface)",
@@ -303,22 +303,22 @@ export default function Header({
               }}
               aria-label="تغییر زبان / Change Language"
             >
-              {lang === "fa" ? "English" : "فارسی"}
+              {lang === "fa" ? "EN" : "فا"}
             </button>
             
             <Link
-              href="/#contact"
-              className="px-4 py-2 text-sm font-bold rounded-xl transition-all shadow-md hover:shadow-emerald-500/20 hover:scale-[1.02] active:scale-95"
+              href="/contact"
+              className="px-4 py-2 text-sm font-bold rounded-xl transition-all shadow-md hover:scale-[1.02] active:scale-95"
               style={{
                 backgroundColor: "var(--accent)",
                 color: "var(--accent-contrast)",
               }}
             >
-              {lang === "fa" ? "شروع پروژه" : "Let's Talk"}
+              {lang === "fa" ? "شروع پروژه" : "Book Project"}
             </Link>
           </div>
 
-                    <div className="flex md:hidden items-center gap-2">
+          <div className="flex md:hidden items-center gap-2">
             <button
               onClick={handleToggleTheme}
               className="p-2.5 rounded-xl border cursor-pointer active:scale-90 transition-transform"
@@ -330,9 +330,9 @@ export default function Header({
               aria-label={theme === "dark" ? (lang === "fa" ? "سوییچ به حالت روشن" : "Switch to light theme") : (lang === "fa" ? "سوییچ به حالت تاریک" : "Switch to dark theme")}
             >
               {theme === "dark" ? (
-                <FiSun className="w-4 h-4 text-amber-400" />
+                <FiSun className="w-4 h-4 text-amber-300" />
               ) : (
-                <FiMoon className="w-4 h-4 text-emerald-600" />
+                <FiMoon className="w-4 h-4 text-zinc-800" />
               )}
             </button>
 
@@ -473,7 +473,7 @@ export default function Header({
           </div>
 
           <Link
-            href="/#contact"
+            href="/contact"
             onClick={() => setIsOpen(false)}
             className="mt-3 w-full text-center py-3 text-sm font-extrabold rounded-xl shadow-lg transition-all active:scale-95"
             style={{

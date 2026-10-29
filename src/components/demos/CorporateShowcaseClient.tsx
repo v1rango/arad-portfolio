@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import ThemeSwitcher, { ThemeOption } from "@/components/demos/ThemeSwitcher";
 import ShowcaseGuide from "@/components/demos/ShowcaseGuide";
 import SpeedGauge from "@/components/demos/SpeedGauge";
@@ -48,6 +49,8 @@ const CORPORATE_THEMES: ThemeOption[] = [
 ];
 
 export default function CorporateShowcaseClient() {
+  const { lang } = useThemeLanguage();
+  const isFa = lang === "fa";
   const [activeTheme, setActiveTheme] = useState("gold");
   const [bookingStep, setBookingStep] = useState<"form" | "confirmed">("form");
   const [selectedService, setSelectedService] = useState("پوست و لیزر");
@@ -116,7 +119,7 @@ export default function CorporateShowcaseClient() {
             <span>بازگشت به سایت اصلی</span>
           </Link>
           <span className="text-xs text-[var(--text-muted)] hidden md:inline">
-            طراحی اختصاصی سایت شرکتی و کلینیک‌ها
+            {isFa ? "طراحی اختصاصی سایت شرکتی و کلینیک‌ها" : "Custom Corporate & Medical Clinic Systems"}
           </span>
         </div>
 
@@ -124,14 +127,14 @@ export default function CorporateShowcaseClient() {
           themes={CORPORATE_THEMES}
           activeTheme={activeTheme}
           onThemeChange={setActiveTheme}
-          lang="fa"
+          lang={lang}
         />
       </div>
 
-            <ShowcaseGuide
+      <ShowcaseGuide
         nicheTitleFa="طراحی سایت شرکتی، هلدینگ‌ها و کلینیک‌های زیبایی"
         nicheTitleEn="Corporate, Law Firms & Medical Aesthetic Clinics"
-        lang="fa"
+        lang={lang}
         keyFeaturesFa={[
           "سرعت لود ۰.۸ ثانیه و بدون لودینگ سفید",
           "فرم رزرواسیون آنلاین بدون رفرش صفحه",
@@ -309,11 +312,13 @@ export default function CorporateShowcaseClient() {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] text-gray-300 mb-1">نام و نام‌خانوادگی:</label>
+                      <label className="block text-[11px] text-gray-300 mb-1">
+                        {isFa ? "نام و نام‌خانوادگی:" : "Full Name & Title:"}
+                      </label>
                       <input
                         type="text"
                         required
-                        placeholder="مثال: دکتر علیرضا نادری"
+                        placeholder={isFa ? "مثال: دکتر علیرضا نادری" : "e.g. Dr. Alireza Naderi"}
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
                         className="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-xs text-white focus:outline-none focus:border-amber-400"
@@ -321,11 +326,13 @@ export default function CorporateShowcaseClient() {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] text-gray-300 mb-1">شماره تماس (جهت تایید):</label>
+                      <label className="block text-[11px] text-gray-300 mb-1">
+                        {isFa ? "شماره تماس (جهت تایید):" : "Phone (for confirmation):"}
+                      </label>
                       <input
                         type="tel"
                         required
-                        placeholder="۰۹۱۲۳۴۵۶۷۸۹"
+                        placeholder="09123456789"
                         value={clientPhone}
                         onChange={(e) => setClientPhone(e.target.value)}
                         className="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-xs text-white focus:outline-none focus:border-amber-400 text-left"
@@ -338,13 +345,15 @@ export default function CorporateShowcaseClient() {
                         type="submit"
                         className={`w-full py-2.5 rounded-xl font-bold text-xs transition-transform active:scale-95 ${themeStyles.accentBg} text-black shadow-lg flex items-center justify-center gap-1.5`}
                       >
-                        <span>ثبت و تایید نوبت آنلاین</span>
-                        <FiChevronLeft className="w-4 h-4" />
+                        <span>{isFa ? "ثبت و تایید نوبت آنلاین" : "Confirm Online Booking"}</span>
+                        <FiChevronLeft className="w-4 h-4 rtl:rotate-0 ltr:rotate-180" />
                       </button>
                     </div>
 
                     <p className="text-[10px] text-gray-400 text-center">
-                      🔒 ثبت اطلاعات با رمزنگاری سروری و ارسال آنی پیامک تایید
+                      {isFa
+                        ? "🔒 ثبت اطلاعات با رمزنگاری سروری و ارسال آنی پیامک تایید"
+                        : "🔒 Server-side encrypted submission with instant SMS notification"}
                     </p>
                   </form>
                 ) : (
@@ -353,10 +362,21 @@ export default function CorporateShowcaseClient() {
                       <FiCheck />
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm text-white">نوبت با موفقیت ثبت شد!</h4>
+                      <h4 className="font-bold text-sm text-white">
+                        {isFa ? "نوبت با موفقیت ثبت شد!" : "Appointment Confirmed!"}
+                      </h4>
                       <p className="text-xs text-gray-300 mt-1">
-                        آقای/خانم <span className="font-bold text-white">{clientName}</span>، پیامک تایید نوبت برای خدمت{" "}
-                        <span className={themeStyles.accent}>{selectedService}</span> برای شماره {clientPhone} ارسال گردید.
+                        {isFa ? (
+                          <>
+                            آقای/خانم <span className="font-bold text-white">{clientName}</span>، پیامک تایید نوبت برای خدمت{" "}
+                            <span className={themeStyles.accent}>{selectedService}</span> برای شماره {clientPhone} ارسال گردید.
+                          </>
+                        ) : (
+                          <>
+                            Confirmation SMS for <span className="font-bold text-white">{clientName}</span> regarding{" "}
+                            <span className={themeStyles.accent}>{selectedService}</span> was sent to {clientPhone}.
+                          </>
+                        )}
                       </p>
                     </div>
                     <button
@@ -367,7 +387,7 @@ export default function CorporateShowcaseClient() {
                       }}
                       className="px-4 py-1.5 rounded-xl border border-white/20 text-xs text-gray-300 hover:text-white"
                     >
-                      ثبت نوبت آزمایشی جدید
+                      {isFa ? "ثبت نوبت آزمایشی جدید" : "Book Another Demo Appointment"}
                     </button>
                   </div>
                 )}
@@ -377,7 +397,7 @@ export default function CorporateShowcaseClient() {
         </div>
       </div>
 
-            <SpeedGauge lang="fa" />
+      <SpeedGauge lang={lang} />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl border bg-[var(--bg-surface)] border-[var(--border)] space-y-3">

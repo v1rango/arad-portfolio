@@ -18,25 +18,52 @@ const ThemeLanguageContext = createContext<ThemeLanguageContextType | undefined>
 
 export function ThemeLanguageProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("dark");
-  const [lang, setLangState] = useState<Language>("fa");
+  const [lang, setLangState] = useState<Language>("en");
 
   useEffect(() => {
-    queueMicrotask(() => {
-      try {
-        const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
-        if (savedTheme === "light" || savedTheme === "dark") {
-          setThemeState(savedTheme);
-          document.documentElement.setAttribute("data-theme", savedTheme);
-        }
+    try {
+      // 1. Language: Default to "en" unless user previously stored a choice
+      const savedLang = localStorage.getItem("portfolio-lang") as Language | null;
+      if (savedLang === "fa" || savedLang === "en") {
+        setLangState(savedLang);
+        document.documentElement.setAttribute("lang", savedLang);
+        document.documentElement.setAttribute("dir", savedLang === "fa" ? "rtl" : "ltr");
+      } else {
+        setLangState("en");
+        document.documentElement.setAttribute("lang", "en");
+        document.documentElement.setAttribute("dir", "ltr");
+      }
 
-        const savedLang = localStorage.getItem("portfolio-lang") as Language | null;
-        if (savedLang === "fa" || savedLang === "en") {
-          setLangState(savedLang);
-          document.documentElement.setAttribute("lang", savedLang);
-          document.documentElement.setAttribute("dir", savedLang === "fa" ? "rtl" : "ltr");
-        }
-      } catch {}
-    });
+      // 2. Theme: Follow device preference (prefers-color-scheme) by default
+      const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
+      if (savedTheme === "light" || savedTheme === "dark") {
+        setThemeState(savedTheme);
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } else if (typeof window !== "undefined" && window.matchMedia) {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const systemTheme: Theme = prefersDark ? "dark" : "light";
+        setThemeState(systemTheme);
+        document.documentElement.setAttribute("data-theme", systemTheme);
+      }
+    } catch {}
+
+    // 3. Dynamic listener: update theme when user changes system appearance (unless manual override is saved)
+    if (typeof window !== "undefined" && window.matchMedia) {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+        try {
+          const hasManualOverride = localStorage.getItem("portfolio-theme");
+          if (!hasManualOverride) {
+            const nextTheme: Theme = e.matches ? "dark" : "light";
+            setThemeState(nextTheme);
+            document.documentElement.setAttribute("data-theme", nextTheme);
+          }
+        } catch {}
+      };
+
+      mediaQuery.addEventListener("change", handleSystemThemeChange);
+      return () => mediaQuery.removeEventListener("change", handleSystemThemeChange);
+    }
   }, []);
 
   const setTheme = (newTheme: Theme) => {
@@ -89,7 +116,7 @@ export function useThemeLanguage() {
       theme: "dark" as Theme,
       setTheme: () => {},
       toggleTheme: () => {},
-      lang: "fa" as Language,
+      lang: "en" as Language,
       setLang: () => {},
       toggleLang: () => {},
     };

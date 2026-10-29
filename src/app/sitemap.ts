@@ -28,6 +28,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 1.0,
     },
+    {
+      url: `${SITE_URL}/services`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.95,
+    },
+    {
+      url: `${SITE_URL}/case-studies`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/about`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/estimator`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${SITE_URL}/contact`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
     ...services.map((slug) => ({
       url: `${SITE_URL}/services/${slug}`,
       lastModified: now,

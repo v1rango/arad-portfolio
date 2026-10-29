@@ -1,5 +1,6 @@
 "use client";
 
+import { useThemeLanguage } from "@/context/ThemeLanguageContext";
 import { PERSONAL_DATA } from "@/lib/constants";
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTelegram, FaInstagram, FaWhatsapp, FaPhone, FaArrowUp } from "react-icons/fa";
@@ -8,8 +9,10 @@ interface FooterProps {
   lang?: "fa" | "en";
 }
 
-export default function Footer({ lang = "fa" }: FooterProps) {
-  const isFa = lang === "fa";
+export default function Footer({ lang }: FooterProps) {
+  const { lang: ctxLang } = useThemeLanguage();
+  const activeLang = lang || ctxLang || "en";
+  const isFa = activeLang === "fa";
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -34,14 +37,14 @@ export default function Footer({ lang = "fa" }: FooterProps) {
         
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/20">
+            <div className="w-10 h-10 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] flex items-center justify-center font-bold text-base shadow-lg">
               AV
             </div>
             <div>
               <span className="text-lg font-bold block" style={{ color: "var(--text-primary)" }}>
                 {isFa ? PERSONAL_DATA.nameFa : PERSONAL_DATA.nameEn}
               </span>
-              <p className="text-xs font-medium text-[var(--accent)]">
+              <p className="text-xs font-medium text-[var(--text-secondary)]">
                 {isFa ? PERSONAL_DATA.roleFa : PERSONAL_DATA.roleEn}
               </p>
             </div>
@@ -54,42 +57,42 @@ export default function Footer({ lang = "fa" }: FooterProps) {
         
         <div className="space-y-3">
           <p className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)" }}>
-            {isFa ? "دسترسی سریع" : "Quick Links"}
+            {isFa ? "صفحات اصلی" : "Main Navigation"}
           </p>
           <ul className="space-y-2 text-xs">
             <li>
-              <Link href="/#hero" className="hover:text-[var(--accent)] transition-colors">
+              <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">
                 {isFa ? "صفحه اصلی" : "Home"}
               </Link>
             </li>
             <li>
-              <Link href="/#services" className="hover:text-[var(--accent)] transition-colors">
-                {isFa ? "خدمات مهندسی" : "Services"}
+              <Link href="/services" className="hover:text-[var(--text-primary)] transition-colors">
+                {isFa ? "خدمات تخصصی مهندسی" : "Specialized Services"}
               </Link>
             </li>
             <li>
-              <Link href="/#projects" className="hover:text-[var(--accent)] transition-colors">
-                {isFa ? "پروژه‌ها" : "Projects"}
+              <Link href="/case-studies" className="hover:text-[var(--text-primary)] transition-colors">
+                {isFa ? "مطالعات موردی و پروژه‌ها" : "Case Studies & Work"}
               </Link>
             </li>
             <li>
-              <Link href="/blog" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
-                {isFa ? "وبلاگ و مقالات تخصصی" : "Engineering Blog"}
+              <Link href="/about" className="hover:text-[var(--text-primary)] transition-colors">
+                {isFa ? "درباره و روش کار" : "About & Methodology"}
               </Link>
             </li>
             <li>
-              <Link href="/case-studies/arad-gallery" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
-                {isFa ? "مطالعه موردی رتبه ۱ گوگل" : "Case Study #1 Google"}
+              <Link href="/estimator" className="hover:text-[var(--text-primary)] transition-colors">
+                {isFa ? "محاسبه‌گر آنلاین هزینه" : "Online Cost Estimator"}
               </Link>
             </li>
             <li>
-              <Link href="/#estimator" className="hover:text-[var(--accent)] transition-colors text-emerald-400 font-bold">
-                {isFa ? "محاسبه‌گر آنلاین هزینه و زمان" : "Cost & Timeline Estimator"}
+              <Link href="/blog" className="hover:text-[var(--text-primary)] transition-colors">
+                {isFa ? "پایگاه دانش مهندسی وبلاگ" : "Engineering Blog"}
               </Link>
             </li>
             <li>
-              <Link href="/#contact" className="hover:text-[var(--accent)] transition-colors">
-                {isFa ? "استعلام قیمت و تماس" : "Contact"}
+              <Link href="/contact" className="hover:text-[var(--text-primary)] transition-colors">
+                {isFa ? "ارتباط مستقیم و سفارش" : "Contact & Inquiry"}
               </Link>
             </li>
           </ul>

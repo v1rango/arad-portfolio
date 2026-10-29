@@ -34,9 +34,12 @@
     "unrs-resolver@1.12.2": true
   },
   "browserslist": [
-    "chrome >= 115",
-    "edge >= 115",
-    "firefox >= 115",
-    "safari >= 17"
+    "defaults",
+    "chrome >= 87",
+    "safari >= 14",
+    "ios_saf >= 14",
+    "firefox >= 88",
+    "edge >= 88",
+    "samsung >= 14"
   ]
 }

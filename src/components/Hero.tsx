@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { PERSONAL_DATA } from "@/lib/constants";
-import { FiArrowDown, FiCheckCircle, FiShield, FiTrendingUp, FiPlay, FiX } from "react-icons/fi";
-import PixelHeroTitle from "@/components/PixelHeroTitle";
+import { FiArrowLeft, FiArrowRight, FiCheckCircle, FiShield, FiTrendingUp, FiPlay, FiX, FiSliders } from "react-icons/fi";
 import CountUpNumber from "@/components/CountUpNumber";
 
 interface HeroProps {
@@ -14,26 +14,6 @@ interface HeroProps {
 export default function Hero({ lang }: HeroProps) {
   const isFa = lang === "fa";
   const [isShowreelOpen, setIsShowreelOpen] = useState(false);
-  const [rangoIndex, setRangoIndex] = useState(0);
-
-  const rangoQuotes = isFa
-    ? [
-        "سایت معمولی نمی‌خوای که؟ 🤠",
-        "لود زیر ۰.۸ ثانیه تضمینی! ⚡",
-        "گوگل و هوش مصنوعی رو فتح کنیم! 🏆",
-        "کلیک کن رفیق، پروژه رو ببندیم! 🤝",
-      ]
-    : [
-        "No generic websites here! 🤠",
-        "Sub-0.8s load guaranteed! ⚡",
-        "Let's conquer Google & AI! 🏆",
-        "Click here, let's build it! 🤝",
-      ];
-
-  const handleRangoClick = () => {
-    
-    setRangoIndex((prev) => (prev + 1) % rangoQuotes.length);
-  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -51,17 +31,30 @@ export default function Hero({ lang }: HeroProps) {
     };
   }, [isShowreelOpen]);
 
+  const marqueeItems = [
+    "NEXT.JS 16",
+    "REACT 19",
+    "TURBOPACK ENGINE",
+    "SUB-0.8S FCP GUARANTEE",
+    "AI TELEGRAM BOTS",
+    "POSTGRESQL & EDGE DB",
+    "100/100 LIGHTHOUSE",
+    "AEO & GEO DIRECT CITATIONS",
+    "ENTERPRISE SECURITY",
+    "ZERO VULNERABILITIES",
+  ];
+
   return (
-    <section id="hero" className="relative pt-10 sm:pt-14 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-[var(--accent-subtle)] blur-[120px] rounded-full pointer-events-none -z-10" />
+    <section id="hero" className="relative pt-12 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Dynamic Ambient Glow Behind Hero */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] sm:w-[850px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_70%)] blur-[120px] rounded-full pointer-events-none animate-ambient-glow -z-10" />
 
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center z-10">
         
-        
-        <div className="relative mb-6">
+        {/* Avatar with Minimal Status Ring */}
+        <div className="relative mb-6 animate-fade-in-up [animation-duration:500ms]">
           <div className="relative w-24 h-24 sm:w-28 sm:h-28">
-            <div className="w-full h-full rounded-full p-1 border-2 border-[var(--accent)] bg-[var(--bg-surface)] shadow-2xl shadow-emerald-500/20 overflow-hidden group">
+            <div className="w-full h-full rounded-full p-1 border border-[var(--border)] bg-[var(--bg-surface)] shadow-2xl overflow-hidden group">
               <Image
                 src="/avatar.webp"
                 alt={`${PERSONAL_DATA.nameEn} — Full-Stack Developer & Modern SEO Architect`}
@@ -72,171 +65,169 @@ export default function Hero({ lang }: HeroProps) {
                 className="w-full h-full object-contain rounded-full transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <span className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[var(--bg-primary)] shadow-sm animate-pulse"></span>
-          </div>
-
-          
-          <div
-            onClick={handleRangoClick}
-            title="کاراکتر رانگو — برای تغییر پیام کلیک کن!"
-            className="absolute -right-10 sm:-right-20 md:-right-24 bottom-0 w-12 sm:w-18 md:w-22 z-20 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-3 cursor-pointer group select-none"
-          >
-            <Image
-              src="/mascot-rango.webp"
-              alt="کاراکتر رانگو — آراد وفایی"
-              width={320}
-              height={480}
-              sizes="(max-width: 640px) 48px, (max-width: 768px) 72px, 88px"
-              loading="lazy"
-              className="w-full h-auto drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
+            <span 
+              className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[var(--bg-primary)] shadow-sm animate-pulse" 
+              title={isFa ? "در دسترس برای پروژه" : "Available for projects"}
             />
-            
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap px-3 py-1 rounded-lg text-[11px] font-bold bg-emerald-400 text-emerald-950 shadow-xl shadow-emerald-500/30 border border-emerald-300">
-              {rangoQuotes[rangoIndex]}
-            </span>
           </div>
         </div>
 
-        
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-semibold text-[var(--text-secondary)] mb-6 shadow-sm">
+        {/* Status Pill Badge */}
+        <div className="telemetry-pill mb-6 animate-fade-in-up [animation-duration:600ms]">
           <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
           </span>
-          <span className="text-[var(--accent)] font-bold">
-            {isFa ? "رتبه ۱ گوگل در ۱۲ ساعت" : "Rank #1 on Google in 12h"}
+          <span className="text-[var(--text-primary)] font-bold tracking-tight">
+            {isFa ? "معمار وب مدرن & اتوماسیون هوش مصنوعی" : "MODERN WEB ARCHITECT & AI SPECIALIST"}
           </span>
-          <span className="text-[var(--border)]">•</span>
-          <span>
-            {isFa ? "آماده پذیرش سفارش‌های جدید" : "Accepting High-Impact Projects"}
+          <span className="text-[var(--border)] opacity-60">•</span>
+          <span className="text-[11px] text-[var(--text-muted)]">
+            {isFa ? "آماده پذیرش پروژه‌های شاخص" : "STATUS: AVAILABLE"}
           </span>
         </div>
 
-        
-        <div className="w-full flex justify-center mb-6">
+        {/* Formal Typographic Headline */}
+        <div className="w-full flex justify-center mb-6 animate-fade-in-up [animation-duration:700ms]">
           {isFa ? (
-            <div className="w-full flex justify-center animate-hero-float">
-              <PixelHeroTitle />
-            </div>
-          ) : (
             <h1
-              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.25] sm:leading-[1.2] max-w-4xl"
+              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.3] sm:leading-[1.22] max-w-4xl"
               style={{ color: "var(--text-primary)" }}
             >
-              Architecting <span className="text-gradient-emerald">Ultra-Fast Custom Websites</span>
-              <br className="hidden sm:inline" /> Engineered with{" "}
-              <span className="text-[var(--accent)]">Next.js 16 & AI Search</span>
+              معماری وب‌سایت‌های فوق‌سریع،
+              <br className="hidden sm:inline" />
+              وب‌اپلیکیشن‌ها و <span className="text-gradient-silver">اتوماسیون هوش مصنوعی</span>
+            </h1>
+          ) : (
+            <h1
+              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.25] sm:leading-[1.18] max-w-4xl"
+              style={{ color: "var(--text-primary)" }}
+            >
+              Architecting Ultra-Fast Websites,
+              <br className="hidden sm:inline" />
+              Web Applications & <span className="text-gradient-silver">AI Automation</span>
             </h1>
           )}
         </div>
 
-        
+        {/* Subtitle covering ALL fields (Web, Apps, Bots, AI, Speed, SEO/AEO/GEO) */}
         <p
-          className="text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed mb-8"
+          className="text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed mb-10 animate-fade-in-up [animation-duration:800ms]"
           style={{ color: "var(--text-secondary)" }}
         >
           {isFa ? (
             <>
-              علاوه بر سرعت بالای لود سایت، می‌توانید شاهد دیده شدن اسم کسب‌وکارتان در هوش مصنوعی‌های بزرگ مثل <strong className="text-[var(--text-primary)]">ChatGPT، Gemini و Claude</strong> باشید.
+              مهندس فول‌استک و معمار سیستم‌های دیجیتال با <strong className="text-[var(--text-primary)]">Next.js 16</strong>. توسعه پلتفرم‌های اختصاصی سازمانی، پیاده‌سازی ربات‌های تلگرام و اتوماسیون هوش مصنوعی، بهینه‌سازی سرعت زیر ۰.۸ ثانیه (PageSpeed 100) و سئوی نوین <strong className="text-[var(--text-primary)]">AEO و GEO</strong> برای استناد و حضور در صدر نتایج گوگل، ChatGPT و Perplexity.
             </>
           ) : (
             <>
-              Beyond sub-second website speed, get your brand discovered and cited directly in major AI engines like <strong className="text-[var(--text-primary)]">ChatGPT, Gemini, and Claude</strong>.
+              Full-Stack Engineer specialized in custom web systems with <strong className="text-[var(--text-primary)]">Next.js 16</strong>. Engineering enterprise web applications, Telegram bots & AI automation, guaranteed sub-0.8s load times, and next-generation <strong className="text-[var(--text-primary)]">AEO & GEO</strong> for direct citations in Google, ChatGPT, and Perplexity.
             </>
           )}
         </p>
 
-        
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-12 flex-wrap">
-          <a
-            href="#contact"
-            className="btn-border-beam w-full sm:w-auto px-8 py-3.5 font-bold text-sm flex items-center justify-center gap-2.5 group cursor-pointer text-emerald-950 font-sans select-none"
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-12 flex-wrap animate-fade-in-up [animation-duration:900ms]">
+          <Link
+            href="/contact"
+            className="btn-border-beam tactile-btn w-full sm:w-auto px-7 py-3.5 font-bold text-sm flex items-center justify-center gap-2.5 active:scale-95 text-[var(--text-primary)]"
           >
-            <span className="relative z-10 font-black tracking-tight">{isFa ? "مشاوره و شروع پروژه" : "Book Consultation"}</span>
-            <span className="relative z-10 w-2 h-2 rounded-full bg-emerald-950/40 group-hover:scale-125 transition-transform" />
-          </a>
+            <span>{isFa ? "مشاوره و شروع پروژه" : "Book Consultation"}</span>
+            {isFa ? <FiArrowLeft className="w-4 h-4" /> : <FiArrowRight className="w-4 h-4" />}
+          </Link>
 
-          
+          <Link
+            href="/case-studies"
+            className="tactile-btn w-full sm:w-auto px-6 py-3.5 font-bold text-sm flex items-center justify-center gap-2"
+          >
+            <span>{isFa ? "مطالعات موردی و پروژه‌ها" : "Case Studies"}</span>
+          </Link>
+
+          <Link
+            href="/estimator"
+            className="tactile-btn w-full sm:w-auto px-5 py-3.5 font-semibold text-sm flex items-center justify-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+          >
+            <FiSliders className="w-4 h-4" />
+            <span>{isFa ? "محاسبه آنلاین هزینه" : "Cost Estimator"}</span>
+          </Link>
+
           <button
             onClick={() => setIsShowreelOpen(true)}
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-bold text-sm transition-all hover:border-[var(--accent)] hover:shadow-lg hover:shadow-emerald-500/10 active:scale-95 flex items-center justify-center gap-2.5 group cursor-pointer bg-[var(--bg-surface)] text-[var(--text-primary)]"
-            style={{
-              borderColor: "var(--border)",
-            }}
+            className="tactile-btn w-full sm:w-auto px-4 py-3.5 text-xs font-medium flex items-center justify-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer"
+            aria-label={isFa ? "مشاهده تریلر برنامه‌نویسی" : "Watch Code Showreel"}
           >
-            <span className="sonar-pulse-ring">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 group-hover:bg-emerald-300 transition-colors" />
-            </span>
-            <FiPlay className="w-4 h-4 text-emerald-400 fill-emerald-400 group-hover:scale-110 transition-transform" />
-            <span>{isFa ? "مشاهده تریلر" : "Watch Trailer"}</span>
+            <FiPlay className="w-3.5 h-3.5" />
+            <span>{isFa ? "شو‌ریل کد (۱۵ ثانیه)" : "15s Showreel"}</span>
           </button>
-
-          <a
-            href="#services"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl border font-semibold text-sm transition-all hover:border-[var(--accent)] active:scale-95 flex items-center justify-center gap-2 group bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            style={{
-              borderColor: "var(--border)",
-            }}
-          >
-            <span>{isFa ? "مشاهده خدمات و دموها" : "Services & Demos"}</span>
-            <FiArrowDown className="w-4 h-4 text-[var(--accent)] group-hover:translate-y-0.5 transition-transform" />
-          </a>
         </div>
 
-        
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mb-12">
+        {/* 4 Quantitative Metrics with CAD Precision Styling */}
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mb-12 animate-fade-in-up [animation-duration:1000ms]">
           {PERSONAL_DATA.metrics.map((metric, i) => (
             <div
               key={i}
-              className="p-4 rounded-xl flex flex-col items-center justify-center text-center bento-card hover:border-[var(--accent)] transition-colors"
+              className="architectural-card p-4 sm:p-5 flex flex-col items-center justify-center text-center group"
             >
+              <span className="cad-corner-tl">+</span>
+              <span className="cad-corner-tr">{`0${i + 1}`}</span>
               <CountUpNumber
                 value={metric.value}
-                className="text-xl sm:text-2xl font-black font-mono text-[var(--accent)]"
+                className="text-xl sm:text-2xl font-black font-mono text-[var(--text-primary)]"
               />
-              <span className="text-xs mt-1" style={{ color: "var(--text-secondary)" }}>
+              <span className="text-xs mt-1.5 font-medium" style={{ color: "var(--text-secondary)" }}>
                 {isFa ? metric.labelFa : metric.labelEn}
               </span>
             </div>
           ))}
         </div>
 
-        
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[var(--text-secondary)] font-medium">
-          <div className="flex items-center gap-1.5">
-            <FiCheckCircle className="w-4 h-4 text-[var(--accent)]" />
-            <span>{isFa ? "سرعت تضمینی زیر ۰.۸ ثانیه" : "Sub-0.8s Load Guarantee"}</span>
+        {/* 3 Engineering Trust Indicators with Hardware Pill Styling */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-[var(--text-secondary)] font-mono mb-12 animate-fade-in-up [animation-duration:1100ms]">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-sm">
+            <FiCheckCircle className="w-3.5 h-3.5 text-[var(--text-primary)]" />
+            <span>{isFa ? "سرعت لود زیر ۰.۸ ثانیه تضمینی" : "SUB-0.8S FCP GUARANTEE"}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <FiShield className="w-4 h-4 text-[var(--accent)]" />
-            <span>{isFa ? "امنیت کامل بدون افزونه‌های مخرب" : "Zero-Vulnerability Architecture"}</span>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-sm">
+            <FiShield className="w-3.5 h-3.5 text-[var(--text-primary)]" />
+            <span>{isFa ? "معماری اختصاصی بدون باگ افزونه‌ها" : "ZERO-VULNERABILITY CORE"}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <FiTrendingUp className="w-4 h-4 text-[var(--accent)]" />
-            <span>{isFa ? "بهینه‌سازی ۱۰۰٪ برای هوش مصنوعی" : "Native AEO & GEO Ready"}</span>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-sm">
+            <FiTrendingUp className="w-3.5 h-3.5 text-[var(--text-primary)]" />
+            <span>{isFa ? "آماده‌سازی گراف معنایی AEO/GEO" : "AEO & GEO KNOWLEDGE GRAPH"}</span>
           </div>
         </div>
 
       </div>
 
-      
+      {/* High-End Engineering Tech Marquee Ticker */}
+      <div className="w-full mt-8 pt-4 pb-4 border-y border-[var(--border)] overflow-hidden bg-[var(--bg-surface)]/50 backdrop-blur-md relative">
+        <div className="animate-marquee flex items-center gap-8 text-[11px] font-mono tracking-wider text-[var(--text-secondary)] whitespace-nowrap">
+          {[...marqueeItems, ...marqueeItems].map((item, idx) => (
+            <div key={idx} className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-primary)] opacity-70" />
+              <span className="hover:text-[var(--text-primary)] transition-colors">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Showreel Modal */}
       {isShowreelOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-2xl animate-in fade-in duration-200"
           onClick={() => setIsShowreelOpen(false)}
         >
           <div
-            className="relative w-full max-w-4xl rounded-3xl border border-emerald-500/30 bg-[#06070a] shadow-2xl overflow-hidden p-3 sm:p-5 space-y-3"
+            className="relative w-full max-w-4xl rounded-3xl border border-[var(--border)] bg-[#09090b] shadow-2xl overflow-hidden p-3 sm:p-5 space-y-3"
             onClick={(e) => e.stopPropagation()}
           >
-            
             <div className="flex items-center justify-between pb-2 border-b border-white/10 px-2">
               <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                 <span className="font-mono font-bold text-xs sm:text-sm text-white">
-                  ARAD VAFAEE — 15s PROGRAMMATIC SHOWREEL
+                  ARAD VAFAEE — PROGRAMMATIC SHOWREEL
                 </span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden sm:inline">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-zinc-300 border border-white/20 hidden sm:inline">
                   60 FPS • 720p HD
                 </span>
               </div>
@@ -249,30 +240,20 @@ export default function Hero({ lang }: HeroProps) {
               </button>
             </div>
 
-            
             <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-inner">
               <video
-                src="/showreel.mp4"
+                src="/videos/showreel.mp4"
                 controls
                 autoPlay
                 playsInline
-                preload="none"
                 className="w-full h-full object-contain"
-              />
-            </div>
-
-            
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-2 text-[11px] text-gray-400 font-sans">
-              <span>
-                💡 این شو‌ریل ۱۰۰٪ با کدهای ریاضی، فرمول‌های پرسپکتیو WebGL و سنتز فرکانس صوتی در Node.js رندر شده است.
-              </span>
-              <span className="font-mono text-emerald-400 font-bold">
-                ARADVAFAEE.IR
-              </span>
+              >
+                مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+              </video>
             </div>
           </div>
         </div>
       )}
     </section>
   );
-}
+}
