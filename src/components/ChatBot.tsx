@@ -24,6 +24,33 @@ const QUICK_CHIPS_EN = [
   { label: "📞 Book Direct Consultation?", prompt: "How can I schedule a direct technical consultation with Arad?" },
 ];
 
+function cleanStreamText(raw: string): string {
+  if (!raw.includes("data:")) return raw;
+  const lines = raw.split("\n");
+  let result = "";
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (!trimmed.startsWith("data:")) {
+      result += (result ? "\n" : "") + line;
+      continue;
+    }
+    const payload = trimmed.replace(/^data:\s*/, "");
+    if (payload === "[DONE]") continue;
+    try {
+      const parsed = JSON.parse(payload);
+      if (typeof parsed?.text === "string") {
+        result += parsed.text;
+      } else if (typeof parsed?.content === "string") {
+        result += parsed.content;
+      }
+    } catch {
+      // ignore partial or non-json
+    }
+  }
+  return result;
+}
+
 function renderFormattedContent(content: string) {
   const parts = content.split(/(\*\*.*?\*\*)/g);
   return parts.map((part, index) => {
@@ -145,10 +172,11 @@ export default function ChatBot() {
 
         const chunk = decoder.decode(value, { stream: true });
         accumulated += chunk;
+        const displayContent = cleanStreamText(accumulated);
 
         setMessages((prev) =>
           prev.map((msg) =>
-            msg.id === assistantId ? { ...msg, content: accumulated } : msg
+            msg.id === assistantId ? { ...msg, content: displayContent } : msg
           )
         );
       }

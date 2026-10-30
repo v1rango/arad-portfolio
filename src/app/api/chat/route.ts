@@ -80,31 +80,46 @@ export async function POST(req: NextRequest) {
 
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
+    let buffer = "";
 
     const transformStream = new TransformStream({
-      async transform(chunk, controller) {
-        const text = decoder.decode(chunk, { stream: true });
-        const lines = text.split("\n");
+      transform(chunk, controller) {
+        buffer += decoder.decode(chunk, { stream: true });
+        const lines = buffer.split("\n");
+        // Keep the last potentially incomplete line in buffer
+        buffer = lines.pop() ?? "";
 
         for (const line of lines) {
           const trimmed = line.trim();
           if (!trimmed || !trimmed.startsWith("data:")) continue;
 
           const dataStr = trimmed.replace(/^data:\s*/, "");
-          if (dataStr === "[DONE]") {
-            controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-            continue;
-          }
+          if (dataStr === "[DONE]") continue;
 
           try {
             const parsed = JSON.parse(dataStr);
             const content = parsed.choices?.[0]?.delta?.content;
             if (content) {
-              controller.enqueue(
-                encoder.encode(`data: ${JSON.stringify({ text: content })}\n\n`)
-              );
+              controller.enqueue(encoder.encode(content));
             }
           } catch {
+            // Partial JSON line, ignore
+          }
+        }
+      },
+      flush(controller) {
+        if (buffer.trim().startsWith("data:")) {
+          const dataStr = buffer.trim().replace(/^data:\s*/, "");
+          if (dataStr && dataStr !== "[DONE]") {
+            try {
+              const parsed = JSON.parse(dataStr);
+              const content = parsed.choices?.[0]?.delta?.content;
+              if (content) {
+                controller.enqueue(encoder.encode(content));
+              }
+            } catch {
+              // Ignore invalid trailing JSON
+            }
           }
         }
       },
@@ -112,7 +127,7 @@ export async function POST(req: NextRequest) {
 
     return new Response(groqResponse.body.pipeThrough(transformStream), {
       headers: {
-        "Content-Type": "text/event-stream; charset=utf-8",
+        "Content-Type": "text/plain; charset=utf-8",
         "Cache-Control": "no-cache, no-transform",
         "Connection": "keep-alive",
         "X-Accel-Buffering": "no",
